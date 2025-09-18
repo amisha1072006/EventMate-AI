@@ -31,7 +31,7 @@ const MainAdmin = () => {
   return (
     <div
       className="flex justify-center items-center min-h-screen bg-cover bg-center bg-fixed"
-      style={{ backgroundImage: "url('/images/background.jpg')" }}
+      style={{ backgroundImage: "url('/images/authentication.jpg')" }}
     >
       <div className="bg-white p-8 w-[500px] rounded-xl shadow-lg text-center">
         <h2 className="mb-6 text-2xl font-semibold text-gray-800">
