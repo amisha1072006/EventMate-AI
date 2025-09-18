@@ -18,7 +18,7 @@ const MainAdmin = () => {
   return (
     <div
       className="flex justify-center items-center min-h-screen bg-cover bg-center bg-fixed"
-      style={{ backgroundImage: "url('/images/background.jpg')" }}
+      style={{ backgroundImage: "url('/images/adminlogin.jpg')" }}
     >
       <div className="bg-white w-[500px] p-8  rounded-xl shadow-lg text-center">
  
