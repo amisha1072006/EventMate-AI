@@ -1,7 +1,7 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
-const MainAdmin = () => {
+const Login = () => {
   const navigate = useNavigate();
 
   // const goToAdmin = (e) => {
@@ -17,8 +17,8 @@ const MainAdmin = () => {
 
   return (
     <div
-      className="flex justify-center items-center min-h-screen bg-cover bg-center bg-fixed bg-gradient-to-r from-[#faf3e0] to-[#c5a45a]"
-       
+      className="flex justify-center items-center min-h-screen bg-cover bg-center bg-fixed"
+      style={{ backgroundImage: "url('/images/adminlogin.jpg')" }}
     >
       <div className="bg-white w-[500px] p-8  rounded-xl shadow-lg text-center">
  
@@ -39,16 +39,7 @@ const MainAdmin = () => {
             />
           </div>
           
-          <div className="mb-4 text-left">
-            <label className="block mb-2 font-medium text-gray-700">
-              Mobile Number
-            </label>
-            <input
-              type="email"
-              placeholder="Enter your Mobile Number"
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
-            />
-          </div>
+          
  
           <div className="mb-6 text-left">
             <label className="block mb-2 font-medium text-gray-700">
@@ -65,8 +56,7 @@ const MainAdmin = () => {
           <button
           onClick={goToEmailOtp}
             type="submit"
-            className="w-full py-2 bg-[#d4af37] hover:bg-[#d4af37]
-             text-white font-semibold rounded-lg shadow-md transition duration-300"
+            className="w-full py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md transition duration-300"
           >
             Login 
           </button>
@@ -81,9 +71,15 @@ const MainAdmin = () => {
           </button> */}
 
         </form>
+
+        
+        <h2 className="mb-6 mt-2 text-left font-semibold text-gray-800">
+          Already Have an Account : <Link className='text-blue-500 ml-3' to='/Signup'>SignUp</Link>
+          <Link className='text-red-500 text-right ml-13' to='/ForgotPass'>Forgot Password</Link>
+        </h2>
       </div>
     </div>
   );
 };
 
-export default MainAdmin;
+export default Login;

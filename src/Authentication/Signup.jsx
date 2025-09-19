@@ -1,29 +1,27 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-
-const MainAdmin = () => {
-  const navigate = useNavigate();
-
-  // const goToAdmin = (e) => {
-  //   e.preventDefault();  
-  //   navigate("/Dashboard");
-  // };
+import React from 'react'
+import { useNavigate,Link } from 'react-router-dom';
 
 
-  const goToEmailOtp = (e) => {
-    e.preventDefault();  
-    navigate("/EmailOtp");
-  };
+
+const Signup = () => {
+        const navigate = useNavigate();
+    
+        const goToEmailOtp = (e) => {
+          e.preventDefault();  
+          navigate("/EmailOtp");
+        };
+      
 
   return (
+       <>
     <div
-      className="flex justify-center items-center min-h-screen bg-cover bg-center bg-fixed bg-gradient-to-r from-[#faf3e0] to-[#c5a45a]"
-       
+      className="flex justify-center items-center min-h-screen bg-cover bg-center bg-fixed"
+      style={{ backgroundImage: "url('/images/adminlogin.jpg')" }}
     >
       <div className="bg-white w-[500px] p-8  rounded-xl shadow-lg text-center">
  
         <h2 className="mb-6 text-2xl font-semibold text-gray-800">
-        Login Here
+      Sign up Here
         </h2>
 
         <form >
@@ -65,10 +63,9 @@ const MainAdmin = () => {
           <button
           onClick={goToEmailOtp}
             type="submit"
-            className="w-full py-2 bg-[#d4af37] hover:bg-[#d4af37]
-             text-white font-semibold rounded-lg shadow-md transition duration-300"
+            className="w-full py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md transition duration-300"
           >
-            Login 
+           Sign Up
           </button>
 
    
@@ -81,9 +78,22 @@ const MainAdmin = () => {
           </button> */}
 
         </form>
-      </div>
-    </div>
-  );
-};
 
-export default MainAdmin;
+
+        <h2 className="mb-6 mt-2 text-left font-semibold text-gray-800">
+          Already Have an Account : <Link className='text-blue-500 ml-3' to='/Login'>Login</Link>
+          <Link className='text-red-500 text-right ml-16' to='/ForgotPass'>Forgot Password</Link>
+        </h2>
+
+      </div>
+        
+     
+
+    </div>
+       
+       </>
+  )
+}
+
+
+export default Signup

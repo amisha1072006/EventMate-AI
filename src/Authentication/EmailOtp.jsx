@@ -34,16 +34,19 @@ const MainAdmin = () => {
       
     >
       <div className="bg-white p-8 w-[500px] rounded-xl shadow-lg text-center">
-        <h2 className="mb-6 text-2xl font-semibold text-gray-800">
+        <h2 className=" text-2xl font-semibold text-gray-800">
           Authentication Page
-        </h2>
+        </h2 >
 
+        <h2  className="mb-6 font-semibold text-green-800">Enter Otp sent to your Email and Phone</h2>
         <form>
           {/* Email Verification */}
           <div className="mb-4 text-left">
             <label className="block mb-2 font-medium text-gray-700">
               Email Verification
             </label>
+
+    
 
             <div className="flex items-center gap-2">
               <input
@@ -91,7 +94,10 @@ const MainAdmin = () => {
                 {mobileVerified ? "Verified" : "Verify"}
               </button>
             </div>
+
+
           </div>
+          
         </form>
       </div>
     </div>
