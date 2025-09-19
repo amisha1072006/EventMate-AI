@@ -17,8 +17,8 @@ const MainAdmin = () => {
 
   return (
     <div
-      className="flex justify-center items-center min-h-screen bg-cover bg-center bg-fixed"
-      style={{ backgroundImage: "url('/images/adminlogin.jpg')" }}
+      className="flex justify-center items-center min-h-screen bg-cover bg-center bg-fixed bg-gradient-to-r from-[#faf3e0] to-[#c5a45a]"
+       
     >
       <div className="bg-white w-[500px] p-8  rounded-xl shadow-lg text-center">
  
@@ -65,7 +65,8 @@ const MainAdmin = () => {
           <button
           onClick={goToEmailOtp}
             type="submit"
-            className="w-full py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md transition duration-300"
+            className="w-full py-2 bg-[#d4af37] hover:bg-[#d4af37]
+             text-white font-semibold rounded-lg shadow-md transition duration-300"
           >
             Login 
           </button>

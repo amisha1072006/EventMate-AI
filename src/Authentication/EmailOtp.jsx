@@ -30,8 +30,8 @@ const MainAdmin = () => {
 
   return (
     <div
-      className="flex justify-center items-center min-h-screen bg-cover bg-center bg-fixed"
-      style={{ backgroundImage: "url('/images/authentication.jpg')" }}
+      className="flex justify-center items-center min-h-screen bg-cover bg-center bg-fixed bg-gradient-to-r from-[#faf3e0] to-[#c5a45a]"
+      
     >
       <div className="bg-white p-8 w-[500px] rounded-xl shadow-lg text-center">
         <h2 className=" text-2xl font-semibold text-gray-800">
@@ -61,7 +61,7 @@ const MainAdmin = () => {
                 className={`px-4 py-2 ${
                   emailVerified
                     ? "bg-green-600 cursor-not-allowed"
-                    : "bg-blue-600 hover:bg-blue-700"
+                    : "bg-[#d4af37] hover:bg-[#d4af37]"
                 } text-white font-semibold rounded-lg shadow-md transition duration-300`}
               >
                 {emailVerified ? "Verified" : "Verify"}
@@ -88,7 +88,7 @@ const MainAdmin = () => {
                 className={`w-30 py-1.5 mt-0.5 ${
                   mobileVerified
                     ? "bg-green-600 cursor-not-allowed"
-                    : "bg-blue-600 hover:bg-blue-700"
+                    : "bg-[#d4af37] hover:bg-[#d4af37]"
                 } text-white font-semibold rounded-lg shadow-md transition duration-300`}
               >
                 {mobileVerified ? "Verified" : "Verify"}
