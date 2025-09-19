@@ -1,7 +1,7 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
-const MainAdmin = () => {
+const Login = () => {
   const navigate = useNavigate();
 
   // const goToAdmin = (e) => {
@@ -39,16 +39,7 @@ const MainAdmin = () => {
             />
           </div>
           
-          <div className="mb-4 text-left">
-            <label className="block mb-2 font-medium text-gray-700">
-              Mobile Number
-            </label>
-            <input
-              type="email"
-              placeholder="Enter your Mobile Number"
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
-            />
-          </div>
+          
  
           <div className="mb-6 text-left">
             <label className="block mb-2 font-medium text-gray-700">
@@ -80,9 +71,15 @@ const MainAdmin = () => {
           </button> */}
 
         </form>
+
+        
+        <h2 className="mb-6 mt-2 text-left font-semibold text-gray-800">
+          Already Have an Account : <Link className='text-blue-500 ml-3' to='/Signup'>SignUp</Link>
+          <Link className='text-red-500 text-right ml-13' to='/ForgotPass'>Forgot Password</Link>
+        </h2>
       </div>
     </div>
   );
 };
 
-export default MainAdmin;
+export default Login;

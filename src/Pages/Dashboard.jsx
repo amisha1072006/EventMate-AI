@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import './dashboard.css'
 import BookingPage from "../HallPages/BookingPage";
+import EventPage from "../HallBooking/EventPage";
 
 
 const MainAdmin = () => {
@@ -13,8 +14,9 @@ const MainAdmin = () => {
 
   return (
     <>
+        
        <BookingPage/>
-     
+       <EventPage/>
 
     
   
