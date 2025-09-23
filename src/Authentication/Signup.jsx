@@ -1,99 +1,75 @@
-import React from 'react'
-import { useNavigate,Link } from 'react-router-dom';
-
-
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import './AuthForm.css';
+import { useAuth } from '../Context/AuthContext'; // ✨ AuthContext ko import karein
 
 const Signup = () => {
-        const navigate = useNavigate();
-    
-        const goToEmailOtp = (e) => {
-          e.preventDefault();  
-          navigate("/EmailOtp");
-        };
-      
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+  const { login } = useAuth(); // ✨ login function context se lein
+
+  const handleSignup = (e) => {
+    e.preventDefault();
+    // Yahan par aap apni asli signup API call karenge
+    console.log('Signing up with:', { name, email, password });
+
+    // --- API Call Simulation ---
+    // Maan lijiye signup successful hua aur API ne token wapas bheja
+    const fakeApiToken = '12345-abcde-67890-fghij';
+
+    // Signup ke baad user ko automatically login kar dein
+    login(fakeApiToken);
+
+    // User ko dashboard ya kisi private page par bhej dein
+    navigate('/FindHall');
+  };
 
   return (
-       <>
-    <div
-      className="flex justify-center items-center min-h-screen bg-cover bg-center bg-fixed"
-      style={{ backgroundImage: "url('/images/adminlogin.jpg')" }}
-    >
-      <div className="bg-white w-[500px] p-8  rounded-xl shadow-lg text-center">
- 
-        <h2 className="mb-6 text-2xl font-semibold text-gray-800">
-      Sign up Here
-        </h2>
-
-        <form >
-      
-          <div className="mb-4 text-left">
-            <label className="block mb-2 font-medium text-gray-700">
-              Email
-            </label>
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
-            />
-          </div>
-          
-          <div className="mb-4 text-left">
-            <label className="block mb-2 font-medium text-gray-700">
-              Mobile Number
-            </label>
-            <input
-              type="email"
-              placeholder="Enter your Mobile Number"
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
-            />
-          </div>
- 
-          <div className="mb-6 text-left">
-            <label className="block mb-2 font-medium text-gray-700">
-              Password
-            </label>
-            <input
-              type="password"
-              placeholder="Enter your password"
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
-            />
-          </div>
-
-  
-          <button
-          onClick={goToEmailOtp}
-            type="submit"
-            className="w-full py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md transition duration-300"
-          >
-           Sign Up
-          </button>
-
-   
-          {/* <button
-          onClick={goToAdmin}
-            type="submit"
-            className="w-full py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md transition duration-300"
-          >
-            Login For Admin Dashboard
-          </button> */}
-
-        </form>
-
-
-        <h2 className="mb-6 mt-2 text-left font-semibold text-gray-800">
-          Already Have an Account : <Link className='text-blue-500 ml-3' to='/Login'>Login</Link>
-          <Link className='text-red-500 text-right ml-16' to='/ForgotPass'>Forgot Password</Link>
-        </h2>
-
-      </div>
-        
-     
-
+    <div className="auth-container">
+      <form className="auth-form" onSubmit={handleSignup}>
+        <h2>Sign Up Here</h2>
+        <div className="form-group">
+          <label htmlFor="name">Name</label>
+          <input
+            type="text"
+            id="name"
+            placeholder="Enter your name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            placeholder="Enter your password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+        <button type="submit" className="auth-button">Sign Up</button>
+        <div className="auth-links">
+          <p>Already have an account? <Link to="/login">Login</Link></p>
+        </div>
+      </form>
     </div>
-       
-       </>
-  )
-}
+  );
+};
 
-
-export default Signup
+export default Signup;

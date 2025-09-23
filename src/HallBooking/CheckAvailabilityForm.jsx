@@ -1,6 +1,5 @@
 import React from 'react'
 import DateTimeRangeReactDatepicker from './DateTimeRangeReactDatepicker'; 
-import BookingPage from '../HallPages/BookingPage';
 
 const CheckAvailabilityForm = () => {
   return (

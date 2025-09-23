@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import BookingPage from '../HallPages/BookingPage'
 
 const SuccessMsg = () => {
   return (
@@ -25,4 +24,4 @@ const SuccessMsg = () => {
   )
 }
 
-export default SuccessMsg
+export default SuccessMsg;

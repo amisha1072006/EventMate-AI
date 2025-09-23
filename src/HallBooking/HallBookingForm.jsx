@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import emailjs from "emailjs-com";
-import BookingPage from "../HallPages/BookingPage";
 import { useNavigate } from "react-router-dom";
 
 const HallBookingForm = () => {

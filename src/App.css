@@ -327,3 +327,13 @@ body {
     font-size: 1.5rem;
     font-weight: bold;
 }
+/* फुटर को पेज के नीचे रखने के लिए */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* यह सुनिश्चित करता है कि पेज कम से कम स्क्रीन जितना लंबा हो */
+}
+
+main {
+  flex-grow: 1; /* यह बीच के कंटेंट को बची हुई सारी खाली जगह लेने के लिए कहता है */
+}

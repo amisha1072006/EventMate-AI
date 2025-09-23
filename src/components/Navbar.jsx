@@ -1,6 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
+import { Link } from 'react-router-dom'
+import './Navbar.css';
 const Navbar = () => {
   return (
     <div className="fixed top-0 left-0 w-full z-50 flex justify-between items-center bg-[#67d7e8] h-[50px] px-6">
