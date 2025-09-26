@@ -1,5 +1,4 @@
 
-
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import './App.css';
@@ -20,7 +19,7 @@ import Categories from './components/Categories.jsx';
 import Recommendations from './components/Recommendations.jsx';
 import Footer from './components/Footer.jsx';
 import AIAssistant from './components/AIAssistant.jsx';
-//
+
 // HallBooking Components
 import CheckAvailabilityForm from './HallBooking/CheckAvailabilityForm.jsx';
 import DateTimeRangeReactDatePicker from './HallBooking/DateTimeRangeReactDatepicker.jsx';
@@ -48,7 +47,7 @@ const PrivateRoute = ({ children }) => {
 // --- Conditional Header/Footer ---
 const ConditionalHeader = () => {
   const location = useLocation();
-  const hideOnPages = []; // Add any path if you want to hide header
+  const hideOnPages = []; 
   if (hideOnPages.includes(location.pathname)) return null;
   return <Header />;
 };
@@ -62,11 +61,6 @@ const ConditionalFooter = () => {
 
 // --- App Routes ---
 const AppRoutes = () => {
-  const location = useLocation();
-
-  // Show assistant only on allowed pages
-  const showAssistant = !['/login','/signup','/forgot-password','/ResetPassOtp','/EmailOtp'].includes(location.pathname);
-
   return (
     <div className="app-container">
       <ConditionalHeader />
@@ -74,14 +68,7 @@ const AppRoutes = () => {
       <main>
         <Routes>
           {/* Public Routes */}
-          <Route path="/" element={
-            <>
-              <Hero />
-              <TrendingVenues />
-              <Categories />
-              <Recommendations />
-            </>
-          } />
+          <Route path="/" element={<><Hero /><TrendingVenues /><Categories /><Recommendations /></>} />
           <Route path="/Login" element={<Login />} />
           <Route path="/Signup" element={<Signup />} />
           <Route path="/forgot-password" element={<ForgotPass />} />
@@ -100,9 +87,6 @@ const AppRoutes = () => {
         </Routes>
       </main>
 
-      {/* --- Floating Assistant --- */}
-      {showAssistant && <AIAssistant />}
-
       <ConditionalFooter />
     </div>
   );
@@ -114,6 +98,8 @@ function App() {
     <AuthProvider>
       <Router>
         <AppRoutes />
+        {/* Render AI Assistant once at the bottom */}
+        <AIAssistant />
       </Router>
     </AuthProvider>
   );
