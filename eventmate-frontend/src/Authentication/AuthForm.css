@@ -1,0 +1,89 @@
+/* src/Authentication/AuthForm.css */
+
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 20px;
+    background-color: #f0f2f5; /* Page ka halka background */
+}
+
+.auth-form {
+    background-color: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px;
+    text-align: center; /* Sab kuch center karne ke liye */
+}
+
+.auth-form h2 {
+    margin-bottom: 30px;
+    font-size: 28px;
+    color: #333;
+}
+
+.form-group {
+    width: 100%;
+    text-align: left; /* Labels ko left-align rakhein */
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box; /* Padding ko width mein include karne ke liye */
+}
+
+.auth-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #5d6d7e; /* Aapke design ka button color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.auth-button:hover {
+    background-color: #4c5a69;
+}
+
+.auth-links {
+    margin-top: 25px;
+    font-size: 14px;
+    color: #555;
+}
+
+.auth-links a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.auth-links a:hover {
+    text-decoration: underline;
+}
+
+/* Login page ke extra links ke liye */
+.auth-links-split {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 25px;
+}
