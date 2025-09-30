@@ -27,7 +27,7 @@ const Categories = () => {
   // Filtering logic
   const filteredVenues = useMemo(() => {
     let venues = allVenues;
-    if (category !== 'All') {
+    if (category !== 'temp') {
       venues = venues.filter(venue => venue.category === category);
     }
     return venues;
@@ -50,12 +50,12 @@ const Categories = () => {
         <div className="filter-group">
       
           <div className="category-icons">
-            <button 
+            {/* <button 
               className={`category-btn ${category === "All" ? "active" : ""}`} 
               onClick={() => setCategory("All")}
             >
               <FaBorderAll /> <span>All</span>
-            </button>
+            </button> */}
             <button 
               className={`category-btn ${category === "Weddings" ? "active" : ""}`} 
               onClick={() => setCategory("Weddings")}
