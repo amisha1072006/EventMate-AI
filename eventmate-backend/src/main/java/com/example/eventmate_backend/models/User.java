@@ -1,5 +1,6 @@
 package com.example.eventmate_backend.models;
 
+import java.time.LocalDateTime; // <-- नया import
 import java.util.Collection;
 import java.util.Collections;
 
@@ -10,11 +11,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table; // Ise import karein
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "users")
-public class User implements UserDetails { // <-- Yahan UserDetails ko implement karein
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +25,11 @@ public class User implements UserDetails { // <-- Yahan UserDetails ko implement
     private String email;
     private String password;
 
+    // --- START: NEW FIELDS FOR OTP ---
+    private String otp;
+    private LocalDateTime otpGeneratedTime;
+    // --- END: NEW FIELDS FOR OTP ---
+
     // --- Getters and Setters ---
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
@@ -31,48 +37,43 @@ public class User implements UserDetails { // <-- Yahan UserDetails ko implement
     public void setName(String name) { this.name = name; }
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
+    
+    // --- START: GETTERS/SETTERS FOR OTP ---
+    public String getOtp() { return otp; }
+    public void setOtp(String otp) { this.otp = otp; }
+    public LocalDateTime getOtpGeneratedTime() { return otpGeneratedTime; }
+    public void setOtpGeneratedTime(LocalDateTime otpGeneratedTime) { this.otpGeneratedTime = otpGeneratedTime; }
+    // --- END: GETTERS/SETTERS FOR OTP ---
 
     // --- UserDetails Methods ---
-    // Niche diye gaye methods ko add karein
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        // Hum roles ka istemal nahi kar rahe, isliye empty list return karein
         return Collections.emptyList();
     }
-
     @Override
     public String getPassword() {
         return this.password;
     }
-
     @Override
     public String getUsername() {
-        // Hum username ki jagah email use kar rahe hain
         return this.email;
     }
-
     @Override
     public boolean isAccountNonExpired() {
         return true;
     }
-
     @Override
     public boolean isAccountNonLocked() {
         return true;
     }
-
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
     }
-
     @Override
     public boolean isEnabled() {
         return true;
     }
-    
-    // Sirf password ke liye setter rakhein, getter UserDetails se aa jayega
     public void setPassword(String password) {
         this.password = password;
     }
