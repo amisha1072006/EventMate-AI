@@ -1,7 +1,7 @@
-package com.eventmate.backend.controller;
+package com.eventmate.backend.controllers;
 
-import com.eventmate.backend.model.Newsletter;
-import com.eventmate.backend.repository.NewsletterRepository;
+import com.eventmate.backend.models.Newsletter;
+import com.eventmate.backend.repositories.NewsletterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -1,8 +1,8 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom'; // Step 1: Import kiya
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
-// --- Styles (CSS Code) ---
-// (Styles waise hi rahenge jaise pehle the)
+// --- Styles (Optional, you can use your own CSS) ---
 const containerStyles = {
     display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '80vh',
     backgroundColor: '#f7f7f7', padding: '20px',
@@ -19,50 +19,61 @@ const subtextStyles = {
     marginBottom: '30px', fontSize: '16px', color: '#666',
 };
 const inputStyles = {
-    width: '100%', padding: '12px', marginBottom: '25px', border: '1px solid #ccc',
+    width: '100%', padding: '12px', marginBottom: '15px', border: '1px solid #ccc',
     borderRadius: '5px', fontSize: '16px', boxSizing: 'border-box',
 };
 const buttonStyles = {
-    width: '100%', padding: '12px', backgroundColor: '#5d5e42ff', color: '#ffffff',
+    width: '100%', padding: '12px', backgroundColor: '#44402bff', color: '#ffffff',
     border: 'none', borderRadius: '5px', fontSize: '18px', fontWeight: 'bold', cursor: 'pointer',
 };
 
-
 // --- Component Code ---
 function ForgotPass() {
-  const navigate = useNavigate(); // Step 2: Active kiya
+    const [email, setEmail] = useState('');
+    const navigate = useNavigate();
 
-  // Step 3: Naya function banaya
-  const handleResetClick = (event) => {
-    event.preventDefault(); // Page reload hone se rokega
-    navigate('/ResetPassOtp'); // Agle page par bhejega
-  };
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            // Step 1: Backend ko email bhejein taki wo OTP bhej sake
+            const response = await axios.post('http://localhost:8080/api/auth/forgot-password', {
+                email: email // email state se value bhej rahe hain
+            });
 
-  return (
-    <div style={containerStyles}>
-      <div style={formWrapperStyles}>
-        
-        <h1 style={headingStyles}>Forgot Your Password?</h1>
+            // Step 2: Backend se success message dikhayein
+            alert(response.data);
 
-        <p style={subtextStyles}>
-          No worries! Just enter your email address below and we'll send you a link to reset it.
-        </p>
+            // Step 3: User ko agle page par bhejein aur email sath mein pass karein
+            navigate('/ResetPassOtp', { state: { email: email } });
 
-        {/* Step 4: Function ko form se joda */}
-        <form onSubmit={handleResetClick}>
-          <input 
-            type="email" 
-            placeholder="Enter your email address" 
-            style={inputStyles}
-          />
-          <button type="submit" style={buttonStyles}>
-            Send Reset Link
-          </button>
-        </form>
+        } catch (error) {
+            alert(error.response?.data || "An error occurred. Please check the email address.");
+        }
+    };
 
-      </div>
-    </div>
-  );
+    return (
+        <div style={containerStyles}>
+            <div style={formWrapperStyles}>
+                <h1 style={headingStyles}>Forgot Your Password?</h1>
+                <p style={subtextStyles}>
+                    No worries! Just enter your email address below and we'll send you an OTP to reset it.
+                </p>
+                <form onSubmit={handleSubmit}>
+                    <input
+                        type="email"
+                        placeholder="Enter your email address"
+                        value={email} // Input ko state se joda
+                        onChange={(e) => setEmail(e.target.value)} // Har badlav par state update hoga
+                        required
+                        style={inputStyles}
+                    />
+                    <button type="submit" style={buttonStyles}>
+                        Send OTP
+                    </button>
+                </form>
+            </div>
+        </div>
+    );
 }
 
 export default ForgotPass;

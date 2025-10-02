@@ -1,6 +1,6 @@
-package com.eventmate.backend.repository;
+package com.eventmate.backend.repositories;
 
-import com.eventmate.backend.model.Newsletter;
+import com.eventmate.backend.models.Newsletter;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface NewsletterRepository extends JpaRepository<Newsletter, Long> {
