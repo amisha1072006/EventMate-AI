@@ -69,8 +69,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/api/newsletter/**").permitAll()
-                        // <-- allow newsletter endpoint
                         .requestMatchers("/api/contact/**").permitAll()
+                        .requestMatchers("/api/halls/**").permitAll() // <-- THE ONLY CHANGE IS HERE
+                        .requestMatchers("/api/bookings/**").permitAll()
                         .anyRequest().authenticated())
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())
