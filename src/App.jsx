@@ -1,10 +1,10 @@
-
 // import React from 'react';
 // import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 // import './App.css';
 // import { AuthProvider, useAuth } from './Context/AuthContext'; 
 // import UserNavbar from './components/UserNavbar';
 // import Navbar from './components/Navbar.jsx';
+
 // // Authentication Components
 // import Login from './Authentication/Login.jsx';
 // import Signup from './Authentication/Signup.jsx';
@@ -13,7 +13,6 @@
 // import ForgotPass from './Authentication/ForgotPass.jsx';
 
 // // Core Components
-// import Header from './components/Header.jsx';
 // import Hero from './components/Hero.jsx';
 // import TrendingVenues from './components/TrendingVenues.jsx';
 // import Categories from './components/Categories.jsx';
@@ -48,17 +47,13 @@
 // // --- Conditional Header/Footer ---
 // const ConditionalHeader = () => {
 //   const { isAuthenticated } = useAuth();
-//   // If user is logged in, show UserNavbar; otherwise show regular Navbar
 //   return isAuthenticated ? <UserNavbar /> : <Navbar />;
 // };
 
-
-
-
 // const ConditionalFooter = () => {
 //   const location = useLocation();
-//   const hideOnPages = ['/forgot-password', '/ResetPassOtp', '/EmailOtp', '/login', '/signup'];
-//   if (hideOnPages.includes(location.pathname)) return null;
+//   const hideOnPages = ['/forgot-password', '/resetpassotp', '/emailotp', '/login', '/signup'];
+//   if (hideOnPages.includes(location.pathname.toLowerCase())) return null;
 //   return <Footer />;
 // };
 
@@ -72,28 +67,25 @@
 //         <Routes>
 //           {/* Public Routes */}
 //           <Route path="/" element={<><Hero /><TrendingVenues /><Categories /><Recommendations /></>} />
-//           <Route path="/Login" element={<Login />} />
-//           <Route path="/Signup" element={<Signup />} />
+//           <Route path="/login" element={<Login />} />
+//           <Route path="/signup" element={<Signup />} />
 //           <Route path="/forgot-password" element={<ForgotPass />} />
-//           <Route path="/ResetPassOtp" element={<ResetPassOtp />} />
-//           <Route path="/EmailOtp" element={<EmailOtp />} />
-//           <Route path="/About" element={<About />} />
-//           <Route path="/Contact" element={<Contact />} />
+//           <Route path="/resetpassotp" element={<ResetPassOtp />} />
+//           <Route path="/emailotp" element={<EmailOtp />} />
+//           <Route path="/about" element={<About />} />
+//           <Route path="/contact" element={<Contact />} />
 //           <Route path="/venue/:venueId" element={<VenueDetails />} />
 
 //           {/* Private Routes */}
-//           {/* Private Routes with Dashboard */}
-//            <Route path="/FindHall" element={<FindHall />} />
-//            <Route path="/CheckAvailabilityForm" element={<CheckAvailabilityForm />} />
-//            <Route path="/HallBookingForm" element={<HallBookingForm />} />
-//            <Route path="/SuccessMsg" element={<SuccessMsg />} />
-//            <Route path="/DateTimeRangeReactDatePicker" element={<DateTimeRangeReactDatePicker />} />
+//           <Route path="/findhall" element={<PrivateRoute><FindHall /></PrivateRoute>} />
+//           <Route path="/checkavailabilityform" element={<PrivateRoute><CheckAvailabilityForm /></PrivateRoute>} />
+//           <Route path="/hallbookingform" element={<PrivateRoute><HallBookingForm /></PrivateRoute>} />
+//           <Route path="/successmsg" element={<PrivateRoute><SuccessMsg /></PrivateRoute>} />
+//           <Route path="/datetimerangereactdatepicker" element={<PrivateRoute><DateTimeRangeReactDatePicker /></PrivateRoute>} />
 //         </Routes>
 //       </main>
 
-//       <ConditionalFooter />{/* Private Routes with Dashboard */}
-
-
+//       <ConditionalFooter />
 //     </div>
 //   );
 // };
@@ -104,7 +96,6 @@
 //     <AuthProvider>
 //       <Router>
 //         <AppRoutes />
-//         {/* Render AI Assistant once at the bottom */}
 //         <AIAssistant />
 //       </Router>
 //     </AuthProvider>
@@ -112,23 +103,6 @@
 // }
 
 // export default App;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -189,6 +163,13 @@ import SuccessMsg from './HallBooking/SuccessMsg.jsx';
 // HallPages Components
 import FindHall from './HallPages/FindHall.jsx';
 
+// Dashboard Layout
+import DashboardLayout from './Pages/DashboardLayout.jsx';
+import Photographers from './Pages/Photographers.jsx';
+import Planners from './Pages/Planners.jsx';
+import Cakes from './Pages/Cakes.jsx';
+import Attire from './Pages/Attire.jsx';
+import Profilesettings from './Pages/Profilesettings.jsx';
 // General Pages
 import About from './Pages/About.jsx';
 import Contact from './Pages/Contact.jsx';
@@ -217,8 +198,30 @@ const ConditionalFooter = () => {
   return <Footer />;
 };
 
+// --- Authenticated Dashboard Section ---
+const DashboardRoutes = () => {
+  return (
+    <DashboardLayout>
+      <Routes>
+        <Route path="/findhall" element={<FindHall />} />
+        <Route path="/checkavailabilityform" element={<CheckAvailabilityForm />} />
+        <Route path="/hallbookingform" element={<HallBookingForm />} />
+        <Route path="/successmsg" element={<SuccessMsg />} />
+        <Route path="/datetimerangereactdatepicker" element={<DateTimeRangeReactDatePicker />} />
+         <Route path="/photographers" element={<Photographers />} />
+         <Route path="/planners" element={<Planners />} />
+         <Route path="/cakes" element={<Cakes />} />
+         <Route path="/attire" element={<Attire />} />
+         <Route path="/profilesettings" element={<Profilesettings />} />
+      </Routes>
+    </DashboardLayout>
+  );
+};
+
 // --- App Routes ---
 const AppRoutes = () => {
+  const { isAuthenticated } = useAuth();
+
   return (
     <div className="app-container">
       <ConditionalHeader />
@@ -236,12 +239,10 @@ const AppRoutes = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/venue/:venueId" element={<VenueDetails />} />
 
-          {/* Private Routes */}
-          <Route path="/findhall" element={<PrivateRoute><FindHall /></PrivateRoute>} />
-          <Route path="/checkavailabilityform" element={<PrivateRoute><CheckAvailabilityForm /></PrivateRoute>} />
-          <Route path="/hallbookingform" element={<PrivateRoute><HallBookingForm /></PrivateRoute>} />
-          <Route path="/successmsg" element={<PrivateRoute><SuccessMsg /></PrivateRoute>} />
-          <Route path="/datetimerangereactdatepicker" element={<PrivateRoute><DateTimeRangeReactDatePicker /></PrivateRoute>} />
+          {/* Private Dashboard Layout */}
+          {isAuthenticated && (
+            <Route path="/*" element={<PrivateRoute><DashboardRoutes /></PrivateRoute>} />
+          )}
         </Routes>
       </main>
 
