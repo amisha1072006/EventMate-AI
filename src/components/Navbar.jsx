@@ -1,37 +1,22 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './Navbar.css'; // Make sure this path is correct
 
-import { Link } from 'react-router-dom'
-import './Navbar.css';
 const Navbar = () => {
   return (
-    <div className="fixed top-0 left-0 w-full z-50 flex justify-between items-center bg-[#67d7e8] h-[50px] px-6">
-      {/* Left Side */}
-      <Link to="/" className="font-bold text-black no-underline px-4">
-        Eventmate AI
-      </Link>
+    <div className="navbar">
+      {/* Left side */}
+      <Link to="/" className="logo">EventMate AI</Link>
 
-      {/* Right Side */}
-      <div className="flex space-x-6">
-        <Link to="/about" className="font-bold text-black no-underline px-4">
-          About
-        </Link>
-        <Link to="/contact" className="font-bold text-black no-underline px-4">
-          Contact
-        </Link>
-        <Link to="/Login" className="font-bold text-black no-underline px-4">
-          Login
-        </Link>
-        <Link to="/Signup" className="font-bold text-black no-underline px-4">
-         SignUp
-        </Link>
+      {/* Right side */}
+      <div className="nav-links">
+        <Link to="/about">About</Link>
+        <Link to="/contact">Contact</Link>
+        <Link to="/login">Login</Link>
+        <Link to="/signup">SignUp</Link>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Navbar
-
-
-
-
-
+export default Navbar;
