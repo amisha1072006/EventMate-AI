@@ -4,46 +4,67 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
-import './VenueDetails.css';
+import './VenueDetails.css'; // Your custom CSS file
 
 const VenueDetails = () => {
-    // 1. GET DATA FROM URL AND SET UP STATE
-    const { venueId } = useParams(); // Get the venue ID from the URL (e.g., /venue/1)
+    const { venueId } = useParams();
     const navigate = useNavigate();
     const [venue, setVenue] = useState(null);
-    const [step, setStep] = useState(1); // 1: Calendar, 2: User Info, 3: Success
+    const [step, setStep] = useState(1);
     const [selectedDateTime, setSelectedDateTime] = useState(new Date());
-    const [userName, setUserName] = useState('');
-    const [userPhone, setUserPhone] = useState('');
-    const [confirmedBooking, setConfirmedBooking] = useState(null); // To store successful booking details
+    const [userName, setUserName] = useState(''); // State for name is used again
+    const [userPhone, setUserPhone] = useState(''); // State for phone is used again
+    const [confirmedBooking, setConfirmedBooking] = useState(null);
+    const [bookedDates, setBookedDates] = useState([]);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
-    // 2. FETCH VENUE DETAILS FROM BACKEND WHEN PAGE LOADS
     useEffect(() => {
         const fetchVenueDetails = async () => {
             try {
                 const response = await fetch(`http://localhost:8080/api/halls/${venueId}`);
-                if (response.ok) {
-                    const data = await response.json();
-                    setVenue(data);
-                } else {
-                    console.error("Failed to fetch venue details");
-                }
+                if (response.ok) setVenue(await response.json());
             } catch (error) {
-                console.error("Error:", error);
+                console.error("Error fetching venue details:", error);
             }
         };
+
+        const fetchBookedDates = async () => {
+            try {
+                const response = await fetch(`http://localhost:8080/api/bookings/hall/${venueId}/booked-dates`);
+                if (response.ok) {
+                    const dates = await response.json();
+                    setBookedDates(dates.map(dateStr => new Date(dateStr)));
+                }
+            } catch (error) {
+                console.error("Error fetching booked dates:", error);
+            }
+        };
+
         fetchVenueDetails();
+        fetchBookedDates();
     }, [venueId]);
 
-    // 3. HANDLE FINAL BOOKING SUBMISSION TO BACKEND
     const handleBookingSubmit = async (e) => {
         e.preventDefault();
+        if (isSubmitting) return;
+        setIsSubmitting(true);
+
+        const token = localStorage.getItem('token');
+        if (!token) {
+            alert("You must be logged in to make a booking.");
+            setIsSubmitting(false);
+            navigate('/login');
+            return;
+        }
+        
+        const date = selectedDateTime;
+        const localIsoString = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}T${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}:${String(date.getSeconds()).padStart(2, '0')}`;
 
         const bookingData = {
             hallId: venue.hallId,
-            userName: userName,
-            userPhone: userPhone,
-            bookingTime: selectedDateTime.toISOString() // Convert date to standard format
+            userName: userName, // ADDED BACK
+            userPhone: userPhone, // ADDED BACK
+            bookingTime: localIsoString
         };
 
         try {
@@ -51,41 +72,37 @@ const VenueDetails = () => {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
                 },
                 body: JSON.stringify(bookingData),
             });
 
             if (response.status === 201) {
                 const savedBooking = await response.json();
-                setConfirmedBooking(savedBooking); // Save the confirmed booking details
-                setStep(3); // Go to success step ONLY after successful API call
+                setConfirmedBooking(savedBooking);
+                setStep(3);
             } else {
-                alert("Booking failed. Please try again.");
+                const errorMessage = await response.text();
+                alert(`Booking failed: ${errorMessage}`);
             }
         } catch (error) {
             console.error("Error during booking:", error);
             alert("An error occurred during booking.");
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
-    // Show loading message while fetching
-    if (!venue) {
-        return <div>Loading venue details...</div>;
-    }
+    if (!venue) return <div>Loading venue details...</div>;
 
-    // 4. RENDER THE COMPONENT
     return (
         <div className="venue-details-container">
-            {/* Left Side: Venue Info Card */}
             <div className="venue-info-card">
                 <img src={venue.imageLink} alt={venue.hallName} className="venue-image" />
                 <h2>{venue.hallName}</h2>
                 <p>This is a premium hall with world-class facilities. Perfect for weddings, corporate events, and parties.</p>
             </div>
-
-            {/* Right Side: Booking Flow Card */}
             <div className="booking-flow-card">
-                {/* Step 1: Calendar */}
                 {step === 1 && (
                     <>
                         <h3>Select Date and Time</h3>
@@ -97,48 +114,39 @@ const VenueDetails = () => {
                                 inline
                                 dateFormat="MMMM d, yyyy h:mm aa"
                                 minDate={new Date()}
+                                excludeDates={bookedDates}
                             />
                         </div>
                         <button className="flow-btn" onClick={() => setStep(2)}>Next</button>
                     </>
                 )}
-
-                {/* Step 2: User Info Form */}
+                {/* RESTORED THE USER INFO FORM FOR STEP 2 */}
                 {step === 2 && (
                     <>
                         <h3>Hall Booking - User Info</h3>
                         <form onSubmit={handleBookingSubmit}>
                             <div className="form-group">
                                 <label>Enter your name</label>
-                                <input
-                                    type="text"
-                                    value={userName}
-                                    onChange={(e) => setUserName(e.target.value)}
-                                    required
-                                />
+                                <input type="text" value={userName} onChange={(e) => setUserName(e.target.value)} required />
                             </div>
                             <div className="form-group">
                                 <label>Enter your phone number</label>
-                                <input
-                                    type="tel"
-                                    value={userPhone}
-                                    onChange={(e) => setUserPhone(e.target.value)}
-                                    required
-                                />
+                                <input type="tel" value={userPhone} onChange={(e) => setUserPhone(e.target.value)} required />
                             </div>
                             <div className="button-group">
-                                <button type="button" className="flow-btn back" onClick={() => setStep(1)}>Back</button>
-                                <button type="submit" className="flow-btn">Book</button>
+                                <button type="button" className="flow-btn back" onClick={() => setStep(1)} disabled={isSubmitting}>Back</button>
+                                <button type="submit" className="flow-btn" disabled={isSubmitting}>
+                                    {isSubmitting ? 'Booking...' : 'Book'}
+                                </button>
                             </div>
                         </form>
                     </>
                 )}
-
-                {/* Step 3: Success Message */}
                 {step === 3 && confirmedBooking && (
                     <div className="success-message">
                         <h3>Booking Successful!</h3>
                         <p>Your booking for <strong>{venue.hallName}</strong> has been confirmed.</p>
+                        <p>Contact Name: {confirmedBooking.userName}</p>
                         <p>Date: {new Date(confirmedBooking.bookingTime).toLocaleString()}</p>
                         <p>Booking ID: {confirmedBooking.bookingId}</p>
                         <p>We will contact you shortly.</p>

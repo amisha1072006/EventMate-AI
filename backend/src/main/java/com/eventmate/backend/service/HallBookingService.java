@@ -1,37 +1,72 @@
 package com.eventmate.backend.service;
 
-import org.springframework.stereotype.Service;
-import com.eventmate.backend.payload.request.HallBookingRequest;
 import com.eventmate.backend.models.Hall;
 import com.eventmate.backend.models.HallBooking;
+import com.eventmate.backend.models.User;
+import com.eventmate.backend.payload.request.HallBookingRequest;
 import com.eventmate.backend.repositories.HallBookingRepository;
 import com.eventmate.backend.repositories.HallRepository;
+import com.eventmate.backend.repositories.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class HallBookingService {
 
     private final HallBookingRepository hallBookingRepository;
     private final HallRepository hallRepository;
+    private final UserRepository userRepository;
 
-    public HallBookingService(HallBookingRepository hallBookingRepository, HallRepository hallRepository) {
+    public HallBookingService(HallBookingRepository hallBookingRepository, HallRepository hallRepository, UserRepository userRepository) {
         this.hallBookingRepository = hallBookingRepository;
         this.hallRepository = hallRepository;
+        this.userRepository = userRepository;
     }
 
-    public HallBooking createBooking(HallBookingRequest bookingRequest) {
-        // 1. Find the hall that the booking is for
+    public HallBooking createBooking(HallBookingRequest bookingRequest, String userEmail) {
         Hall hall = hallRepository.findById(bookingRequest.hallId())
-                .orElseThrow(() -> new EntityNotFoundException("Hall not found with ID: " + bookingRequest.hallId()));
+                .orElseThrow(() -> new EntityNotFoundException("Hall not found"));
+        User user = userRepository.findByEmail(userEmail)
+                .orElseThrow(() -> new EntityNotFoundException("User not found"));
 
-        // 2. Create a new Booking entity with the data
+        LocalDateTime requestedTime = bookingRequest.bookingTime();
+        LocalDateTime startOfDay = requestedTime.toLocalDate().atStartOfDay();
+        LocalDateTime endOfDay = requestedTime.toLocalDate().atTime(23, 59, 59);
+
+        // Validation logic remains the same
+        List<HallBooking> existingBookingsOnDate = hallBookingRepository
+                .findByHall_HallIdAndBookingTimeBetween(hall.getHallId(), startOfDay, endOfDay);
+        if (!existingBookingsOnDate.isEmpty()) {
+            throw new IllegalStateException("This hall is already booked for the selected date.");
+        }
+
+        boolean userAlreadyBooked = hallBookingRepository
+                .existsByHall_HallIdAndUser_IdAndBookingTimeBetween(hall.getHallId(), user.getId(), startOfDay, endOfDay);
+        if (userAlreadyBooked) {
+            throw new IllegalStateException("You have already booked this hall for the selected date.");
+        }
+
         HallBooking booking = new HallBooking();
+        booking.setBookingTime(bookingRequest.bookingTime());
+        booking.setHall(hall);
+        booking.setUser(user);
+        
+        // ADDED BACK: Set the name and phone from the form
         booking.setUserName(bookingRequest.userName());
         booking.setUserPhone(bookingRequest.userPhone());
-        booking.setBookingTime(bookingRequest.bookingTime());
-        booking.setHall(hall); // Link the booking to the hall
 
-        // 3. Save the booking to the database and return it
         return hallBookingRepository.save(booking);
+    }
+    
+    public List<LocalDate> getBookedDatesForHall(Long hallId) {
+        return hallBookingRepository.findByHall_HallId(hallId)
+                .stream()
+                .map(booking -> booking.getBookingTime().toLocalDate())
+                .collect(Collectors.toList());
     }
 }

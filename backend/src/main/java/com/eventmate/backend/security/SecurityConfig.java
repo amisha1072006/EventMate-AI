@@ -70,8 +70,8 @@ public class SecurityConfig {
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/api/newsletter/**").permitAll()
                         .requestMatchers("/api/contact/**").permitAll()
-                        .requestMatchers("/api/halls/**").permitAll() // <-- THE ONLY CHANGE IS HERE
-                        .requestMatchers("/api/bookings/**").permitAll()
+                        .requestMatchers("/api/halls/**").permitAll()
+                        // .requestMatchers("/api/bookings/**").permitAll() // <-- THIS LINE IS NOW REMOVED
                         .anyRequest().authenticated())
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())
