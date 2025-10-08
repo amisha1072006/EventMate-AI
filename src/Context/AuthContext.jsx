@@ -1,36 +1,55 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
+  const [token, setToken] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  // Jab app load ho, to check karo ki token pehle se hai ya nahi
   useEffect(() => {
-    const token = localStorage.getItem('userToken');
-    if (token) {
+    // App लोड होने पर, localStorage से token निकालने की कोशिश करें
+    const storedToken = localStorage.getItem('token');
+    if (storedToken) {
+      setToken(storedToken);
       setIsAuthenticated(true);
     }
   }, []);
 
-  const login = (token) => {
-    localStorage.setItem('userToken', token);
+  const login = (apiToken) => {
+    // जब यूजर लॉग इन करे, तो token को localStorage और state दोनों में सेव करें
+    localStorage.setItem('token', apiToken);
+    setToken(apiToken);
     setIsAuthenticated(true);
   };
 
   const logout = () => {
-    localStorage.removeItem('userToken');
+    // जब यूजर लॉग आउट करे, तो token को localStorage और state दोनों से हटा दें
+    localStorage.removeItem('token');
+    setToken(null);
     setIsAuthenticated(false);
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+    <AuthContext.Provider value={{ token, isAuthenticated, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
-// Ek custom hook jisse context ko use karna aasan ho jaye
 export const useAuth = () => {
   return useContext(AuthContext);
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+

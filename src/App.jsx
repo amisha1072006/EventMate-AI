@@ -1,12 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import './App.css';
-
-// ✨ Step 1: Authentication Context ko import karein
-// Ye file aapko 'src/context/AuthContext.js' mein banani hogi
 import { AuthProvider, useAuth } from './Context/AuthContext'; 
-
-// --- Aapke Saare Component Imports (A to Z) ---
+import UserNavbar from './components/UserNavbar';
+import Navbar from './components/Navbar.jsx';
 
 // Authentication Components
 import Login from './Authentication/Login.jsx';
@@ -16,9 +13,7 @@ import EmailOtp from './Authentication/EmailOtp.jsx';
 import ForgotPass from './Authentication/ForgotPass.jsx';
 
 // Core Components
-import Header from './components/Header.jsx';
 import Hero from './components/Hero.jsx';
-import Navbar from './components/Navbar.jsx';
 import TrendingVenues from './components/TrendingVenues.jsx';
 import Categories from './components/Categories.jsx';
 import Recommendations from './components/Recommendations.jsx';
@@ -34,108 +29,101 @@ import SuccessMsg from './HallBooking/SuccessMsg.jsx';
 // HallPages Components
 import FindHall from './HallPages/FindHall.jsx';
 
+// Dashboard Layout
+import DashboardLayout from './Pages/DashboardLayout.jsx';
+import Photographers from './Pages/Photographers.jsx';
+import Planners from './Pages/Planners.jsx';
+import Cakes from './Pages/Cakes.jsx';
+import Attire from './Pages/Attire.jsx';
+import Profilesettings from './Pages/Profilesettings.jsx';
 // General Pages
 import About from './Pages/About.jsx';
 import Contact from './Pages/Contact.jsx';
 import VenueDetails from './Pages/VenueDetails.jsx';
 
-// ✨ Step 2: Private Route Component
-// Ye component check karta hai ki user login hai ya nahi
+// --- Private Route Component ---
 const PrivateRoute = ({ children }) => {
   const { isAuthenticated } = useAuth();
   const location = useLocation();
-
   if (!isAuthenticated) {
-    // Agar user login nahi hai, to use login page par bhej do
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
-
   return children;
 };
 
-// --- Conditional Components (Header aur Footer ko chupane ke liye) ---
-
+// --- Conditional Header/Footer ---
 const ConditionalHeader = () => {
-  const location = useLocation();
-  // In pages par Header nahi dikhega
-  const hideOnPages = [''];
-  if (hideOnPages.includes(location.pathname)) {
-    return null; 
-  }
-  return <Header />;
+  const { isAuthenticated } = useAuth();
+  return isAuthenticated ? <UserNavbar /> : <Navbar />;
 };
 
 const ConditionalFooter = () => {
-    const location = useLocation();
-    // In pages par Footer nahi dikhega
-    const hideOnPages = ['/forgot-password', '/ResetPassOtp', '/EmailOtp', '/login', '/signup']; // <-- Yahaan badlav kiya hai
-    if (hideOnPages.includes(location.pathname)) {
-      return null; 
-    }
-    return <Footer />;
+  const location = useLocation();
+  const hideOnPages = ['/forgot-password', '/resetpassotp', '/emailotp', '/login', '/signup'];
+  if (hideOnPages.includes(location.pathname.toLowerCase())) return null;
+  return <Footer />;
 };
 
+// --- Authenticated Dashboard Section ---
+const DashboardRoutes = () => {
+  return (
+    <DashboardLayout>
+      <Routes>
+        <Route path="/findhall" element={<FindHall />} />
+        <Route path="/checkavailabilityform" element={<CheckAvailabilityForm />} />
+        <Route path="/hallbookingform" element={<HallBookingForm />} />
+        <Route path="/successmsg" element={<SuccessMsg />} />
+        <Route path="/datetimerangereactdatepicker" element={<DateTimeRangeReactDatePicker />} />
+         <Route path="/photographers" element={<Photographers />} />
+         <Route path="/planners" element={<Planners />} />
+         <Route path="/cakes" element={<Cakes />} />
+         <Route path="/attire" element={<Attire />} />
+         <Route path="/profilesettings" element={<Profilesettings />} />
+      </Routes>
+    </DashboardLayout>
+  );
+};
 
-// ✨ Step 3: Saare Routes ko ek jagah manage karein
-function AppRoutes() {
+// --- App Routes ---
+const AppRoutes = () => {
+  const { isAuthenticated } = useAuth();
+
   return (
     <div className="app-container">
       <ConditionalHeader />
+
       <main>
         <Routes>
-          {/* --- Public Routes (Ye routes sabko dikhenge) --- */}
-          <Route path="/" element={
-            <>
-              <Hero />
-              <AIAssistant />
-              <TrendingVenues />
-              <Categories />
-              <Recommendations />
-              <Header />
-              <Footer />
-              <Navbar />
-            </>
-          } />
-          
-          {/* Auth Routes */}
-          <Route path="/Login" element={<Login />} />
-          <Route path="/Signup" element={<Signup />} />
+          {/* Public Routes */}
+          <Route path="/" element={<><Hero /><TrendingVenues /><Categories /><Recommendations /></>} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="/forgot-password" element={<ForgotPass />} />
-          <Route path="/ResetPassOtp" element={<ResetPassOtp />} />
-          <Route path="/EmailOtp" element={<EmailOtp />} />
-
-          {/* General Public Pages */}
-          <Route path="/About" element={<About />} />
-          <Route path="/Contact" element={<Contact />} />
+          <Route path="/resetpassotp" element={<ResetPassOtp />} />
+          <Route path="/emailotp" element={<EmailOtp />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/venue/:venueId" element={<VenueDetails />} />
 
-
-          {/* --- Private Routes (Ye sirf login ke baad dikhenge) --- */}
-          
-          {/* Dashboard and Admin */}
-
-          {/* Hall Pages */}
-          <Route path="/FindHall" element={<PrivateRoute><FindHall /></PrivateRoute>} />
-
-          {/* Hall Booking Process */}
-          <Route path="/CheckAvailabilityForm" element={<PrivateRoute><CheckAvailabilityForm /></PrivateRoute>} />
-          <Route path="/HallBookingForm" element={<PrivateRoute><HallBookingForm /></PrivateRoute>} />
-          <Route path="/SuccessMsg" element={<PrivateRoute><SuccessMsg /></PrivateRoute>} />
-          <Route path="/DateTimeRangeReactDatePicker" element={<PrivateRoute><DateTimeRangeReactDatePicker /></PrivateRoute>} />
-          
+          {/* Private Dashboard Layout */}
+          {isAuthenticated && (
+            <Route path="/*" element={<PrivateRoute><DashboardRoutes /></PrivateRoute>} />
+          )}
         </Routes>
       </main>
+
       <ConditionalFooter />
     </div>
   );
-}
+};
 
-// ✨ Step 4: Main App component poori application ko AuthProvider se wrap karega
+// --- Main App ---
 function App() {
   return (
     <AuthProvider>
       <Router>
         <AppRoutes />
+        <AIAssistant />
       </Router>
     </AuthProvider>
   );

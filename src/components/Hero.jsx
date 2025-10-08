@@ -1,4 +1,5 @@
 import React from 'react';
+import './Hero.css';
 import { FaSearch } from 'react-icons/fa';
 
 const Hero = () => {

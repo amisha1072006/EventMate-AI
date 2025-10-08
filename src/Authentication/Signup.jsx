@@ -1,29 +1,30 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import './AuthForm.css';
-import { useAuth } from '../Context/AuthContext'; // ✨ AuthContext ko import karein
+import axios from 'axios';
+import './AuthForm.css'; // Aapki CSS file
 
 const Signup = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false); // Show/Hide ke liye state
   const navigate = useNavigate();
-  const { login } = useAuth(); // ✨ login function context se lein
 
-  const handleSignup = (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
-    // Yahan par aap apni asli signup API call karenge
-    console.log('Signing up with:', { name, email, password });
+    
+    const user = { name, email, password };
 
-    // --- API Call Simulation ---
-    // Maan lijiye signup successful hua aur API ne token wapas bheja
-    const fakeApiToken = '12345-abcde-67890-fghij';
-
-    // Signup ke baad user ko automatically login kar dein
-    login(fakeApiToken);
-
-    // User ko dashboard ya kisi private page par bhej dein
-    navigate('/FindHall');
+    try {
+      const response = await axios.post('http://localhost:8080/api/auth/signup', user);
+      console.log(response.data);
+      alert("Signup successful! Please login to continue.");
+      navigate('/login');
+    } catch (error) {
+      console.error("Signup failed:", error);
+      const errorMessage = error.response?.data || "Signup failed! Please try again.";
+      alert(errorMessage);
+    }
   };
 
   return (
@@ -54,14 +55,23 @@ const Signup = () => {
         </div>
         <div className="form-group">
           <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            placeholder="Enter your password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+          <div style={{ position: 'relative' }}>
+            <input
+              type={showPassword ? 'text' : 'password'}
+              id="password"
+              placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <button 
+              type="button" 
+              onClick={() => setShowPassword(!showPassword)}
+              style={{ position: 'absolute', right: '10px', top: '10px', cursor: 'pointer', border: 'none', background: 'transparent', fontSize: '18px' }}
+            >
+              {showPassword ? '👁️' : '👁️‍🗨️'}
+            </button>
+          </div>
         </div>
         <button type="submit" className="auth-button">Sign Up</button>
         <div className="auth-links">
