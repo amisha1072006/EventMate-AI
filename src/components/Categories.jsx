@@ -1,9 +1,12 @@
+
+
+
 import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaChurch, FaBriefcase, FaBirthdayCake, FaMusic, FaBorderAll } from "react-icons/fa";
+import { FaChurch, FaBriefcase, FaBirthdayCake, FaMusic } from "react-icons/fa";
 import './Categories.css';
 
-// --- ✨ Updated Data (saari details ke saath) ---
+// Data mein koi badlav nahi
 const allVenues = [
   { id: 1, name: 'Elite Banquets', category:'Weddings', image: 'https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?q=80&w=2070&auto=format&fit=crop', location: 'Delhi', food: 'Veg', capacity: 150, eventType: 'Corporate Event' },
   { id: 2, name: 'Sunset Hall', category:'Corporate', image: 'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?q=80&w=2070&auto=format&fit=crop', location: 'Mumbai', food: 'Non-Veg', capacity: 300, eventType: 'Wedding' },
@@ -22,15 +25,27 @@ const allVenues = [
 
 const Categories = () => {
   const navigate = useNavigate();
-  const [category, setCategory] = useState('All');
+  // ✅ Step 1: Initial state ko 'null' rakhein
+  const [category, setCategory] = useState(null);
+
+  // ✅ Step 2: Button click ke liye ek function banayein
+  const handleCategoryClick = (selectedCat) => {
+    // Agar user usi button par dobara click kare, to selection hata dein
+    if (category === selectedCat) {
+      setCategory(null);
+    } else {
+      setCategory(selectedCat);
+    }
+  };
 
   // Filtering logic
   const filteredVenues = useMemo(() => {
-    let venues = allVenues;
-    if (category !== 'temp') {
-      venues = venues.filter(venue => venue.category === category);
+    // Agar koi category select nahi hai, to khali array return karein
+    if (!category) {
+      return [];
     }
-    return venues;
+    // Nahi to, select ki hui category ke anusaar filter karein
+    return allVenues.filter(venue => venue.category === category);
   }, [category]);
 
   const handleCheckAvailability = (venueId) => {
@@ -38,83 +53,74 @@ const Categories = () => {
   };
 
   return (
-    
     <>
-
-<div class="category-header">
-   
-    <aside className="catbar">
-        <h3>Find By Category</h3>
-
-        {/* ✅ Category Icons Filter */}
-        <div className="filter-group">
-      
-          <div className="category-icons">
-            {/* <button 
-              className={`category-btn ${category === "All" ? "active" : ""}`} 
-              onClick={() => setCategory("All")}
-            >
-              <FaBorderAll /> <span>All</span>
-            </button> */}
-            <button 
-              className={`category-btn ${category === "Weddings" ? "active" : ""}`} 
-              onClick={() => setCategory("Weddings")}
-            >
-              <FaChurch /> <span>Weddings</span>
-            </button>
-            <button 
-              className={`category-btn ${category === "Corporate" ? "active" : ""}`} 
-              onClick={() => setCategory("Corporate")}
-            >
-              <FaBriefcase /> <span>Corporate</span>
-            </button>
-            <button 
-              className={`category-btn ${category === "Birthdays" ? "active" : ""}`} 
-              onClick={() => setCategory("Birthdays")}
-            >
-              <FaBirthdayCake /> <span>Birthdays</span>
-            </button>
-            <button 
-              className={`category-btn ${category === "Concerts" ? "active" : ""}`} 
-              onClick={() => setCategory("Concerts")}
-            >
-              <FaMusic /> <span>Concerts</span>
-            </button>
+      <div className="category-header">
+        <aside className="catbar">
+          <h3>Find By Category</h3>
+          <div className="filter-group">
+            <div className="category-icons">
+              {/* ✅ Step 3: Naye function ko 'onClick' mein istemaal karein */}
+              <button
+                className={`category-btn ${category === "Weddings" ? "active" : ""}`}
+                onClick={() => handleCategoryClick("Weddings")}
+              >
+                <FaChurch /> <span>Weddings</span>
+              </button>
+              <button
+                className={`category-btn ${category === "Corporate" ? "active" : ""}`}
+                onClick={() => handleCategoryClick("Corporate")}
+              >
+                <FaBriefcase /> <span>Corporate</span>
+              </button>
+              <button
+                className={`category-btn ${category === "Birthdays" ? "active" : ""}`}
+                onClick={() => handleCategoryClick("Birthdays")}
+              >
+                <FaBirthdayCake /> <span>Birthdays</span>
+              </button>
+              <button
+                className={`category-btn ${category === "Concerts" ? "active" : ""}`}
+                onClick={() => handleCategoryClick("Concerts")}
+              >
+                <FaMusic /> <span>Concerts</span>
+              </button>
+            </div>
           </div>
-        </div>
-      </aside>
-   
-    <div className="find-hall-container">
-      <main className="main-content">
-        <div className="halls-grid">
-          {filteredVenues.length > 0 ? (
-            filteredVenues.map(venue => (
-              <div className="hall-card" key={venue.id}>
-                <div className="hall-image-container">
-                  <img src={venue.image} alt={venue.name} className="hall-image" />
-                </div>
-                <div className="hall-details">
-                  <h4>{venue.name}</h4>
-                  <button
-                    className="availability-btn"
-                    onClick={() => handleCheckAvailability(venue.id)}
-                  >
-                    Check Availability
-                  </button>
-                </div>
+        </aside>
+
+        {/* ✅ Step 4: POORE HALL SECTION PAR CONDITIONAL RENDERING LAGAYEIN */}
+        {/* Yeh poora div sirf tabhi dikhega jab 'category' state null nahi hai */}
+        {category && (
+          <div className="find-hall-container">
+            <main className="main-content">
+              <div className="halls-grid">
+                {filteredVenues.length > 0 ? (
+                  filteredVenues.map(venue => (
+                    <div className="hall-card" key={venue.id}>
+                      <div className="hall-image-container">
+                        <img src={venue.image} alt={venue.name} className="hall-image" />
+                      </div>
+                      <div className="hall-details">
+                        <h4>{venue.name}</h4>
+                        <button
+                          className="availability-btn"
+                          onClick={() => handleCheckAvailability(venue.id)}
+                        >
+                          Check Availability
+                        </button>
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <p className="no-results">No halls found matching your criteria.</p>
+                )}
               </div>
-            ))
-          ) : (
-            <p className="no-results">No halls found matching your criteria.</p>
-          )}
-        </div>
-      </main>
-    </div>
-
-    </div>
-
+            </main>
+          </div>
+        )}
+      </div>
     </>
   );
 };
 
-export default Categories;
+export default Categories;
