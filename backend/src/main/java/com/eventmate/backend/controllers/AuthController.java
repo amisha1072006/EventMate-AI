@@ -1,8 +1,13 @@
 package com.eventmate.backend.controllers;
 
-import java.time.LocalDateTime;
-import java.util.Random;
-
+import com.eventmate.backend.models.User;
+import com.eventmate.backend.payload.request.LoginRequest;
+import com.eventmate.backend.payload.request.OtpRequest;
+import com.eventmate.backend.payload.request.PasswordResetRequest;
+import com.eventmate.backend.payload.response.JwtResponse;
+import com.eventmate.backend.repositories.UserRepository;
+import com.eventmate.backend.security.JwtUtil;
+import com.eventmate.backend.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,14 +18,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import com.eventmate.backend.models.User;
-import com.eventmate.backend.payload.request.LoginRequest;
-import com.eventmate.backend.payload.request.OtpRequest;
-import com.eventmate.backend.payload.request.PasswordResetRequest;
-import com.eventmate.backend.payload.response.JwtResponse;
-import com.eventmate.backend.repositories.UserRepository;
-import com.eventmate.backend.security.JwtUtil;
-import com.eventmate.backend.service.EmailService;
+import java.time.LocalDateTime;
+import java.util.Optional; // Import Optional
+import java.util.Random;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -63,7 +63,11 @@ public class AuthController {
                     new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
 
             String otp = String.format("%06d", new Random().nextInt(999999));
-            User user = userRepository.findByEmail(loginRequest.getEmail());
+            
+            // --- FIX #1 ---
+            User user = userRepository.findByEmail(loginRequest.getEmail())
+                    .orElseThrow(() -> new RuntimeException("User not found after successful authentication"));
+            
             user.setOtp(otp);
             user.setOtpGeneratedTime(LocalDateTime.now());
             userRepository.save(user);
@@ -83,10 +87,13 @@ public class AuthController {
     // ---------------- VERIFY OTP ----------------
     @PostMapping("/verify-otp")
     public ResponseEntity<?> verifyOtp(@RequestBody OtpRequest otpRequest) {
-        User user = userRepository.findByEmail(otpRequest.getEmail());
-        if (user == null || user.getOtp() == null) {
+        // --- FIX #2 ---
+        Optional<User> userOptional = userRepository.findByEmail(otpRequest.getEmail());
+        if (userOptional.isEmpty() || userOptional.get().getOtp() == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: Invalid request or OTP already verified.");
         }
+        User user = userOptional.get();
+
         if (user.getOtpGeneratedTime().plusMinutes(5).isBefore(LocalDateTime.now())) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: OTP has expired.");
         }
@@ -104,10 +111,13 @@ public class AuthController {
     // ---------------- FORGOT PASSWORD ----------------
     @PostMapping("/forgot-password")
     public ResponseEntity<?> forgotPassword(@RequestBody LoginRequest loginRequest) {
-        User user = userRepository.findByEmail(loginRequest.getEmail());
-        if (user == null) {
+        // --- FIX #3 ---
+        Optional<User> userOptional = userRepository.findByEmail(loginRequest.getEmail());
+        if (userOptional.isEmpty()) {
+            // This is correct for security, to not reveal if an email exists
             return ResponseEntity.ok("If an account with this email exists, an OTP has been sent.");
         }
+        User user = userOptional.get();
 
         String otp = String.format("%06d", new Random().nextInt(999999));
         user.setOtp(otp);
@@ -125,10 +135,12 @@ public class AuthController {
     // ---------------- RESET PASSWORD ----------------
     @PostMapping("/reset-password")
     public ResponseEntity<?> resetPassword(@RequestBody PasswordResetRequest request) {
-        User user = userRepository.findByEmail(request.getEmail());
-        if (user == null || user.getOtp() == null) {
+        // --- FIX #4 ---
+        Optional<User> userOptional = userRepository.findByEmail(request.getEmail());
+        if (userOptional.isEmpty() || userOptional.get().getOtp() == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: Invalid request or OTP not requested.");
         }
+        User user = userOptional.get();
 
         if (user.getOtpGeneratedTime().plusMinutes(5).isBefore(LocalDateTime.now())) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: OTP has expired.");

@@ -8,13 +8,14 @@ import lombok.Data;
 @Entity
 @Table(name = "hall_bookings")
 @Data
-public class HallBooking { // Renamed to UpperCamelCase
+public class HallBooking {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "booking_id")
     private Long bookingId;
 
+    // ADDED BACK: Specific contact details for this booking
     @Column(name = "user_name")
     private String userName;
 
@@ -31,4 +32,8 @@ public class HallBooking { // Renamed to UpperCamelCase
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "hall_id", nullable = false)
     private Hall hall;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 }
