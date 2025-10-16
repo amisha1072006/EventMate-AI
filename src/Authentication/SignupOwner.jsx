@@ -1,27 +1,28 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './AuthForm.css'; // Aapki CSS file
+import './AuthForm.css'; // Reuse your existing CSS
 
-const Signup = () => {
-  const [name, setName] = useState('');
+const SignupOwner = () => {
+  const [ownerName, setOwnerName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false); // Show/Hide ke liye state
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    
-    const user = { name, email, password };
+
+    const owner = { name: ownerName, email, password };
 
     try {
-      const response = await axios.post('http://localhost:8080/api/auth/signup', user);
+      // Use your backend API endpoint for owner signup
+      const response = await axios.post('http://localhost:8080/api/auth/signup-owner', owner);
       console.log(response.data);
-      alert("Signup successful! Please login to continue.");
-      navigate('/login');
+      alert("Owner Signup successful! Please login to continue.");
+      navigate('/login-owner');
     } catch (error) {
-      console.error("Signup failed:", error);
+      console.error("Owner Signup failed:", error);
       const errorMessage = error.response?.data || "Signup failed! Please try again.";
       alert(errorMessage);
     }
@@ -30,18 +31,20 @@ const Signup = () => {
   return (
     <div className="auth-container">
       <form className="auth-form" onSubmit={handleSignup}>
-        <h2>User Sign Up</h2>
+        <h2>Owner Sign Up</h2>
+        
         <div className="form-group">
-          <label htmlFor="name">Name</label>
+          <label htmlFor="ownerName">Name</label>
           <input
             type="text"
-            id="name"
+            id="ownerName"
             placeholder="Enter your name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={ownerName}
+            onChange={(e) => setOwnerName(e.target.value)}
             required
           />
         </div>
+
         <div className="form-group">
           <label htmlFor="email">Email</label>
           <input
@@ -53,6 +56,7 @@ const Signup = () => {
             required
           />
         </div>
+
         <div className="form-group">
           <label htmlFor="password">Password</label>
           <div style={{ position: 'relative' }}>
@@ -64,22 +68,32 @@ const Signup = () => {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-            <button 
-              type="button" 
+            <button
+              type="button"
               onClick={() => setShowPassword(!showPassword)}
-              style={{ position: 'absolute', right: '10px', top: '10px', cursor: 'pointer', border: 'none', background: 'transparent', fontSize: '18px' }}
+              style={{
+                position: 'absolute',
+                right: '10px',
+                top: '10px',
+                cursor: 'pointer',
+                border: 'none',
+                background: 'transparent',
+                fontSize: '18px'
+              }}
             >
               {showPassword ? '👁️' : '👁️‍🗨️'}
             </button>
           </div>
         </div>
+
         <button type="submit" className="auth-button">Sign Up</button>
+
         <div className="auth-links">
-          <p>Already have an account? <Link to="/login">Login</Link></p>
+          <p>Already have an account? <Link to="/login-owner">Login</Link></p>
         </div>
       </form>
     </div>
   );
 };
 
-export default Signup;
+export default SignupOwner;

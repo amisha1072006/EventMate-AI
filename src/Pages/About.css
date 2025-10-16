@@ -2,7 +2,8 @@
 
 /* Top Banner Section */
 .top-banner {
-    background-color: lab(47.13% -3.39 30.79); /* Main blue/cyan color */
+   /* background-color: #0f172a;  Main blue/cyan color */
+   background-image: url('/images/about.jpg'); 
     color: white;
     text-align: center;
     padding: 50px 20px;
@@ -53,7 +54,7 @@ h2 {
 /* Call to Action (CTA) Section */
 .cta-button {
     display: inline-block;
-    background-color: #595a5a;
+    background-color: #2b62b9;
     color: white;
     padding: 12px 25px;
     text-decoration: none;

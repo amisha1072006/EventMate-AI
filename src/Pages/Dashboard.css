@@ -6,7 +6,8 @@
 
 .dashboard-sidebar {
   width: 220px;
-  background-color: #606060;
+  background-color: #080808;
+  /* background-color: #E6F0FF; */
   color: white;
   padding: 20px 10px;
   display: flex;

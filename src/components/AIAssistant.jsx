@@ -101,7 +101,7 @@ const AIAssistant = () => {
           {/* Header */}
           <div
             style={{
-              backgroundColor: "#555",
+              backgroundColor: "#080808",
               color: "white",
               padding: "10px",
               fontWeight: "bold",
@@ -176,7 +176,7 @@ const AIAssistant = () => {
               onClick={handleSend}
               style={{
                 marginLeft: "6px",
-                backgroundColor: "#555",
+                backgroundColor: "#080808",
                 color: "white",
                 border: "none",
                 padding: "6px 12px",

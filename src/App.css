@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --primary-color: #c5b358; /* Gold color for highlights */
+  --primary-color: #55bfe6; /* Gold color for highlights */
   --dark-bg: #222222;
   --light-bg: #fdfaf3;
   --text-color: #333;
@@ -234,7 +234,7 @@ body {
 
 /* Footer */
 .footer {
-  background-color: var(--footer-bg);
+  background-color:#080808; /*0f172avar(--footer-bg);*/
   color: var(--light-text);
   padding: 60px 0;
 }
