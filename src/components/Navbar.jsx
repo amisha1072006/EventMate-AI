@@ -33,12 +33,12 @@ const Navbar = () => {
         <Link to="/about">About</Link>
         <Link to="/contact">Contact</Link>
 
-        <button className="nav-btn" onClick={() => setShowLoginOptions(true)}>
+        <Link className="nav-links" onClick={() => setShowLoginOptions(true)}>
           Login
-        </button>
-        <button className="nav-btn" onClick={() => setShowSignupOptions(true)}>
+        </Link>
+        <Link className="nav-links" onClick={() => setShowSignupOptions(true)}>
           SignUp
-        </button>
+        </Link>
       </div>
 
       {/* Signup Modal */}

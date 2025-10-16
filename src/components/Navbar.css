@@ -63,8 +63,14 @@
   color: white;
   cursor: pointer;
   font-size: 16px;
-  margin-left: 15px; /* ⬅ slightly increased spacing */
+  margin-left: 30px; /* ⬅ slightly increased spacing */
   transition: color 0.3s;
+  gap:35px;
+ list-style: none;
+ font-weight: 500;
+ text-decoration: none;
+  font-family: 'Arial', sans-serif;
+ 
 }
 
 .nav-btn:hover {
