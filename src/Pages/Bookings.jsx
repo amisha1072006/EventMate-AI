@@ -1,34 +1,55 @@
-import React from "react";
+
+
+import React, { useEffect, useState } from "react";
 import "./Bookings.css";
 
-const Bookings = ({ bookings }) => {
+const Bookings = ({ userId }) => {
+  const [bookings, setBookings] = useState([]);
+  const [madeCount, setMadeCount] = useState(0);
+  const [completedCount, setCompletedCount] = useState(0);
+
+  const fetchBookings = async () => {
+    try {
+      const res = await fetch(`http://localhost:8080/api/bookings/user/${userId}`);
+      const data = await res.json();
+      setBookings(data);
+
+      setMadeCount(data.length);
+      setCompletedCount(data.filter(b => b.status === "Completed").length);
+    } catch (err) {
+      console.error("Error fetching bookings:", err);
+    }
+  };
+
+  useEffect(() => {
+    fetchBookings();
+  }, []);
+
   return (
     <div className="bookings-container">
       <h2 className="bookings-title">My Bookings</h2>
 
-      {/* Summary Div */}
-      <div className="bookings-summary">
-        <h3>Total Bookings Made</h3>
-        <p>{bookings ? bookings.length : 0}</p>
+      <div className="bookings-summary-container">
+        <div className="bookings-summary made">
+          <h3>Bookings Made</h3>
+          <p>{madeCount}</p>
+        </div>
+        <div className="bookings-summary completed">
+          <h3>Bookings Completed</h3>
+          <p>{completedCount}</p>
+        </div>
       </div>
 
-      {bookings && bookings.length > 0 ? (
+      {bookings.length > 0 ? (
         <div className="bookings-grid">
-          {bookings.map((booking) => (
-            <div key={booking.id} className="booking-card">
-              <h3 className="booking-event">{booking.eventName}</h3>
+          {bookings.map((b) => (
+            <div key={b.id} className="booking-card">
+              <h3 className="booking-event">{b.hallName}</h3>
               <p>
-                <strong>Date:</strong>{" "}
-                {booking.date ? new Date(booking.date).toLocaleDateString() : "-"}
+                <strong>Date:</strong> {new Date(b.bookingDate).toLocaleString()}
               </p>
               <p>
-                <strong>Time:</strong> {booking.time || "-"}
-              </p>
-              <p>
-                <strong>Venue:</strong> {booking.hallName || "-"}
-              </p>
-              <p>
-                <strong>Status:</strong> {booking.status || "-"}
+                <strong>Status:</strong> {b.status}
               </p>
             </div>
           ))}
@@ -41,3 +62,15 @@ const Bookings = ({ bookings }) => {
 };
 
 export default Bookings;
+
+
+
+
+
+
+
+
+
+
+
+

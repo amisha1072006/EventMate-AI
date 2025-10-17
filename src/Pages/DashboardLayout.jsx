@@ -18,8 +18,9 @@ const DashboardLayout = ({ children }) => {
       <aside className="dashboard-sidebar">
         <h2 className="dashboard-title">Dashboard</h2>
         <ul className="dashboard-menu">
-          <li><Link to="/bookings">Bookings</Link></li>
+         
           <li><Link to="/findhall">Find Hall</Link></li>
+           <li><Link to="/bookings">Bookings</Link></li>
           <li><Link to="/photographers">Photographers</Link></li>
           <li><Link to="/planners">Planners</Link></li>
           <li><Link to="/cakes">Cakes</Link></li>

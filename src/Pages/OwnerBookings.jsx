@@ -1,6 +1,6 @@
-// src/Pages/OwnerBookings.jsx
-import React from "react";
 
+//import React from "react";
+import React from "react";
 const OwnerBookings = () => {
   return (
     <div>
