@@ -5,6 +5,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import './VenueDetails.css'; // Your custom CSS file
+import { FaMapMarkerAlt, FaUsers } from 'react-icons/fa';
 
 const VenueDetails = () => {
     const { venueId } = useParams();
@@ -101,6 +102,12 @@ const VenueDetails = () => {
                 <img src={venue.imageLink} alt={venue.hallName} className="venue-image" />
                 <h2>{venue.hallName}</h2>
                 <p>This is a premium hall with world-class facilities. Perfect for weddings, corporate events, and parties.</p>
+                  <p className="venue-detail">
+    <FaMapMarkerAlt className="venue-icon" /> <strong>Location:</strong> {venue.location}
+  </p>
+  <p className="venue-detail">
+    <FaUsers className="venue-icon" /> <strong>Capacity:</strong> {venue.capacity} guests
+  </p>
             </div>
             <div className="booking-flow-card">
                 {step === 1 && (
