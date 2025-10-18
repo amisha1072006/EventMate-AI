@@ -8,7 +8,7 @@ const UserNavbar = () => {
   const { logout } = useAuth();
   const navigate = useNavigate();
 
-  const handleLogout = () => {
+  const handleLogout1 = () => {
     logout();
     navigate('/login');
   };
@@ -21,7 +21,7 @@ const UserNavbar = () => {
       </div>
 
       <div className="navbar-right">
-        <button className="logout-btn" onClick={handleLogout}>Logout</button>
+        <button className="logout-btn" onClick={handleLogout1}>Logout</button>
       </div>
     </nav>
   );
