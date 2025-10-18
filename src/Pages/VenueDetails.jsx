@@ -6,6 +6,8 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import './VenueDetails.css'; // Your custom CSS file
 import { FaMapMarkerAlt, FaUsers } from 'react-icons/fa';
+import { FaBuilding } from 'react-icons/fa';
+
 
 const VenueDetails = () => {
     const { venueId } = useParams();
@@ -100,7 +102,10 @@ const VenueDetails = () => {
         <div className="venue-details-container">
             <div className="venue-info-card">
                 <img src={venue.imageLink} alt={venue.hallName} className="venue-image" />
-                <h2>{venue.hallName}</h2>
+               <h2 className="venue-title">
+  <FaBuilding className="venue-title-icon" /> {venue.hallName}
+</h2>
+
                 <p>This is a premium hall with world-class facilities. Perfect for weddings, corporate events, and parties.</p>
                   <p className="venue-detail">
     <FaMapMarkerAlt className="venue-icon" /> <strong>Location:</strong> {venue.location}
