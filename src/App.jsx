@@ -55,6 +55,7 @@ import OwnerDashboardLayout from './Pages/OwnerDashboard.jsx';
 import OwnerManageHalls from './Pages/OwnerManageHalls.jsx';
 import OwnerBookings from './Pages/OwnerBookings.jsx';
 import OwnerProfile from './Pages/OwnerProfile.jsx';
+
 // ✅ Private Route for Users
 const PrivateRoute = ({ children }) => {
   const { isAuthenticated } = useAuth();
@@ -157,7 +158,7 @@ const AppRoutes = () => {
           <Route path="/login-owner" element={<LoginOwner />} />
           <Route path="/signup-owner" element={<SignupOwner />} />
           <Route path="/owner-email-otp" element={<OwnerEmailOtp />} />
-
+           
           {/* User Dashboard */}
           {isAuthenticated && (
             <Route path="/*" element={<PrivateRoute><DashboardRoutes /></PrivateRoute>} />

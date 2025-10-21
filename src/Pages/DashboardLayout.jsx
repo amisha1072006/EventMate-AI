@@ -7,7 +7,7 @@ const DashboardLayout = ({ children }) => {
   const { logout } = useAuth();  // Access logout function from context
   const navigate = useNavigate();
 
-  const handleLogout = () => {
+  const handleLogout1 = () => {
     logout();             // Clear user session
     navigate("/login");   // Redirect to login page
   };
@@ -31,7 +31,7 @@ const DashboardLayout = ({ children }) => {
         {/* Logout button */}
         <button 
           className="logout-btn" 
-          onClick={handleLogout}
+          onClick={handleLogout1}
           style={{
             marginTop: "auto",
             padding: "10px 20px",
