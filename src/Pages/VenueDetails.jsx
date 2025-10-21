@@ -12,11 +12,12 @@ const VenueDetails = () => {
     const [venue, setVenue] = useState(null);
     const [step, setStep] = useState(1);
     const [selectedDateTime, setSelectedDateTime] = useState(new Date());
-    const [userName, setUserName] = useState(''); // State for name is used again
-    const [userPhone, setUserPhone] = useState(''); // State for phone is used again
+    const [userName, setUserName] = useState('');
+    const [userPhone, setUserPhone] = useState('');
     const [confirmedBooking, setConfirmedBooking] = useState(null);
-    const [bookedDates, setBookedDates] = useState([]);
+    const [bookedDates, setBookedDates] = useState([]); // Iski ab zaroorat nahi hai, lekin rakhte hain
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [formError, setFormError] = useState(null);
 
     useEffect(() => {
         const fetchVenueDetails = async () => {
@@ -28,6 +29,9 @@ const VenueDetails = () => {
             }
         };
 
+        // Booked dates fetch karna ab optional hai, 
+        // lekin agar aap calendar par booked dates ko highlight karna chahte hain (disable nahi),
+        // toh isse rakhein. Abhi ke liye yeh kuch nahi kar raha hai.
         const fetchBookedDates = async () => {
             try {
                 const response = await fetch(`http://localhost:8080/api/bookings/hall/${venueId}/booked-dates`);
@@ -41,29 +45,32 @@ const VenueDetails = () => {
         };
 
         fetchVenueDetails();
-        fetchBookedDates();
+        fetchBookedDates(); // Ise call karte rehte hain, future mein kaam aa sakta hai
     }, [venueId]);
 
     const handleBookingSubmit = async (e) => {
         e.preventDefault();
         if (isSubmitting) return;
         setIsSubmitting(true);
+        setFormError(null); 
 
         const token = localStorage.getItem('token');
         if (!token) {
-            alert("You must be logged in to make a booking.");
+            // alert("You must be logged in to make a booking.");
+            setFormError("You must be logged in to make a booking."); // Alert hataya
             setIsSubmitting(false);
-            navigate('/login');
+            // navigate('/login'); // Redirect na karein, bas error dikhayein
             return;
         }
         
+        // Date ko local ISO string mein convert karein
         const date = selectedDateTime;
         const localIsoString = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}T${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}:${String(date.getSeconds()).padStart(2, '0')}`;
 
         const bookingData = {
             hallId: venue.hallId,
-            userName: userName, // ADDED BACK
-            userPhone: userPhone, // ADDED BACK
+            userName: userName,
+            userPhone: userPhone,
             bookingTime: localIsoString
         };
 
@@ -77,17 +84,37 @@ const VenueDetails = () => {
                 body: JSON.stringify(bookingData),
             });
 
-            if (response.status === 201) {
+            if (response.status === 201) { // 201 Created (Success)
                 const savedBooking = await response.json();
                 setConfirmedBooking(savedBooking);
-                setStep(3);
-            } else {
-                const errorMessage = await response.text();
-                alert(`Booking failed: ${errorMessage}`);
+                setStep(3); // Success page par jaayein
+
+            } else if (response.status === 409) { // 409 Conflict (Already Booked)
+                // YEH AAPKA IMPORTANT FLOW HAI
+                const errorData = await response.json();
+                // User ko suggestions page par bhej dein
+                navigate("/booking-suggestions", { 
+                    state: { 
+                        suggestions: errorData.suggestions || [], // Backend se suggestions lein
+                        bookingDate: localIsoString, // Yahi date aage pass karein
+                        userInfo: { fullName: userName, phone: userPhone } // Jo user info form mein bhari thi
+                    } 
+                });
+
+            } else { // Baaki sabhi errors (Jaise 400, 500, etc.)
+                let errorMessage = "Booking failed due to an unknown error.";
+                try {
+                    const errorData = await response.json();
+                    errorMessage = errorData.message || JSON.stringify(errorData);
+                } catch (jsonError) {
+                    errorMessage = await response.text(); 
+                }
+                setFormError(errorMessage); // Error ko state mein set karein
             }
+
         } catch (error) {
-            console.error("Error during booking:", error);
-            alert("An error occurred during booking.");
+            console.error("Error during booking (Network/Server Down):", error);
+            setFormError("An error occurred. Please check your network and try again.");
         } finally {
             setIsSubmitting(false);
         }
@@ -114,13 +141,15 @@ const VenueDetails = () => {
                                 inline
                                 dateFormat="MMMM d, yyyy h:mm aa"
                                 minDate={new Date()}
-                                excludeDates={bookedDates}
+                                // --- YAHAN SE 'excludeDates' HATA DIYA GAYA HAI ---
+                                // excludeDates={bookedDates} 
+                                // --- ---
                             />
                         </div>
                         <button className="flow-btn" onClick={() => setStep(2)}>Next</button>
                     </>
                 )}
-                {/* RESTORED THE USER INFO FORM FOR STEP 2 */}
+                
                 {step === 2 && (
                     <>
                         <h3>Hall Booking - User Info</h3>
@@ -133,6 +162,22 @@ const VenueDetails = () => {
                                 <label>Enter your phone number</label>
                                 <input type="tel" value={userPhone} onChange={(e) => setUserPhone(e.target.value)} required />
                             </div>
+
+                            {/* Error message dikhane ke liye */}
+                            {formError && (
+                                <div style={{ 
+                                    color: 'red', 
+                                    backgroundColor: '#ffebee', 
+                                    border: '1px solid #e57373', 
+                                    padding: '10px', 
+                                    borderRadius: '5px', 
+                                    marginBottom: '15px', 
+                                    textAlign: 'center' 
+                                }}>
+                                    {formError}
+                                </div>
+                            )}
+
                             <div className="button-group">
                                 <button type="button" className="flow-btn back" onClick={() => setStep(1)} disabled={isSubmitting}>Back</button>
                                 <button type="submit" className="flow-btn" disabled={isSubmitting}>

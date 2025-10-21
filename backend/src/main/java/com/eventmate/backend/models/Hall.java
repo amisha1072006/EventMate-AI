@@ -9,12 +9,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "halls")
-@Data // Lombok: Generates getters, setters, toString, etc.
+//@Data // Lombok: Generates getters, setters, toString, etc.
 @NoArgsConstructor // Lombok: Generates a no-argument constructor
 @AllArgsConstructor // Lombok: Generates a constructor with all arguments
 public class Hall {
@@ -44,6 +43,39 @@ public class Hall {
 
     private int budget;
 
-    public Hall(Object o, String eliteBanquets, String weddings, String url, String delhi, String corporateEvent, String veg, int i, int i1) {
+    // --- START: Manual Getters ---
+    public Long getHallId() {
+        return this.hallId;
     }
+
+    public String getHallName() {
+        return this.hallName;
+    }
+
+    public String getImageLink() {
+        return this.imageLink;
+    }
+
+    // --- ADDED: Getters for new fields (YAHAN ADD KIYA GAYA HAI) ---
+    public String getLocation() {
+        return this.location;
+    }
+
+    public int getCapacity() {
+        return this.capacity;
+    }
+
+    public int getBudget() {
+        return this.budget;
+    }
+    // --- END: ADDED Getters ---
+
+
+    /*
+     * // This constructor seems unusual and might not be needed.
+     * // Commenting it out. If you need it, please uncomment and adjust.
+     * public Hall(Object o, String eliteBanquets, String weddings, String url, String
+     * delhi, String corporateEvent, String veg, int i, int i1) {
+     * }
+     */
 }

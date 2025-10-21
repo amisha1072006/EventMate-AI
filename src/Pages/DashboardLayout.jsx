@@ -1,16 +1,18 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../Context/AuthContext"; // Import AuthContext
+import { Link } from "react-router-dom";
+// import { useNavigate } from "react-router-dom"; // Hata diya gaya
+// import { useAuth } from "../Context/AuthContext"; // Hata diya gaya
 import "./Dashboard.css";
 
 const DashboardLayout = ({ children }) => {
-  const { logout } = useAuth();  // Access logout function from context
-  const navigate = useNavigate();
+  // const { logout } = useAuth(); // Hata diya gaya
+  // const navigate = useNavigate(); // Hata diya gaya
 
-  const handleLogout = () => {
-    logout();             // Clear user session
-    navigate("/login");   // Redirect to login page
-  };
+  // handleLogout function hata diya gaya hai
+  // const handleLogout = () => {
+  //   logout();
+  //   navigate("/login");
+  // };
 
   return (
     <div className="dashboard-layout">
@@ -27,25 +29,14 @@ const DashboardLayout = ({ children }) => {
           <li><Link to="/profilesettings">Profile Settings</Link></li>
         </ul>
 
-        {/* Logout button */}
-        <button 
+        {/* --- Logout button yahaan se hata diya gaya hai --- */}
+        {/* <button 
           className="logout-btn" 
           onClick={handleLogout}
-          style={{
-            marginTop: "auto",
-            padding: "10px 20px",
-            backgroundColor: "#e63946",
-            color: "#fff",
-            border: "none",
-            borderRadius: "6px",
-            cursor: "pointer",
-            width: "80%",
-            alignSelf: "center",
-            fontWeight: "500",
-          }}
+          ...
         >
           Logout
-        </button>
+        </button> */}
       </aside>
 
       {/* Main content */}
@@ -57,74 +48,3 @@ const DashboardLayout = ({ children }) => {
 };
 
 export default DashboardLayout;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React from "react";
-// import { Link } from "react-router-dom";
-// import "./Dashboard.css";
-
-// const DashboardLayout = ({ children }) => {
-  
-  
-//   return (
-//     <div className="dashboard-layout">
-//       {/* Sidebar */}
-//       <aside className="dashboard-sidebar">
-//         <h2 className="dashboard-title">Dashboard</h2>
-//         <ul className="dashboard-menu">
-//           <li><Link to ="/bookings">Bookings</Link></li>
-//           <li><Link to="/findHall">Find Hall</Link></li>
-//            <li><Link to="/photographers">Photographers</Link></li>
-//            <li><Link to="/planners">Planners</Link></li>
-//            <li><Link to="/cakes">Cakes</Link></li>
-//            <li><Link to="/attire">Attire</Link></li>
-//            <li><Link to="/profilesettings">Profile Settings</Link></li>
-           
-//         </ul>
-//       </aside>
-
-//       {/* Main content */}
-//       <div className="dashboard-content">
-//         {children}
-         
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default DashboardLayout;
-
-
-
-
-
-
-
