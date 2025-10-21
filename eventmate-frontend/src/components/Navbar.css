@@ -1,0 +1,44 @@
+/* Navbar Container ke liye Styling */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  /* BADLAV: Background color ko dark kar diya hai */
+  background-color: #606060; /* Aap iski jagah 'black' ya '#333' bhi rakh sakti hain */
+  border-bottom: none; /* Dark background par border ki zaroorat nahi */
+}
+
+/* Logo ke liye Styling */
+.logo {
+  font-size: 1.5rem; /* 24px */
+  font-weight: bold;
+  text-decoration: none;
+  /* BADLAV: Logo ka color white kar diya hai */
+  color: white;
+}
+
+/* Navigation Links ke Group (ul) ke liye Styling */
+.nav-links {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 25px; /* Har link ke beech mein 25px ki jagah */
+}
+
+/* Har ek link (a tag) ke liye Styling */
+.nav-links li a {
+  text-decoration: none;
+  /* BADLAV: Links ka color white kar diya hai */
+  color: white;
+  font-weight: 500;
+  font-size: 1rem; /* 16px */
+  transition: color 0.3s ease;
+}
+
+/* Mouse le jaane par link ka color badlega */
+.nav-links li a:hover {
+  /* BADLAV: Hover color ko light grey kar diya hai jo dark par accha dikhega */
+  color: #bdc3c7;
+}

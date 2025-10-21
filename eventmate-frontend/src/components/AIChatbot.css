@@ -1,0 +1,95 @@
+/* Purana chatbot-modal CSS ko naye page-like style se replace karein */
+.chatbot-modal {
+  width: 100%;
+  height: 100vh; /* Viewport height poori screen ko cover karegi */
+  background-color: #f5f5f5; /* Thoda halka grey background */
+  display: flex;
+  flex-direction: column;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.chatbot-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #fff; /* White background */
+  border-bottom: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Halka sa shadow */
+}
+
+.chatbot-header h3 {
+  margin: 0;
+  font-size: 24px;
+  color: #333;
+}
+
+.chatbot-header button {
+  background: none;
+  border: none;
+  font-size: 30px; /* Bada 'X' */
+  color: #555;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.chatbot-header button:hover {
+  color: #000;
+}
+
+.chatbot-body {
+  flex-grow: 1; /* Messages ko poori height lene de */
+  padding: 20px;
+  overflow-y: auto; /* Scrollable messages */
+  display: flex;
+  flex-direction: column;
+}
+
+/* User aur AI messages ki styling ko behtar banayein */
+.message {
+  max-width: 75%;
+  padding: 12px 18px;
+  border-radius: 20px;
+  margin-bottom: 15px;
+  word-wrap: break-word;
+}
+
+.message.user {
+  align-self: flex-end; /* Daayi taraf alignment */
+  background-color: #007bff; /* User ka brand color */
+  color: white;
+  border-bottom-right-radius: 0;
+}
+
+.message.ai {
+  align-self: flex-start; /* Baayi taraf alignment */
+  background-color: #e9e9eb; /* Halki grey background */
+  color: #333;
+  border-bottom-left-radius: 0;
+}
+
+.chatbot-footer {
+  display: flex;
+  padding: 15px 20px;
+  border-top: 1px solid #ddd;
+  background-color: #fff;
+}
+
+.chatbot-footer input {
+  flex-grow: 1;
+  padding: 12px;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+  margin-right: 10px;
+}
+
+.chatbot-footer button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 12px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
