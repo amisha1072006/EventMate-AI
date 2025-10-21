@@ -43,7 +43,9 @@ import HallBookingForm from './HallBooking/HallBookingForm.jsx';
 import SuccessMsg from './HallBooking/SuccessMsg.jsx';
 import Bookings from './Pages/Bookings.jsx';
 import Photographers from './Pages/Photographers.jsx';
+import PhotographerDetails from './Pages/PhotographerDetails.jsx';
 import Planners from './Pages/Planners.jsx';
+import PlannerDetails from './Pages/PlannerDetails.jsx';
 import Cakes from './Pages/Cakes.jsx';
 import Attire from './Pages/Attire.jsx';
 import Profilesettings from './Pages/Profilesettings.jsx';
@@ -112,8 +114,16 @@ const DashboardRoutes = () => (
       <Route path="/hallbookingform" element={<HallBookingForm />} />
       <Route path="/successmsg" element={<SuccessMsg />} />
       <Route path="/datetimerangereactdatepicker" element={<DateTimeRangeReactDatePicker />} />
-      <Route path="/photographers" element={<Photographers />} />
-      <Route path="/planners" element={<Planners />} />
+      {/* <Route path="/photographers" element={<Photographers />} />
+      <Route path="/planners" element={<Planners />} /> */}
+
+         <Route path="/photographers" element={<Photographers />} />
+         <Route path="/photographer/:id" element={<PhotographerDetails />} />
+       
+
+         <Route path="/planners" element={<Planners />} />
+         <Route path="/planner/:id" element={<PlannerDetails />} />   
+
       <Route path="/cakes" element={<Cakes />} />
       <Route path="/attire" element={<Attire />} />
       <Route path="/profilesettings" element={<Profilesettings />} />
