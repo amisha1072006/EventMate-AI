@@ -2,15 +2,16 @@
 
 package com.eventmate.backend;
 
-import com.eventmate.backend.models.Hall;
-import com.eventmate.backend.repositories.HallRepository;
+import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import java.util.Arrays;
-import java.util.List;
+import com.eventmate.backend.models.Hall;
+import com.eventmate.backend.repositories.HallRepository;
 
 @SpringBootApplication
 public class BackendApplication {

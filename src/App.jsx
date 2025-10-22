@@ -2,6 +2,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import './App.css';
+import BookingSuggestions from './HallBooking/BookingSuggestions.jsx';
 
 // Contexts
 import { AuthProvider, useAuth } from './Context/AuthContext';
@@ -113,6 +114,7 @@ const DashboardRoutes = () => (
       <Route path="/findhall" element={<FindHall />} />
       <Route path="/checkavailabilityform" element={<CheckAvailabilityForm />} />
       <Route path="/hallbookingform" element={<HallBookingForm />} />
+       <Route path="/booking-suggestions" element={<BookingSuggestions />} />
       <Route path="/successmsg" element={<SuccessMsg />} />
       <Route path="/datetimerangereactdatepicker" element={<DateTimeRangeReactDatePicker />} />
       {/* <Route path="/photographers" element={<Photographers />} />
@@ -375,8 +377,5 @@ export default App;
 // // // }
 
 // // // export default App;
-
-
-
 
 

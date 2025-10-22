@@ -25,7 +25,7 @@ const DashboardLayout = ({ children }) => {
           <li><Link to="/planners">Planners</Link></li>
           <li><Link to="/cakes">Cakes</Link></li>
           <li><Link to="/attire">Attire</Link></li>
-          <li><Link to="/profilesettings">Profile Settings</Link></li>
+          {/* <li><Link to="/profilesettings">Profile Settings</Link></li> */}
         </ul>
 
         {/* Logout button */}
@@ -122,7 +122,6 @@ export default DashboardLayout;
 // };
 
 // export default DashboardLayout;
-
 
 
 

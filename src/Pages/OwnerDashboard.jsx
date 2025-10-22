@@ -20,7 +20,7 @@ const OwnerDashboardLayout = ({ children }) => {
         <ul className="dashboard-menu">
           <li><Link to="/owner/manage-halls">Manage Halls</Link></li>
           <li><Link to="/owner/bookings">Bookings</Link></li>
-          <li><Link to="/owner/profile">Profile</Link></li>
+          {/* <li><Link to="/owner/profile">Profile</Link></li> */}
         </ul>
 
         {/* Logout Button */}
