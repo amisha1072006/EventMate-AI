@@ -29,7 +29,7 @@ const DashboardLayout = ({ children }) => {
         </ul>
 
         {/* Logout button */}
-        <button 
+        {/* <button 
           className="logout-btn" 
           onClick={handleLogout1}
           style={{
@@ -46,7 +46,7 @@ const DashboardLayout = ({ children }) => {
           }}
         >
           Logout
-        </button>
+        </button> */}
       </aside>
 
       {/* Main content */}

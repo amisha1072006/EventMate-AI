@@ -1,5 +1,4 @@
-
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { FaStar, FaPhone, FaCalendar, FaClock, FaCheck, FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
@@ -8,73 +7,84 @@ import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 export const photographers = [
   {
     id: 1,
-    name: "Rajesh Photography",
+    name: "Riya Photography",
     rating: 4.8,
-    price: "₹25,000",
-    location: "Delhi",
-    images: ["/images/photo1.jpg", "/images/p2.jpg", "images/p4.jpg"],
+    price: "₹28,000",
+    //location: "Delhi",
+    images: ["https://images.pexels.com/photos/4240505/pexels-photo-4240505.jpeg?auto=compress&cs=tinysrgb&w=600", "/images/p2.jpg", "images/p4.jpg"],
     phone: "+91 98765 43210",
     description: "Specializes in wedding and corporate photography.",
+    eventTypes:["Wedding","Corporate Event"],
     portfolio: [ 
       // "/images/p1.jpg","/images/p2.jpg","/images/p4.jpg",
       // "/images/p1.jpg","/images/p2.jpg","/images/p4.jpg",
       // "/images/p1.jpg","/images/p2.jpg","/images/p4.jpg",
       // "/images/p1.jpg","/images/p2.jpg","/images/p4.jpg",
        
-      "/images/port1.jpg",
-      "/images/port2.jpg",
-      "/images/port3.jpg",
-      "/images/port4.jpg",
-      "/images/port5.jpg",
-      "/images/port6.jpg",
-
-
+     "https://media.istockphoto.com/id/1399000012/photo/guests-throwing-confetti-over-bride-and-groom-as-they-walk-past-after-their-wedding-ceremony.jpg?s=2048x2048&w=is&k=20&c=G8zuGJUuEK9HXwx1xEYPYwrcajt8r3K8nSVFeEzLHFY=",//couple
+     "https://media.istockphoto.com/id/1190043570/photo/happy-wedding-photography-of-bride-and-groom-at-wedding-ceremony-wedding-tradition-sprinkled.jpg?s=1024x1024&w=is&k=20&c=dEnXwMGSpfySpEepRWDVY_c7pHyhOZpv2RG5_QggqzY=",
+      "https://media.istockphoto.com/id/1397574789/photo/together-we-make-the-world-better.jpg?s=1024x1024&w=is&k=20&c=8caxy0OpDGOc5qA-M-JpMN4cxVMOFJrXgfOASXk43Qo=",
+      "https://media.istockphoto.com/id/2195984095/photo/indian-couples-holding-hands-close-up.jpg?s=2048x2048&w=is&k=20&c=aRpmdV_vJO-e59HPzOgeYtMfOzjOKL9vFxMuE9k0Gyo=",
+          // for planner "https://media.istockphoto.com/id/2196163507/photo/elegant-dining-setup-with-candles-at-night-in-a-stylish-restaurant.jpg?s=2048x2048&w=is&k=20&c=2YG3kbrnchhLrKITLAeb4l2vOB9W45xHMpbXGPFLR8U=",
+  // planner   "https://media.istockphoto.com/id/2183824556/photo/three-candles-on-a-candlestick-burning-at-a-party.jpg?s=1024x1024&w=is&k=20&c=VBBFeOf2AlQFYWiNnRhFC4zjppxfb_H4yNhf4yKTQuc=",
+  // "https://media.istockphoto.com/id/961798406/photo/stylish-champagne-glasses-and-food-appetizers-on-table-at-wedding-reception-luxury-catering-at.jpg?s=2048x2048&w=is&k=20&c=Ijq2AuCY88HyIHk3VLlNJH85l9IQdwNNuDfaONVVqp4=",
+  //"https://media.istockphoto.com/id/1133692578/photo/exhibition-event-hall-blur-background-of-trade-show-business-world-or-international-expo.jpg?s=2048x2048&w=is&k=20&c=YTnHhSaD9oWH-QWORQ1V8iPxsTwug3msm4VGGReVrlo=",
+         "https://media.istockphoto.com/id/2200874881/photo/loving-groom-looking-at-bride-in-wedding-ceremony.jpg?s=2048x2048&w=is&k=20&c=NnZkm8DnV2igmuuMx1APvrY7z1HO1nKiog0ADQM7hQs=",
+         "https://media.istockphoto.com/id/2200577335/photo/happy-bride-showing-bangles-to-groom-in-wedding-ceremony.jpg?s=2048x2048&w=is&k=20&c=P0t0fbgKxykXhksxFluDRFriFVDa54ycV171ylyboGw=",
+         "https://media.istockphoto.com/id/821463698/photo/microphone-over-the-abstract-blurred-photo-of-conference-hall-or-seminar-room-with-attendee.jpg?s=1024x1024&w=is&k=20&c=nQMCyAx-XkqX69RolGa2THHi8XJSdthHdZ9izvArrcc=",
+   
+        
     ],
-    social: {
-        facebook: "https://facebook.com/rajeshphotography",
-        instagram: "https://instagram.com/rajesh_photography",
-        twitter: "https://twitter.com/rajeshphoto"
-      },
+    // social: {
+    //     facebook: "https://facebook.com/rajeshphotography",
+    //     instagram: "https://instagram.com/rajesh_photography",
+    //     twitter: "https://twitter.com/rajeshphoto"
+    //   },
     services: [
       {
         name: "Basic Wedding Package",
-        duration: "6 hours",
-        includes: ["1 photographer", "Digital album"],
-        price: "₹15,000",
-      },
-      {
-        name: "Premium Engagement Shoot",
         duration: "10 hours",
-        includes: ["1 photographer", "50 edited photos", "Print release"],
+        includes: ["1 photographer", "Digital album"],
         price: "₹25,000",
       },
       {
-        name: "Luxury Full-Day",
-        duration: "10 hours",
-        includes: ["2 photographers", "Premium album", "Drone footage"],
-        price: "₹35,000",
-      }
+        name: "Premium Corporate Shoot",
+        duration: "6 hours",
+        includes: ["1 photographer", "50 edited photos", "Print release"],
+        price: "₹20,000",
+      },
+      // {
+      //   name: "Luxury Full-Day",
+      //   duration: "10 hours",
+      //   includes: ["2 photographers", "Premium album", "Drone footage"],
+      //   price: "₹35,000",
+      // }
     ],
     about:
-      "With over 10 years of experience in wedding photography, I aim to capture the most precious moments of your special day. My approach combines artistic vision with technical expertise to create timeless memories that you'll cherish forever.",
-    workingHours: ["09:00 AM", "10:00 AM", "11:00 AM", "02:00 PM", "03:00 PM", "04:00 PM"],
+      "With over 10 years of experience in wedding and corporate photography, I aim to capture the most precious moments of your special day. My approach combines artistic vision with technical expertise to create timeless memories that you'll cherish forever.",
+    workingHours: ["09:00 AM", "10:00 AM", "11:00 AM", "02:00 PM", "03:00 PM", "04:00 PM","9:00pm","10:00 PM","11:00 PM","12:00 PM"],
   },
   {
     id: 2,
-    name: "Sunil Photography",
+    name: "Rajesh Photography",
     rating: 4.9,
     price: "₹35,000",
-    location: "Mumbai",
-    images: ["/images/p2.jpg", "images/p3.webp", "images/p4.jpg"],
+    eventTypes:[" Corporate Event" ,"Portrait"],
+    //location: "Mumbai",
+    images: ["https://images.pexels.com/photos/1656684/pexels-photo-1656684.jpeg?auto=compress&cs=tinysrgb&w=600", "/images/p2.jpg", "images/p4.jpg"],
     phone: "+91 87654 32109",
-    description: "Expert in event and portrait photography.",
+    description: "Expert in Corporate event and portrait photography.",
     portfolio: [
-      "/images/port1.jpg",
+      "https://media.istockphoto.com/id/1187919612/photo/commitment.jpg?s=2048x2048&w=is&k=20&c=vTG_PHFWQuG2cOKhC94Umf22os5SYYlqIBdA84oC5n0=",
+          "https://media.istockphoto.com/id/893123282/photo/wedding-champagne-toast-stock-image.jpg?s=2048x2048&w=is&k=20&c=Mt9OAW6_IvMQKyuf9GtMzyjlHGt45nfIFhvdKpRnAMo=",
+                   "https://media.istockphoto.com/id/486879530/photo/happy-indian-couple-at-their-wedding.jpg?s=2048x2048&w=is&k=20&c=fzH7OAy9tuPnvsiUqfz8bzO5kOWcLrJuCr_McSbYPF8=",
+         "https://media.istockphoto.com/id/1454343788/photo/closeup-of-the-groom-and-the-bride-holding-hands-during-a-traditional-indian-wedding.jpg?s=2048x2048&w=is&k=20&c=vNxV-p1JuGUn-DePdtcrNXDzqr1cvpDugaJpIjfGQmA=",
+          "https://media.istockphoto.com/id/521046338/photo/bokeh-light-and-blurred-people-in-convention-hall.jpg?s=2048x2048&w=is&k=20&c=CLcOXz6g37siDoh5DSUNc-RH3wY7moz1oIJuxnhxKj4=",
       "/images/port2.jpg",
       "/images/port3.jpg",
-      "/images/port4.jpg",
-      "/images/port5.jpg",
-      "/images/port6.jpg",
+      
+    
+      
     ],
     services: [
       {
@@ -96,62 +106,94 @@ export const photographers = [
   },
   {
     id: 3,
-    name: "Sunil Photography",
-    rating: 4.9,
-    price: "₹35,000",
-    location: "Mumbai",
-    images: ["/images/p2.jpg", "images/p3.webp", "images/p4.jpg"],
-    phone: "+91 87654 32109",
-    description: "Expert in event and portrait photography.",
+    name: "Chandan Photography",
+    rating: 4.7,
+    price: "₹30,000",
+    eventTypes:["Engagement","Wedding","Bday"],
+    //location: "Mumbai",
+    images: ["/images/photographer6.jpg"],
+
+    phone: "+91 56654 22109",
+    description: "Expert in engagement,wedding and bday photography.",
     portfolio: [
-      "/images/port1.jpg",
-      "/images/port2.jpg",
-      "/images/port3.jpg",
-      "/images/port4.jpg",
-      "/images/port5.jpg",
-      "/images/port6.jpg",
+       "https://media.istockphoto.com/id/1215683644/photo/friends-celebration-birthday-with-cake.jpg?s=2048x2048&w=is&k=20&c=WhEZeIT2eG2cmIPO1o5WNYXudRjOEK3nTiqMOtzw_GA=",
+        "https://media.istockphoto.com/id/1173607293/photo/100-years-old-birthday-cake-to-old-woman.jpg?s=2048x2048&w=is&k=20&c=dlpQ5XkT9v_NFA7icrN9F5wBxJEknxJt1tJhAaH-LGQ=",
+         "https://media.istockphoto.com/id/1002144354/photo/friends-presenting-birthday-cake-to-girl.jpg?s=2048x2048&w=is&k=20&c=FAr-blR20QVjKvgDdwOXMb7LFntO3I6oH1YMrEJGnhc=",
+          // "https://media.istockphoto.com/id/996257874/photo/wedding-table-with-flower-compositions.jpg?s=1024x1024&w=is&k=20&c=Prx9f4FEJvBNgJR7F1VKgzmgc3fIMqWRCFoNLsvUbbM=",
+  //"https://media.istockphoto.com/id/2172827084/photo/beautiful-wedding-setty-back-with-floral-decorations.jpg?s=1024x1024&w=is&k=20&c=DmMETIVIcn7AHyXe0NKy6OVjlnTfrVDBbnsWyYQxTDQ=",
+        "/images/port4.jpg",
+        // "https://media.istockphoto.com/id/2238874796/photo/indian-traditional-wedding-ceremony-interiors-and-decorations.jpg?s=2048x2048&w=is&k=20&c=3QWPzilepCIeOQZmF6Svf89G6C0WVc2wVdYn7FGDNYQ=",
+  //"https://media.istockphoto.com/id/2172827163/photo/wedding-setty-back-with-floral-decorations.jpg?s=2048x2048&w=is&k=20&c=B90kHcL20hk_-VMNysUVCfyycsxS5Y1vT9022iMENPA=",
+"https://media.istockphoto.com/id/1468883993/photo/wedding-ceremony-of-the-newlyweds-on-the-glade.jpg?s=2048x2048&w=is&k=20&c=L0IwnX99DKP_NOnp8pWWJnvZJhRBeyVhi3ZeRr3Ztfc=",
+         "https://media.istockphoto.com/id/1211496765/photo/indian-bride-hands-with-henna-tattoo-ready-for-traditional-wedding-ceremony.jpg?s=2048x2048&w=is&k=20&c=FZr2GQ7GPzPg8qun-Y-TdAm9YcZ9UY6FHZn7lj7ZcLc=",
+    "https://media.istockphoto.com/id/1454343788/photo/closeup-of-the-groom-and-the-bride-holding-hands-during-a-traditional-indian-wedding.jpg?s=2048x2048&w=is&k=20&c=vNxV-p1JuGUn-DePdtcrNXDzqr1cvpDugaJpIjfGQmA=",
+         
+"https://media.istockphoto.com/id/2200874372/photo/loving-groom-and-bride-in-wedding-ceremony.jpg?s=2048x2048&w=is&k=20&c=3-yzOCjE4tgRJbmsZjpWEKneJYqRmXd4c_oZ7LSNGHE=",
+    
+"https://media.istockphoto.com/id/1468883858/photo/wedding-ceremony-of-the-newlyweds-on-the-glade.jpg?s=2048x2048&w=is&k=20&c=aEE2_dOWCK4F4F261ivqwcDC1m3lFXmwJtngl7RY2G4=",
+            "https://media.istockphoto.com/id/1468888361/photo/wedding-ceremony-of-the-newlyweds-on-the-glade.jpg?s=1024x1024&w=is&k=20&c=QH_6nug8e433mWH13Y5Bpyvxuk1CG7C5Ieo7GyneE7s=",
+         "https://media.istockphoto.com/id/1468886519/photo/wedding-ceremony-of-the-newlyweds-on-the-glade.jpg?s=2048x2048&w=is&k=20&c=YhL7QaXOB9o37sIlnhxix7-jWEKL0zbfjQsgJWX6378=",
     ],
     services: [
+      
       {
-        name: "Portrait Session",
-        duration: "2 hours",
-        includes: ["1 photographer", "15 edited photos", "Online gallery"],
-        price: "₹8,000",
+        name: "Bday Shoot",
+        duration: "4 hours",
+        includes: ["1 photographer", "30 edited photos", "Print release"],
+        price: "₹18,000",
+      },
+       {
+        name: "Basic Wedding Package",
+        duration: "10 hours",
+        includes: ["1 photographer", "Digital album"],
+        price: "₹35,000",
       },
       {
-        name: "Event Coverage",
-        duration: "6 hours",
-        includes: ["1 photographer", "50 edited photos", "Print release"],
-        price: "₹20,000",
+        name: "Basic Engagement Package",
+        duration: "8 hours",
+        includes: ["1 photographer", "Digital album"],
+        price: "₹30,000",
       },
     ],
     about:
-      "Specializing in portrait and event photography with a creative approach to storytelling through images.",
+      "Specializing in portrait and event photography ,capturing life's most precious moments with an artistic eye and a passion for storytelling.",
     workingHours: ["10:00 AM", "11:00 AM", "12:00 PM", "03:00 PM", "04:00 PM", "05:00 PM"],
   },
   {
     id: 4,
-    name: "Sunil Photography",
+    name: "Aashutosh Photography",
     rating: 4.9,
-    price: "₹35,000",
-    location: "Mumbai",
-    images: ["/images/p2.jpg", "images/p3.webp", "images/p4.jpg"],
+    price: "₹40,000",
+    eventTypes:["Wedding","Engagement","Bday","Corporate Event","Portrait"],
+    //location: "Mumbai",
+    images: ["https://images.pexels.com/photos/3785104/pexels-photo-3785104.jpeg?auto=compress&cs=tinysrgb&w=600", "images/p3.webp", "images/p4.jpg"],
     phone: "+91 87654 32109",
-    description: "Expert in event and portrait photography.",
+    description: "Expert all type of photography.",
     portfolio: [
-      "/images/port1.jpg",
-      "/images/port2.jpg",
-      "/images/port3.jpg",
-      "/images/port4.jpg",
-      "/images/port5.jpg",
-      "/images/port6.jpg",
+//       "https://media.istockphoto.com/id/1454170096/photo/pink-decoration-with-balloons-and-swans-for-birthday-party.jpg?s=2048x2048&w=is&k=20&c=IdiOyGrGuYN8k_I4B6Ot8UiHH5OwxYX1PdNE5AQP3Ow=",
+//  "https://media.istockphoto.com/id/2034042466/photo/beautiful-table-decorated-for-15th-birthday.jpg?s=2048x2048&w=is&k=20&c=5l-j8nDFAuLiFAhGDs2-T-OFz3DgwOguQqUkaSMd6zI=",
+//  "https://media.istockphoto.com/id/2197936306/photo/birthday-party-decorations-three-tiered-cake-with-pink-roses-happy-birthday-text-topper-and.jpg?s=2048x2048&w=is&k=20&c=P-WMfPd38giHrhErH46ZYeldsDggOmHyDxxPwTh09O4=",
+         "https://media.istockphoto.com/id/655007524/photo/friends-give-a-birthday-cake-to-their-friend.jpg?s=2048x2048&w=is&k=20&c=Pz-K99DTjjQwEvMnhXPqBIaB3eSlUUla-ca-ky0SyYI=",
+         "https://media.istockphoto.com/id/907380874/photo/excited-young-woman-gets-birthday-cake.jpg?s=2048x2048&w=is&k=20&c=3vTwmedQ1W1r1GfO-hFClxBQ4HQp-BP5GyZAarEwKCQ=",
+         "https://media.istockphoto.com/id/851103324/photo/closeup-groom-and-bride-are-holding-hands-at-wedding-day-ang-show-rings-concept-of-love-family.jpg?s=1024x1024&w=is&k=20&c=M79IQgooL3hnBw8zznW3mQhtCeI2V5x5FBj4gFPJt5A=",
+         "https://media.istockphoto.com/id/1446478773/photo/business-people-are-talking-together-during-a-teambuilding-event-in-a-luxury-restaurant.jpg?s=1024x1024&w=is&k=20&c=wnxvvWERYGtVTfrydCfUblJjIZKUSRw-vkpOOsuWzXM=",
+    "https://media.istockphoto.com/id/2195984093/photo/indian-couples-holding-hands-close-up.jpg?s=2048x2048&w=is&k=20&c=YRJR-wk4oRgwiEtMGGmsssE-8yDBdvgNlo7qJSJMSPw=",
+  "https://media.istockphoto.com/id/1140927833/photo/bride-and-groom-hands-holding-bridal-showing-wedding-jewelry-ring-bangles.jpg?s=1024x1024&w=is&k=20&c=KkvcBfVjrueR4K1bRSJADZ9ahRd6zbA4zNp5uuexQlk=",
+      "/images/port5.jpg", "https://media.istockphoto.com/id/893123282/photo/wedding-champagne-toast-stock-image.jpg?s=2048x2048&w=is&k=20&c=Mt9OAW6_IvMQKyuf9GtMzyjlHGt45nfIFhvdKpRnAMo=",
+          //"https://media.istockphoto.com/id/1193554655/photo/bride-and-groom-holding-hands.jpg?s=1024x1024&w=is&k=20&c=XKDHER3z0YJDXKKrKGeuTkoQCR3KYd1Z5EYiZzPHlIE=",
+           "https://media.istockphoto.com/id/668001632/photo/bride-hands-with-ring-and-wedding-bouquet-of-flowers.jpg?s=1024x1024&w=is&k=20&c=QE9SouNmnNrzv6sM_FENNQtl0DK0LE1sr_3XFS_-hvs=",
+      "https://media.istockphoto.com/id/1191384303/photo/kids-birthday-party-outdoors-in-garden-in-summer-celebration-concept.jpg?s=1024x1024&w=is&k=20&c=XC9KYXoOakanikSIeZrKfvv6OPAhYC8U848pqoVT6wY=",//bday
+        "https://media.istockphoto.com/id/1458481862/photo/asian-chinese-lesbian-couple-celebrating-birthday-outdoor-dining-with-friends.jpg?s=2048x2048&w=is&k=20&c=J99r0-JWty-ESlqyfGBh88G0BR6YoqdVeRO89jZms5k=",
+     "https://media.istockphoto.com/id/1400225567/photo/floral-offerings-to-the-bride.jpg?s=2048x2048&w=is&k=20&c=Hoi-IJeYeDkTnGk3aPhRGbD834L4ShNb5EL1yfx2iXo=",
+         "https://media.istockphoto.com/id/489247146/photo/happy-indian-couple-at-their-wedding.jpg?s=2048x2048&w=is&k=20&c=SR1jOlZnH7BTxtvXyLMGs22UmXQBdtauqu5xH9ph9dc=",
     ],
     services: [
+
       {
         name: "Portrait Session",
         duration: "2 hours",
         includes: ["1 photographer", "15 edited photos", "Online gallery"],
-        price: "₹8,000",
+        price: "₹10,000",
       },
       {
         name: "Event Coverage",
@@ -159,10 +201,34 @@ export const photographers = [
         includes: ["1 photographer", "50 edited photos", "Print release"],
         price: "₹20,000",
       },
+            {
+        name: "Basic Wedding Package",
+        duration: "10 hours",
+        includes: ["1 photographer", "Digital album"],
+        price: "₹40,000",
+      },
+      {
+        name: "Premium Corporate Shoot",
+        duration: "6 hours",
+        includes: ["1 photographer", "50 edited photos", "Print release"],
+        price: "₹25,000",
+      },
+      {
+        name: "Bday Shoot",
+        duration: "4 hours",
+        includes: ["1 photographer", "30 edited photos", "Print release"],
+        price: "₹18,000",
+      },
+       {
+        name: "Basic Engagement Package",
+        duration: "8 hours",
+        includes: ["1 photographer", "Digital album"],
+        price: "₹30,000",
+      },
     ],
     about:
-      "Specializing in portrait and event photography with a creative approach to storytelling through images.",
-    workingHours: ["10:00 AM", "11:00 AM", "12:00 PM", "03:00 PM", "04:00 PM", "05:00 PM"],
+      "Specializing in all type of photography, my goal is to provide a seamless and enjoyable photography experience,resulting in stunning visuals that you'll cherish for a lifetime.",
+    workingHours: ["9:00 AM","10:00 AM", "11:00 AM", "12:00 PM", "03:00 PM", "04:00 PM", "05:00 PM","7:00 PM","8:00 PM","9:00 PM","10:00 PM"],
   },
 ];
 
@@ -225,7 +291,7 @@ const PhotographerPortfolio = ({ photographer }) => {
               }}
               onClick={() => setSelectedImage(img)}
             />
-            <div
+            {/* <div
               style={{
                 position: "absolute",
                 top: 0,
@@ -247,7 +313,7 @@ const PhotographerPortfolio = ({ photographer }) => {
               onClick={() => setSelectedImage(img)}
             >
               View Photo
-            </div>
+            </div> */}
           </div>
         ))}
       </div>
@@ -303,7 +369,9 @@ const PhotographerDetails = () => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState("");
   const [currentMonth, setCurrentMonth] = useState(new Date());
-
+  const bookingRef = useRef(null);
+  const [eventType, setEventType] = useState(photographer ? photographer.eventTypes[0] : "");
+  const [bookingStatus, setBookingStatus] = useState(null);
   if (!photographer)
     return <h2 style={{ textAlign: "center", marginTop: 50 }}>Photographer not found</h2>;
 
@@ -344,18 +412,56 @@ const PhotographerDetails = () => {
   const handleDateSelect = (date) => {
     if (isDateAvailable(date)) {
       setSelectedDate(date);
-      setSelectedTime("");
+   setSelectedTime("");
     }
   };
 
+  // const handleBooking = () => {
+  //   if (selectedDate && selectedTime) {
+  //     alert(`Booking confirmed!\nDate: ${selectedDate.toDateString()}\nTime: ${selectedTime}`);
+  //   } else {
+  //     alert("Please select both date and time");
+  //   }
+  // };
+
+  const handleScrollToBooking = () => {
+    bookingRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }
   const handleBooking = () => {
-    if (selectedDate && selectedTime) {
-      alert(`Booking confirmed!\nDate: ${selectedDate.toDateString()}\nTime: ${selectedTime}`);
+    // Clear any previous status
+    setBookingStatus(null);
+
+    if (selectedDate && selectedTime && eventType) {
+      // Success
+      setBookingStatus({ 
+        message: `Booking Confirmed!`,
+        date: selectedDate.toDateString(),
+        time: selectedTime,
+        type: eventType
+      });
+      
+      // Form ko clear karein
+      setSelectedDate(null);
+      setSelectedTime("");
+      setEventType(photographer.eventTypes[0]); // Dropdown ko default par reset karein
+      
+      // 5 second baad message ko gayab kar dein
+      setTimeout(() => {
+        setBookingStatus(null);
+      }, 5000); 
+
     } else {
-      alert("Please select both date and time");
+      // Error
+      setBookingStatus({ 
+        error: "Please select date, time, and event type." 
+      });
+       
+      // 3 second baad error ko gayab kar dein
+      setTimeout(() => {
+        setBookingStatus(null);
+      }, 3000);
     }
   };
-
   const calendar = generateCalendar(currentMonth);
   const monthNames = [
     "January","February","March","April","May","June","July","August","September","October","November","December"
@@ -506,9 +612,29 @@ const PhotographerDetails = () => {
       {photographer.description}
     </p>
 
-    {/* Quick Action Buttons */}
+    {/* Quick Action Buttons
     <div style={{ marginTop: 18, display: "flex", gap: 12, flexWrap: "wrap" }}>
       <button
+      onClick={handleScrollToBooking}
+        style={{
+          backgroundColor: "#059669",
+          color: "white",
+          padding: "10px 20px",
+          borderRadius: 8,
+          border: "none",
+          cursor: "pointer",
+          fontWeight: 600,
+          transition: "background-color 0.3s ease",
+        }}
+        onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#047857")}
+        onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#059669")}
+      >
+        Book Now
+      </button> */}
+      {/* Quick Action Buttons */}
+    <div style={{ marginTop: 18, display: "flex", gap: 12, flexWrap: "wrap" }}>
+      <button
+        onClick={handleScrollToBooking} // Yeh 'onClick' scroll ke liye hai jo humne pehle add kiya tha
         style={{
           backgroundColor: "#059669",
           color: "white",
@@ -524,62 +650,49 @@ const PhotographerDetails = () => {
       >
         Book Now
       </button>
-      <button
-        style={{
-          backgroundColor: "#f3f4f6",
-          color: "#111827",
-          padding: "10px 20px",
-          borderRadius: 8,
-          border: "1px solid #d1d5db",
-          cursor: "pointer",
-          fontWeight: 600,
-          transition: "all 0.3s ease",
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.backgroundColor = "#e5e7eb";
-          e.currentTarget.style.transform = "translateY(-2px)";
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.backgroundColor = "#f3f4f6";
-          e.currentTarget.style.transform = "translateY(0)";
-        }}
-      >
-        View Portfolio
-      </button>
-    </div>
-  </div>
-</div>
+      
+      {/* 'View Portfolio' button yahaan se delete kar diya gaya hai */}
+    
+    </div> {/* Yeh "Buttons div" ko close kar raha hai */}
+  </div> {/* Yeh "Info div" ko close kar raha hai */}
+</div> {/* Yeh poore "Header Section" ko close kar raha hai */}
 
 
-      {/* Portfolio Section */}
-      <PhotographerPortfolio photographer={photographer} />
+{/* Portfolio Section */}
+<PhotographerPortfolio photographer={photographer} />
 
-      {/* Services Section */}
-      <section style={{ marginBottom: 40 }}>
-        <h2 style={{ fontSize: 24, fontWeight: 700, marginBottom: 24 }}>Services & Packages</h2>
-        <div style={{ display: "grid", gap: 20 }}>
-          {photographer.services.map((service, index) => (
-            <div key={index} style={{ border: "1px solid #e5e7eb", borderRadius: 12, padding: 24 }}>
-              <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <h3>{service.name}</h3>
-                <span style={{ color: "#059669", fontWeight: 700 }}>{service.price}</span>
-              </div>
-              <p><strong>Duration:</strong> {service.duration}</p>
-              {service.includes.map((item, i) => (
-                <div key={i} style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  <FaCheck color="#059669" /> {item}
-                </div>
-              ))}
-            </div>
-          ))}
+
+{/* Services Section */}
+<section style={{ marginBottom: 40 }}>
+  <h2 style={{ fontSize: 24, fontWeight: 700, marginBottom: 24 }}>Services & Packages</h2>
+  <div style={{ display: "grid", gap: 20 }}>
+    
+    {photographer.services.map((service, index) => (
+      <div key={index} style={{ border: "1px solid #e5e7eb", borderRadius: 12, padding: 24 }}>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <h3>{service.name}</h3>
+          <span style={{ color: "#059669", fontWeight: 700 }}>{service.price}</span>
         </div>
-      </section>
+        <p><strong>Duration:</strong> {service.duration}</p>
+        
+        {service.includes.map((item, i) => (
+          <div key={i} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <FaCheck color="#059669" /> {item}
+          </div>
+        ))}
+        
+      </div>
+    ))}
+    
+  </div>
+</section>
 
-      {/* About */}
-      <section style={{ marginBottom: 40 }}>
-        <h2 style={{ fontSize: 24, fontWeight: 700, marginBottom: 16 }}>About {photographer.name.split(" ")[0]}</h2>
-        <p style={{ backgroundColor: "#f8f9fa", padding: 24, borderRadius: 12 }}>{photographer.about}</p>
-      </section>
+{/* About */}
+<section style={{ marginBottom: 40 }}ref={bookingRef}>
+  <h2 style={{ fontSize: 24, fontWeight: 700, marginBottom: 16 }}>About {photographer.name.split(" ")[0]}</h2>
+  <p style={{ backgroundColor: "#f8f9fa", padding: 24, borderRadius: 12 }}>{photographer.about}</p>
+</section>
+{/* Line 672 yahaan end hoti hai */}
 
 
 
@@ -810,6 +923,8 @@ const PhotographerDetails = () => {
                   )}
                   
                   <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+                    
+                    {/* YEH WALA DIV DYNAMIC HAI */}
                     <div>
                       <label style={{ display: "block", marginBottom: 8, fontWeight: 500 }}>Event Type</label>
                       <select style={{ 
@@ -819,13 +934,18 @@ const PhotographerDetails = () => {
                         borderRadius: 8,
                         fontSize: 16
                       }}>
-                        <option>Wedding</option>
-                        <option>Engagement</option>
-                        <option>Portrait</option>
-                        <option>Corporate Event</option>
-                        <option>Other</option>
+                        value={eventType}
+                       onChange={(e) => setEventType(e.target.value)}
+                        {/* Yahaan purane hardcoded options nahi hain. Yeh dynamic hai. */}
+                        {photographer.eventTypes.map((type, index) => (
+                          <option key={index}>{type}</option>
+                        ))}
+                        
+                      
                       </select>
                     </div>
+                    {/* YAHAN TAK */}
+
                     
                     <div>
                       <label style={{ display: "block", marginBottom: 8, fontWeight: 500 }}>Message</label>
@@ -869,6 +989,31 @@ const PhotographerDetails = () => {
                     >
                       {selectedDate && selectedTime ? "Confirm Booking" : "Select Date & Time"}
                     </button>
+                      {bookingStatus && (
+    <div style={{
+      marginTop: 16,
+      padding: 12,
+      borderRadius: 8,
+      border: bookingStatus.error ? "1px solid #ef4444" : "1px solid #22c55e",
+      backgroundColor: bookingStatus.error ? "#fee2e2" : "#f0fdf4",
+      color: bookingStatus.error ? "#b91c1c" : "#15803d",
+      textAlign: 'left',
+      transition: 'all 0.3s ease'
+    }}>
+      {bookingStatus.message && (
+        <>
+          <strong style={{ display: 'block', marginBottom: 8, fontSize: 15 }}>{bookingStatus.message}</strong>
+          <div style={{ fontSize: 14 }}>Date: {bookingStatus.date}</div>
+          <div style={{ fontSize: 14 }}>Time: {bookingStatus.time}</div>
+          <div style={{ fontSize: 14 }}>Event: {bookingStatus.type}</div>
+        </>
+      )}
+      {bookingStatus.error && (
+        <strong style={{ fontSize: 14 }}>{bookingStatus.error}</strong>
+      )}
+    </div>
+  )}
+
                   </div>
                 </div>
               </div>

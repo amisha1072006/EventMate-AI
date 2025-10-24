@@ -72,6 +72,11 @@ const venues = [
   { id: 3, name: "Asse Tap Room", rating: 4.7, img: "/images/trending4.jpeg" },
   { id: 4, name: "Penton Park", rating: 4.8, img: "/images/trending5.jpeg" },
   { id: 5, name: "Titanic Town Hall", rating: 4.9, img: "/images/trending3.jpeg" },
+   { id: 1, name: "Palace Mayfair", rating: 4.8, img: 'https://images.pexels.com/photos/3835638/pexels-photo-3835638.jpeg'},
+  { id: 2, name: "Festsaal Königspalast", rating: 4.9, img:'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?q=80&w=2070&auto=format&fit=crop'},
+  { id: 3, name: "Asse Tap Room", rating: 4.7, img:'https://media.istockphoto.com/id/450955083/photo/wedding.jpg?s=1024x1024&w=is&k=20&c=NrSTxwM01CQ6k5z_R_EJ0cEjHAZ4c8essmpIzRNwdnM=' },
+  { id: 4, name: "Penton Park", rating: 4.8, img:'https://media.istockphoto.com/id/2034042466/photo/beautiful-table-decorated-for-15th-birthday.jpg?s=2048x2048&w=is&k=20&c=5l-j8nDFAuLiFAhGDs2-T-OFz3DgwOguQqUkaSMd6zI=' },
+  { id: 5, name: "Titanic Town Hall", rating: 4.9, img:'https://media.istockphoto.com/id/1059441412/photo/abstract-blurred-event-exhibition-with-people-background-business-convention-show-concept.jpg?s=2048x2048&w=is&k=20&c=sO7rKJhCkCOqP94c4_Jut3BC4e2vpUI8_SwwNLwTXgs='},
 ];
 
 const VenueCard = ({ venue }) => (

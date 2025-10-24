@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired; 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;      
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -124,7 +124,7 @@ public class HallBookingController {
                             hall.getCapacity(),    // --- ADDED --- (Assume Hall.java has getCapacity())
                             hall.getBudget()       // --- ADDED --- (Assume Hall.java has getBudget())
                     ))
-                    .limit(5) 
+                    //.limit(5) 
                     .collect(Collectors.toList());
 
             BookingConflictResponse responseBody = new BookingConflictResponse(

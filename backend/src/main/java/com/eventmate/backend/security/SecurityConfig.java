@@ -64,8 +64,11 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-                .csrf(csrf -> csrf.disable())
+                //.cors(cors -> cors.configurationSource(corsConfigurationSource()))
+                //.csrf(csrf -> csrf.disable())
+                .cors(cors -> cors.configurationSource(corsConfigurationSource())) // YEH SAHI HAI
+        .csrf(csrf -> csrf.disable()) // <-- AAPKO YEH CHANGE KARNA HAI
+
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/api/newsletter/**").permitAll()
