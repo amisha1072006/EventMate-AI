@@ -3,7 +3,7 @@
 /* Top Banner Section */
 .top-banner {
    /* background-color: #0f172a;  Main blue/cyan color */
-   background-image: url('/images/about.jpg'); 
+   background-image: url("/images/about.jpg"); 
     color: white;
     text-align: center;
     padding: 50px 20px;
