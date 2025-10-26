@@ -13,5 +13,16 @@ export const allVenues = [
   { id: 10, name: 'The Celestial', image: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=2070&auto=format&fit=crop', location: 'Lucknow', food: 'Veg', capacity: 250, eventType: 'Birthday Party' },
   { id: 11, name: 'The Majestic', image: 'https://images.unsplash.com/photo-1549294413-26f195200c16?q=80&w=1964&auto=format&fit=crop', location: 'Mumbai', food: 'Both', capacity: 900, eventType: 'Corporate Event' },
   { id: 12, name: 'The Sovereign', image: 'https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=2070&auto=format&fit=crop', location: 'Bangalore', food: 'Non-Veg', capacity: 80, eventType: 'Birthday Party' },
-  { id: 13, name: 'The Pinnacle', image: 'https://images.unsplash.com/photo-1568495248636-6432b97bd949?q=80&w=1974&auto=format&fit=crop', location: 'Lucknow', food: 'Both', capacity: 550, eventType: 'Wedding' }
+  { id: 13, name: 'The Pinnacle', image: 'https://images.unsplash.com/photo-1568495248636-6432b97bd949?q=80&w=1974&auto=format&fit=crop', location: 'Lucknow', food: 'Both', capacity: 550, eventType: 'Wedding' },
+  { id: 14, name: 'The GranDreams', image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1200&auto=format&fit=crop', location: 'Delhi', food: 'Veg, Non-Veg', capacity: 1200, eventType: 'Wedding' },
+  { id: 15, name: 'The Executive Club Resort', image: 'https://images.unsplash.com/photo-1483366774565-c7833ead71d7?q=80&w=1200&auto=format&fit=crop', location: 'Delhi', food: 'Veg, Non-Veg', capacity: 1100, eventType: 'Wedding' },
+  { id: 16, name: 'Hotel Landmark', image: 'https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?q=80&w=1200&auto=format&fit=crop', location: 'Gwalior', food: 'Veg, Non-Veg', capacity: 600, eventType: 'Corporate Event' },
+  { id: 17, name: 'Le Roma Gardenia', image: 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?q=80&w=1200&auto=format&fit=crop', location: 'Bangalore', food: 'Both', capacity: 450, eventType: 'Wedding' },
+  { id: 18, name: 'Royal Pepper Banquet Hall', image: 'https://images.unsplash.com/photo-1465101178521-c1a96b7a910e?q=80&w=1200&auto=format&fit=crop', location: 'Delhi', food: 'Veg, Non-Veg', capacity: 700, eventType: 'Wedding' },
+  { id: 19, name: 'La Mansion Banquets', image: 'https://images.unsplash.com/photo-1454023492550-5696f8ff10e1?q=80&w=1200&auto=format&fit=crop', location: 'Delhi', food: 'Veg', capacity: 500, eventType: 'Birthday Party' },
+  { id: 20, name: 'Swastik Wedding Venue', image: 'https://images.unsplash.com/photo-1425421543490-6c7e7c07b09a?q=80&w=1200&auto=format&fit=crop', location: 'Faridabad', food: 'Veg, Non-Veg', capacity: 350, eventType: 'Wedding' },
+  { id: 21, name: 'La Victoria Banquet and Rooms', image: 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?q=80&w=1200&auto=format&fit=crop', location: 'Surat', food: 'Veg, Non-Veg', capacity: 400, eventType: 'Corporate Event' },
+  { id: 22, name: 'Shivchand Marriage Hall', image: 'https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?q=80&w=1200&auto=format&fit=crop', location: 'Buxar', food: 'Veg', capacity: 200, eventType: 'Wedding' },
+  { id: 23, name: 'LA Mirage Convention Center', image: 'https://images.unsplash.com/photo-1454023492550-5696f8ff10e1?q=80&w=1200&auto=format&fit=crop', location: 'Kerala', food: 'Veg, Non-Veg', capacity: 600, eventType: 'Corporate Event' }
+
 ];

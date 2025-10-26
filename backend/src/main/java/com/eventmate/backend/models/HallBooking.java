@@ -15,7 +15,6 @@ public class HallBooking {
     @Column(name = "booking_id")
     private Long bookingId;
 
-    // ADDED BACK: Specific contact details for this booking
     @Column(name = "user_name")
     private String userName;
 

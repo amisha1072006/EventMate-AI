@@ -1,0 +1,62 @@
+import React, { useEffect, useState } from "react";
+import "./Bookings.css";
+
+const Bookings = ({ userId }) => {
+  const [bookings, setBookings] = useState([]);
+  const [madeCount, setMadeCount] = useState(0);
+  const [completedCount, setCompletedCount] = useState(0);
+
+  const fetchBookings = async () => {
+    try {
+      const res = await fetch(`http://localhost:8080/api/bookings/user/${userId}`);
+      const data = await res.json();
+      setBookings(data);
+
+      setMadeCount(data.length);
+      setCompletedCount(data.filter(b => b.status === "Completed").length);
+    } catch (err) {
+      console.error("Error fetching bookings:", err);
+    }
+  };
+
+  useEffect(() => {
+    fetchBookings();
+  }, []);
+
+  return (
+    <div className="bookings-container">
+      <h2 className="bookings-title">My Bookings</h2>
+
+      <div className="bookings-summary-container">
+        <div className="bookings-summary made">
+          <h3>Bookings Made</h3>
+          <p>{madeCount}</p>
+        </div>
+        {/* <div className="bookings-summary completed">
+          <h3>Bookings Completed</h3>
+          <p>{completedCount}</p>
+        </div> */}
+      </div>
+
+      {bookings.length > 0 ? (
+        <div className="bookings-grid">
+          {bookings.map((b) => (
+            <div key={b.id} className="booking-card">
+              <h3 className="booking-event">{b.hallName}</h3>
+              <p>
+                <strong>Date:</strong> {new Date(b.bookingDate).toLocaleString()}
+              </p>
+              <p>
+                <strong>Status:</strong> {b.status}
+              </p>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <p className="no-bookings">You have no bookings yet.</p>
+      )}
+    </div>
+  );
+};
+
+export default Bookings;
