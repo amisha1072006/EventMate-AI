@@ -5,49 +5,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useNavigate } from "react-router-dom";
 
-// export const cakes = [
-//   {
-//     id: 1,
-//     name: "Sweet Delights Bakery",
-//     rating: 4.9,
-//     price: "₹2,000",
-//     location: "Hyderabad",
-//     images: ["/images/c1.jpg", "/images/c2.jpeg", "/images/c3.jpg"],
-//     phone: "+919876544321",
-//     description: "Sweet Delights Bakery is known for its exquisite cakes and pastries. We specialize in custom-designed cakes for birthdays, weddings, and special events. Every cake is freshly baked using high-quality ingredients."
-//   },
-//   {
-//     id: 2,
-//     name: "Cake Avenue",
-//     rating: 4.8,
-//     price: "₹1,800",
-//     location: "Bangalore",
-//     images: ["/images/cake1.jpg", "/images/cake2.jpg", "/images/cake3.webp"],
-//     phone: "+918765433210",
-//     description: "Cake Avenue offers a delightful selection of cakes, cupcakes, and desserts. We focus on creating delicious and visually appealing cakes that make every celebration memorable."
-//   },
-//   {
-//     id: 3,
-//     name: "Sugar Bliss",
-//     rating: 4.7,
-//     price: "₹2,200",
-//     location: "Chennai",
-//     images: ["/images/cake4.jpg", "/images/cake5.jpg", "/images/c1.jpg"],
-//     phone: "+919123477654",
-//     description: "Sugar Bliss is your go-to place for premium cakes and baked treats. We combine classic recipes with modern flavors, ensuring every bite is a blissful experience."
-//   },
-//   {
-//     id: 4,
-//     name: "The Cake Studio",
-//     rating: 4.6,
-//     price: "₹2,500",
-//     location: "Delhi",
-//     images: ["/images/c3.jpg", "/images/c2.jpeg", "/images/c3.jpg"],
-//     phone: "+919345622109",
-//     description: "The Cake Studio creates artistic cakes that are as beautiful as they are delicious. From intricate wedding cakes to personalized birthday cakes, we make every cake a masterpiece."
-//   },
-// ];
-
 
 export const cakes = [
   {
@@ -96,7 +53,7 @@ export const cakes = [
     rating: 4.8,
     price: "₹2,100",
     location: "Mumbai",
-    images: ["/images/c1.jpg", "/images/c2.jpeg", "/images/c3.jpg"],
+    images: ["/images/cake5.jpg", "/images/c2.jpeg", "/images/c3.jpg"],
     phone: "+919876543210",
     description: "Heavenly Bites specializes in decadent chocolate and fruit cakes. Our handcrafted treats bring joy to every occasion, and we pride ourselves on quality and presentation."
   },
@@ -106,7 +63,7 @@ export const cakes = [
     rating: 4.5,
     price: "₹1,900",
     location: "Pune",
-    images: ["/images/cake1.jpg", "/images/cake2.jpg", "/images/cake3.webp"],
+    images: ["/images/cake6.jpg", "/images/cake2.jpg", "/images/cake3.webp"],
     phone: "+918765432109",
     description: "Choco Charm is a paradise for chocolate lovers. We offer rich chocolate cakes, truffles, and ganache delights. Every creation is made with passion and love for chocolate."
   },
@@ -116,7 +73,7 @@ export const cakes = [
     rating: 4.7,
     price: "₹2,300",
     location: "Kolkata",
-    images: ["/images/c1.jpg", "/images/c2.jpeg", "/images/c3.jpg"],
+    images: ["/images/cake7.jpg", "/images/c2.jpeg", "/images/c3.jpg"],
     phone: "+919123456789",
     description: "Frost & Flavors is famous for its creamy, flavorful cakes and custom designs. We cater to weddings, birthdays, and corporate events with unique, hand-decorated cakes."
   },
@@ -126,7 +83,7 @@ export const cakes = [
     rating: 4.6,
     price: "₹2,000",
     location: "Ahmedabad",
-    images: ["/images/cake4.jpg", "/images/cake5.jpg", "/images/c1.jpg"],
+    images: ["/images/cake8.jpg", "/images/cake5.jpg", "/images/c1.jpg"],
 
     phone: "+919876512345",
     description: "The Dessert Hub offers a wide range of cakes, muffins, and pastries. Our cakes are baked fresh daily using premium ingredients, making every bite a delightful experience."
@@ -137,7 +94,7 @@ export const cakes = [
     rating: 4.9,
     price: "₹2,400",
     location: "Chandigarh",
-    images: ["/images/c3.jpg", "/images/c2.jpeg", "/images/c3.jpg"],
+    images: ["/images/cake9.jpg", "/images/c2.jpeg", "/images/c3.jpg"],
     phone: "+918765498321",
     description: "Cakelicious is all about innovation and taste. From customized theme cakes to classic favorites, we ensure that each cake is both visually stunning and delicious."
   },
@@ -147,7 +104,7 @@ export const cakes = [
     rating: 4.8,
     price: "₹2,200",
     location: "Jaipur",
-    images: ["/images/cake1.jpg", "/images/cake2.jpg", "/images/cake3.webp"],
+    images: ["/images/cake10.jpg", "/images/cake2.jpg", "/images/cake3.webp"],
     phone: "+919123498765",
     description: "Blissful Bakes focuses on premium quality and exquisite flavors. Our specialty cakes and desserts are perfect for celebrations, bringing sweetness and joy to every moment."
   },
@@ -157,7 +114,7 @@ export const cakes = [
     rating: 4.7,
     price: "₹2,200",
     location: "Chennai",
-    images: ["/images/cake4.jpg", "/images/cake5.jpg", "/images/c1.jpg"],
+    images: ["/images/cake12.jpg", "/images/cake5.jpg", "/images/c1.jpg"],
     phone: "+919123477654",
     description: "Sugar Bliss is your go-to place for premium cakes and baked treats. We combine classic recipes with modern flavors, ensuring every bite is a blissful experience."
   },
@@ -167,7 +124,7 @@ export const cakes = [
     rating: 4.6,
     price: "₹2,500",
     location: "Delhi",
-    images: ["/images/c3.jpg", "/images/c2.jpeg", "/images/c3.jpg"],
+    images: ["/images/cake13.jpg", "/images/c2.jpeg", "/images/c3.jpg"],
     phone: "+919345622109",
     description: "The Cake Studio creates artistic cakes that are as beautiful as they are delicious. From intricate wedding cakes to personalized birthday cakes, we make every cake a masterpiece."
   },
@@ -177,7 +134,7 @@ export const cakes = [
     rating: 4.8,
     price: "₹2,100",
     location: "Mumbai",
-    images: ["/images/c1.jpg", "/images/c2.jpeg", "/images/c3.jpg"],
+    images: ["/images/cake14.jpg", "/images/c2.jpeg", "/images/c3.jpg"],
     phone: "+919876543210",
     description: "Heavenly Bites specializes in decadent chocolate and fruit cakes. Our handcrafted treats bring joy to every occasion, and we pride ourselves on quality and presentation."
   },
@@ -187,7 +144,7 @@ export const cakes = [
     rating: 4.5,
     price: "₹1,900",
     location: "Pune",
-    images: ["/images/cake1.jpg", "/images/cake2.jpg", "/images/cake3.webp"],
+    images: ["/images/cake15.jpg", "/images/cake2.jpg", "/images/cake3.webp"],
     phone: "+918765432109",
     description: "Choco Charm is a paradise for chocolate lovers. We offer rich chocolate cakes, truffles, and ganache delights. Every creation is made with passion and love for chocolate."
   },
@@ -197,7 +154,7 @@ export const cakes = [
     rating: 4.7,
     price: "₹2,300",
     location: "Kolkata",
-    images: ["/images/c1.jpg", "/images/c2.jpeg", "/images/c3.jpg"],
+    images: ["/images/cake16.jpg", "/images/c2.jpeg", "/images/c3.jpg"],
     phone: "+919123456789",
     description: "Frost & Flavors is famous for its creamy, flavorful cakes and custom designs. We cater to weddings, birthdays, and corporate events with unique, hand-decorated cakes."
   },
