@@ -18,8 +18,10 @@ const OwnerDashboardLayout = ({ children }) => {
       <aside className="dashboard-sidebar">
         <h2 className="dashboard-title">Dashboard</h2>
         <ul className="dashboard-menu">
-          <li><Link to="/owner/manage-halls">Manage Halls</Link></li>
+          <li><Link to="/owner/manage-halls">Add Halls</Link></li>
+          <li><Link to="/owner/manage-halls-info">Why Add Halls?</Link></li>
           <li><Link to="/owner/bookings">Bookings</Link></li>
+          <li><Link to="/owner/contact-eventmate">Contact Eventmate</Link></li>
           {/* <li><Link to="/owner/profile">Profile</Link></li> */}
         </ul>
 
@@ -34,9 +36,9 @@ const OwnerDashboardLayout = ({ children }) => {
 
       {/* Main content */}
       <div className="dashboard-content">
-        <div className="dashboard-topbar">
+        {/* <div className="dashboard-topbar">
           <h3>Welcome, Owner</h3>
-        </div>
+        </div> */}
         {children}
       </div>
     </div>

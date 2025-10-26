@@ -60,6 +60,9 @@ import OwnerDashboardLayout from './Pages/OwnerDashboard.jsx';
 import OwnerManageHalls from './Pages/OwnerManageHalls.jsx';
 import OwnerBookings from './Pages/OwnerBookings.jsx';
 import OwnerProfile from './Pages/OwnerProfile.jsx';
+import ViewHalls from './Pages/ViewHalls.jsx';
+import ManageHallsInfo from './Pages/ManageHallsInfo.jsx';
+import ContactEventmate from './Pages/ContactEventmate.jsx';
 
 // ✅ Private Route for Users
 const PrivateRoute = ({ children }) => {
@@ -114,6 +117,7 @@ const DashboardRoutes = () => (
     <Routes>
       <Route path="/bookings" element={<Bookings />} />
       <Route path="/findhall" element={<FindHall />} />
+      <Route path="/halls" element={<ViewHalls />}/>
       <Route path="/checkavailabilityform" element={<CheckAvailabilityForm />} />
       <Route path="/hallbookingform" element={<HallBookingForm />} />
        <Route path="/booking-suggestions" element={<BookingSuggestions />} />
@@ -142,7 +146,9 @@ const OwnerDashboardRoutes = () =>(
   <OwnerDashboardLayout>
     <Routes>
       <Route path="/owner/manage-halls" element={<OwnerManageHalls />}/>
+      <Route path="/owner/manage-halls-info" element={<ManageHallsInfo />}/>
       <Route path="/owner/bookings" element={<OwnerBookings />}/>
+      <Route path="/owner/contact-eventmate" element={<ContactEventmate />}/>
       <Route path="/owner/profile" element={<OwnerProfile />}/>
     </Routes>
   </OwnerDashboardLayout>

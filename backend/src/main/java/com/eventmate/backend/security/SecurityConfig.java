@@ -72,6 +72,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/contact/**").permitAll()
                         .requestMatchers("/api/halls/**").permitAll() // <-- THE ONLY CHANGE IS HERE
                         .requestMatchers("/api/bookings/**").permitAll()
+                        .requestMatchers("/api/managehalls/**").permitAll()
                         .requestMatchers("/api/chat/**").permitAll()
 
                         .anyRequest().authenticated())

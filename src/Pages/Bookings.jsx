@@ -34,10 +34,10 @@ const Bookings = ({ userId }) => {
           <h3>Bookings Made</h3>
           <p>{madeCount}</p>
         </div>
-        <div className="bookings-summary completed">
+        {/* <div className="bookings-summary completed">
           <h3>Bookings Completed</h3>
           <p>{completedCount}</p>
-        </div>
+        </div> */}
       </div>
 
       {bookings.length > 0 ? (

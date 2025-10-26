@@ -1,34 +1,58 @@
-//import React from "react";
 import React, { useState } from "react";
 import './OMH.css';
 
 const OwnerManageHalls = () => {
   const [formData, setFormData] = useState({
     ownerName: "",
+    phoneNumber: "",
     hallName: "",
     hallAddress: "",
     hallDescription: "",
+    capacity: "",
+    budget: "",
     imageUrl1: "",
-    imageUrl2: "",
-    imageUrl3: "",
-    imageUrl4: "",
   });
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form Data Submitted:", formData);
-    alert("Hall details submitted successfully!");
+
+    try {
+      const response = await fetch("http://localhost:8080/api/managehalls", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        alert("Hall details submitted successfully!");
+        setFormData({
+          ownerName: "",
+          phoneNumber: "",
+          hallName: "",
+          hallAddress: "",
+          hallDescription: "",
+          capacity: "",
+          budget: "",
+          imageUrl1: "",
+        });
+      } else {
+        alert("Failed to submit hall. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error submitting hall:", error);
+      alert("Error submitting hall. Check console.");
+    }
   };
 
   return (
     <div className="manage-halls-container">
       <h2 className="page-title">Manage Halls</h2>
       <p className="page-subtitle">
-        Add your hall details below. The first image URL is mandatory.
+        Add your hall details below. Image URL is mandatory.
       </p>
 
       <form className="hall-form" onSubmit={handleSubmit}>
@@ -40,6 +64,19 @@ const OwnerManageHalls = () => {
             value={formData.ownerName}
             onChange={handleChange}
             placeholder="Enter owner name"
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Contact Number</label>
+          <input
+            type="tel"
+            name="phoneNumber"
+            value={formData.phoneNumber}
+            onChange={handleChange}
+            placeholder="Enter phone number"
+            pattern="[0-9]{10}"
             required
           />
         </div>
@@ -81,47 +118,40 @@ const OwnerManageHalls = () => {
         </div>
 
         <div className="form-group">
-          <label>Image URL 1 (Mandatory)</label>
+          <label>Capacity</label>
           <input
-            type="url"
-            name="imageUrl1"
-            value={formData.imageUrl1}
+            type="number"
+            name="capacity"
+            value={formData.capacity}
             onChange={handleChange}
-            placeholder="https://example.com/image1.jpg"
+            placeholder="Enter hall capacity"
+            min="1"
             required
           />
         </div>
 
         <div className="form-group">
-          <label>Image URL 2</label>
+          <label>Budget (₹)</label>
           <input
-            type="url"
-            name="imageUrl2"
-            value={formData.imageUrl2}
+            type="number"
+            name="budget"
+            value={formData.budget}
             onChange={handleChange}
-            placeholder="https://example.com/image2.jpg"
+            placeholder="Enter approximate budget"
+            min="0"
+            required
           />
         </div>
 
         <div className="form-group">
-          <label>Image URL 3</label>
+          <label>Image URL (Mandatory)</label>
           <input
             type="url"
-            name="imageUrl3"
-            value={formData.imageUrl3}
+            name="imageUrl1"
+            value={formData.imageUrl1}
             onChange={handleChange}
-            placeholder="https://example.com/image3.jpg"
-          />
-        </div>
-
-        <div className="form-group">
-          <label>Image URL 4</label>
-          <input
-            type="url"
-            name="imageUrl4"
-            value={formData.imageUrl4}
-            onChange={handleChange}
-            placeholder="https://example.com/image4.jpg"
+            placeholder="https://example.com/image.jpg"
+            required
           />
         </div>
 
