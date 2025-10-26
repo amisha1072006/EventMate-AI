@@ -87,9 +87,6 @@ const NextArrow = ({ onClick }) => (
 
 );
 
-
-
-
 const PrevArrow = ({ onClick }) => (
   <div
     onClick={onClick}
