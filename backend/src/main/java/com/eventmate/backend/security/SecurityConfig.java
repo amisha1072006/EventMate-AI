@@ -76,6 +76,10 @@ public class SecurityConfig {
                         .requestMatchers("/api/halls/**").permitAll() // <-- THE ONLY CHANGE IS HERE
                         .requestMatchers("/api/bookings/**").permitAll()
                         .requestMatchers("/api/chat/**").permitAll()
+                        .requestMatchers("/api/project-qa/**").permitAll()
+                        //.requestMatchers("/api//**").permitAll()
+
+ 
 
                         .anyRequest().authenticated())
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
