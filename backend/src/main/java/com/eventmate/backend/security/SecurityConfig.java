@@ -72,10 +72,9 @@ public class SecurityConfig {
                         .requestMatchers("/api/contact/**").permitAll()
                         .requestMatchers("/api/halls/**").permitAll() // <-- THE ONLY CHANGE IS HERE
                         .requestMatchers("/api/bookings/**").permitAll()
-                        .requestMatchers("/api/managehalls/**").permitAll()
                         .requestMatchers("/api/chat/**").permitAll()
+                        .requestMatchers("/api/managehalls/**").permitAll()
                         .requestMatchers("/api/contact-eventmate/**").permitAll()
-
                         .anyRequest().authenticated())
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())

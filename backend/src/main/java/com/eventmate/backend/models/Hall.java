@@ -1,21 +1,13 @@
-// File Location: src/main/java/com/eventmate/backend/models/Hall.java
-
 package com.eventmate.backend.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "halls")
-//@Data // Lombok: Generates getters, setters, toString, etc.
-@NoArgsConstructor // Lombok: Generates a no-argument constructor
-@AllArgsConstructor // Lombok: Generates a constructor with all arguments
+@NoArgsConstructor
+@AllArgsConstructor
 public class Hall {
 
     @Id
@@ -26,14 +18,14 @@ public class Hall {
     @Column(name = "hall_name")
     private String hallName;
 
-    private String categories; // 'categories' from your JSON data
+    private String categories;
 
     @Column(name = "image_link", columnDefinition = "TEXT")
     private String imageLink;
 
     private String location;
 
-    // This field wasn't in your JSON, so I'm mapping 'eventType' to it.
+    // This field used in controller as eventType
     @Column(name = "full_location", columnDefinition = "TEXT")
     private String eventType;
 
@@ -43,10 +35,11 @@ public class Hall {
 
     private int budget;
 
-    public Hall(Object o, String sunsetHall, String corporate, String url, String mumbai, String engagement, String s, int i, int i1) {
+    public Hall(Object o, String eliteBanquets, String weddings, String url, String delhi, String corporateEvent, String veg, int i, int i1) {
     }
 
-    // --- START: Manual Getters ---
+    // --- Explicit getters used by controller / service ---
+
     public Long getHallId() {
         return this.hallId;
     }
@@ -59,7 +52,6 @@ public class Hall {
         return this.imageLink;
     }
 
-    // --- ADDED: Getters for new fields (YAHAN ADD KIYA GAYA HAI) ---
     public String getLocation() {
         return this.location;
     }
@@ -71,14 +63,20 @@ public class Hall {
     public int getBudget() {
         return this.budget;
     }
-    // --- END: ADDED Getters ---
 
+    // <-- ADDED MISSING GETTER -->
+    public String getEventType() {
+        return this.eventType;
+    }
 
-    /*
-     * // This constructor seems unusual and might not be needed.
-     * // Commenting it out. If you need it, please uncomment and adjust.
-     * public Hall(Object o, String eliteBanquets, String weddings, String url, String
-     * delhi, String corporateEvent, String veg, int i, int i1) {
-     * }
-     */
+    // Optional: setters if you need them (kept minimal)
+    public void setHallId(Long hallId) { this.hallId = hallId; }
+    public void setHallName(String hallName) { this.hallName = hallName; }
+    public void setCategories(String categories) { this.categories = categories; }
+    public void setImageLink(String imageLink) { this.imageLink = imageLink; }
+    public void setLocation(String location) { this.location = location; }
+    public void setEventType(String eventType) { this.eventType = eventType; }
+    public void setFood(String food) { this.food = food; }
+    public void setCapacity(int capacity) { this.capacity = capacity; }
+    public void setBudget(int budget) { this.budget = budget; }
 }
