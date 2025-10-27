@@ -14,20 +14,12 @@ const planners = [
     phone: "+91 91234 56780",
     description: "Specializes in luxury weddings, corporate events, and themed parties.",
     portfolio: [
-      // "https://raw.githubusercontent.com/Saurabh-devs/Event/c39058fe872d62b7a9bf3e6f690863bcfdec4481/public/images/photo1.png",
-      // "/images/photo2.jpg",
-      // "/images/photo3.jpg",
-      // "/images/photo1.jpg",
-      // "/images/photo2.jpg",
-      // "/images/photo3.jpg",
-      // "/images/photo1.jpg",
-
       "/images/port1.jpg",
       "/images/port2.jpg",
       "/images/port3.jpg",
       "/images/port4.jpg",
-      "/images/port5.jpg",
-      "/images/port6.jpg",
+      // "/images/port5.jpg",
+      // "/images/port6.jpg",
     ],
   },
   {
@@ -39,7 +31,33 @@ const planners = [
     image: "/images/photo2.jpg",
     phone: "+91 90123 45678",
     description: "Known for destination weddings and corporate summits.",
-    portfolio: ["/images/photo2.jpg", "/images/photo3.jpg"],
+    portfolio: ["/images/pl1.jpg", "/images/pl2.jpg"],
+  },
+  {
+    id: 3,
+    name: "Perfect Moments",
+    rating: 4.8,
+    price: "₹60,000",
+    location: "Mumbai",
+    image: "/images/photo3.jpg",
+    phone: "+91 93456 78120",
+    description: "Known for destination weddings and corporate summits.",
+    portfolio: ["/images/port8.jpg",
+      "/images/port5.jpg",
+      "/images/port6.jpg",],
+   
+  },
+  {
+    id: 4,
+    name: "Royal Weddings & Events",
+    rating: 4.6,
+    price: "₹55,000",
+    location: "Delhi",
+    image: "/images/photo4.jpg",
+    phone: "+91 97865 43120",
+    description: "Known for destination weddings and corporate summits.",
+    portfolio: ["/images/pl3.jpg", "/images/pl4.jpg"],
+    
   },
 ];
 
