@@ -45,14 +45,13 @@ import SuccessMsg from './HallBooking/SuccessMsg.jsx';
 import Bookings from './Pages/Bookings.jsx';
 import Photographers from './Pages/Photographers.jsx';
 import PhotographerDetails from './Pages/PhotographerDetails.jsx';
+import PhotographerSuggestion from './Pages/PhotographerSuggestion.jsx';
 import Planners from './Pages/Planners.jsx';
 import PlannerDetails from './Pages/PlannerDetails.jsx';
 import Cakes from './Pages/Cakes.jsx';
 import Attire from './Pages/Attire.jsx';
 import Profilesettings from './Pages/Profilesettings.jsx';
 
-// Dashboard (Owner)
-//import OwnerDashboard from './Pages/OwnerDashboard.jsx';
 import OwnerNavbar from './components/OwnerNavbar.jsx';
 import OwnerDashboardLayout from './Pages/OwnerDashboard.jsx';
 import OwnerManageHalls from './Pages/OwnerManageHalls.jsx';
@@ -122,7 +121,7 @@ const DashboardRoutes = () => (
 
          <Route path="/photographers" element={<Photographers />} />
          <Route path="/photographer/:id" element={<PhotographerDetails />} />
-       
+        <Route path="/photographer-suggestion" element={<PhotographerSuggestion/>} />
 
          <Route path="/planners" element={<Planners />} />
          <Route path="/planner/:id" element={<PlannerDetails />} />   

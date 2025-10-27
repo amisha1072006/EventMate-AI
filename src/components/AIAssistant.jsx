@@ -1,203 +1,3 @@
-
-
-// import React, { useState, useRef, useEffect } from "react";
-// import { FaTimes } from "react-icons/fa";
-
-// const AIAssistant = () => {
-//   const [open, setOpen] = useState(false);
-//   const [messages, setMessages] = useState([
-//     { sender: "bot", text: "👋 Hi! I'm EventMate Assistant. How can I help you today?" },
-//   ]);
-//   const [input, setInput] = useState("");
-//   const chatEndRef = useRef(null);
-
-//   useEffect(() => {
-//     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
-//   }, [messages]);
-
-//   const handleSend = async () => {
-//     if (!input.trim()) return;
-
-//     const userMessage = { sender: "user", text: input };
-//     setMessages((prev) => [...prev, userMessage]);
-//     const messageText = input.trim();
-//     setInput("");
-
-//     // Show "typing" bubble
-//     setMessages((prev) => [...prev, { sender: "bot", text: "🤖 Typing..." }]);
-
-//     try {
-//       const response = await fetch("http://localhost:8080/api/chat/message", {
-//         method: "POST",
-//         headers: { "Content-Type": "application/json" },
-//         body: JSON.stringify({ message: messageText }),
-//       });
-
-//       const data = await response.json();
-
-//       // Replace typing bubble with AI reply
-//       setMessages((prev) => {
-//         const updated = [...prev];
-//         const index = updated.findIndex((m) => m.text === "🤖 Typing...");
-//         if (index !== -1)
-//           updated[index] = {
-//             sender: "bot",
-//             text: data.reply || "⚠️ No response from AI server.",
-//           };
-//         return updated;
-//       });
-//     } catch (err) {
-//       console.error(err);
-//       setMessages((prev) => {
-//         const updated = [...prev];
-//         const index = updated.findIndex((m) => m.text === "🤖 Typing...");
-//         if (index !== -1)
-//           updated[index] = {
-//             sender: "bot",
-//             text: "⚠️ Unable to reach the AI server. Please try again later.",
-//           };
-//         return updated;
-//       });
-//     }
-//   };
-
-//     return (
-//     <div style={{ position: "fixed", bottom: "20px", right: "20px", zIndex: 9999 }}>
-//       {/* Floating Button */}
-//       <button
-//         onClick={() => setOpen(!open)}
-//         style={{
-//           backgroundColor: "#e0e0e0",
-//           color: "#555",
-//           width: "60px",
-//           height: "60px",
-//           borderRadius: "50%",
-//           fontWeight: "bold",
-//           fontSize: "16px",
-//           display: "flex",
-//           justifyContent: "center",
-//           alignItems: "center",
-//           boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
-//           cursor: "pointer",
-//         }}
-//       >
-//         🤖
-//       </button>
-
-//       {/* Chat Window */}
-//       {open && (
-//         <div
-//           style={{
-//             marginTop: "10px",
-//             width: "320px",
-//             height: "450px",
-//             backgroundColor: "#f0f0f0",
-//             border: "2px solid #ccc",
-//             borderRadius: "20px",
-//             display: "flex",
-//             flexDirection: "column",
-//             overflow: "hidden",
-//             boxShadow: "0 8px 20px rgba(0,0,0,0.2)",
-//           }}
-//         >
-//           {/* Header */}
-//           <div
-//             style={{
-//               backgroundColor: "#080808",
-//               color: "white",
-//               padding: "10px",
-//               fontWeight: "bold",
-//               display: "flex",
-//               justifyContent: "space-between",
-//               alignItems: "center",
-//               fontSize: "16px",
-//             }}
-//           >
-//             <span>EventMate Bot 🤖</span>
-//             <button
-//               onClick={() => setOpen(false)}
-//               style={{
-//                 background: "transparent",
-//                 border: "none",
-//                 color: "white",
-//                 cursor: "pointer",
-//                 fontSize: "18px",
-//               }}
-//             >
-//               <FaTimes />
-//             </button>
-//           </div>
-
-//           {/* Messages */}
-//           <div
-//             style={{
-//               flex: 1,
-//               padding: "10px",
-//               overflowY: "auto",
-//               display: "flex",
-//               flexDirection: "column",
-//               gap: "8px",
-//             }}
-//           >
-//             {messages.map((msg, idx) => (
-//               <div
-//                 key={idx}
-//                 style={{
-//                   alignSelf: msg.sender === "bot" ? "flex-start" : "flex-end",
-//                   backgroundColor: msg.sender === "bot" ? "#d0d0d0" : "#888",
-//                   color: msg.sender === "bot" ? "#000" : "#fff",
-//                   padding: "6px 10px",
-//                   borderRadius: "15px",
-//                   maxWidth: "80%",
-//                   whiteSpace: "pre-line",
-//                 }}
-//               >
-//                 {msg.text}
-//               </div>
-//             ))}
-//             <div ref={chatEndRef}></div>
-//           </div>
-
-//           {/* Input */}
-//           <div style={{ display: "flex", padding: "8px", borderTop: "1px solid #bbb" }}>
-//             <input
-//               type="text"
-//               value={input}
-//               onChange={(e) => setInput(e.target.value)}
-//               onKeyDown={(e) => e.key === "Enter" && handleSend()}
-//               placeholder="Type a message..."
-//               style={{
-//                 flex: 1,
-//                 padding: "6px 10px",
-//                 borderRadius: "12px",
-//                 border: "1px solid #aaa",
-//                 outline: "none",
-//               }}
-//             />
-//             <button
-//               onClick={handleSend}
-//               style={{
-//                 marginLeft: "6px",
-//                 backgroundColor: "#080808",
-//                 color: "white",
-//                 border: "none",
-//                 padding: "6px 12px",
-//                 borderRadius: "12px",
-//                 fontWeight: "bold",
-//                 cursor: "pointer",
-//               }}
-//             >
-//               Send
-//             </button>
-//           </div>
-//         </div>
-//       )}
-//     </div>
-//   );
-// };
-// export default AIAssistant;
-
-
 import React, { useState, useRef, useEffect } from "react";
 import { FaTimes } from "react-icons/fa";
 import axios from "axios";
@@ -364,56 +164,6 @@ const getBudgetRangeFromMessage = (text) => {
 
     return { minBudget: null, maxBudget: null };
 };
-
-
-// Budget Range
-// const getBudgetRangeFromMessage = (text) => {
-//   // Use \d+ to match one or more digits, allow for optional commas/spaces
-//   const rangeRegex = /(\d{1,3}(?:[,\s]?\d{3}))\s[-to]+\s*(\d{1,3}(?:[,\s]?\d{3})*)/;
-//   const underRegex = /(?:under|below|less than)\s*(\d{1,3}(?:[,\s]?\d{3})*)/;
-//   const overRegex = /(?:over|above|more than)\s*(\d{1,3}(?:[,\s]?\d{3})*)/;
-//   const aroundRegex = /around\s*(\d{1,3}(?:[,\s]?\d{3})*)/;
-
-//   // Function to remove commas/spaces and parse as integer
-//   const parseNum = (numStr) => parseInt(numStr.replace(/[, ]/g, ''));
-
-//   let match = text.match(rangeRegex);
-//   if (match) return { minBudget: parseNum(match[1]), maxBudget: parseNum(match[2]) };
-
-//   match = text.match(underRegex);
-//   if (match) return { minBudget: null, maxBudget: parseNum(match[1]) };
-
-//   match = text.match(overRegex);
-//   if (match) return { minBudget: parseNum(match[1]), maxBudget: null };
-
-//   match = text.match(aroundRegex);
-//   if (match) {
-//     const budget = parseNum(match[1]);
-//     const margin = budget * 0.2; // +/- 20%
-//     return { minBudget: Math.max(0, Math.floor(budget - margin)), maxBudget: Math.ceil(budget + margin) };
-//   }
-//   return { minBudget: null, maxBudget: null };
-// };
-
-// Capacity
-// const getCapacityFromMessage = (text) => {
-//   const rangeRegex = /(\d+)\s*[-to]+\s*(\d+)\s*(?:people|guests|capacity)?/;
-//   const specificRegex = /(\d+)\s*(?:people|guests)/; // Matches "100 guests"
-//   const capacityRegex = /capacity\s*(\d+)/; // Matches "capacity 500"
-//   const forRegex = /for\s*(\d+)\b/; // Matches "for 200"
-
-//   let match = text.match(rangeRegex);
-//   if (match) return { minCapacity: parseInt(match[1]), maxCapacity: parseInt(match[2]) };
-
-//   match = text.match(specificRegex) || text.match(capacityRegex) || text.match(forRegex);
-//   if (match) {
-//     // If a specific number is mentioned, assume it's the minimum required
-//     return { minCapacity: parseInt(match[1]), maxCapacity: null };
-//   }
-//   return { minCapacity: null, maxCapacity: null };
-// };
-// // --- HELPER FUNCTIONS KHATAM ---
-
 // Capacity
 const getCapacityFromMessage = (text) => {
     // --- YEH REGEX UPDATE KIYA GAYA HAI ---
@@ -488,27 +238,17 @@ const AIAssistant = () => {
     const detectedDate = parseDateFromText(lowerMessage);
     const venueName = getVenueNameFromMessage(lowerMessage, allVenueNames);
     const location = getLocationFromMessage(lowerMessage);
-    // const foodPref = getFoodPrefFromMessage(lowerMessage);
-    // const { minBudget, maxBudget } = getBudgetRangeFromMessage(lowerMessage);
-    // const { minCapacity, maxCapacity } = getCapacityFromMessage(lowerMessage);
-  //Line 139
     const foodPref = getFoodPrefFromMessage(lowerMessage);
-    // Line 140
     const budgetInfo = getBudgetRangeFromMessage(lowerMessage); // Pehle budgetInfo nikala
-    // Line 141
-    const capacityInfo = getCapacityFromMessage(lowerMessage); // Phir capacityInfo nikala
-
+      const capacityInfo = getCapacityFromMessage(lowerMessage); // Phir capacityInfo nikal
     // --- YEH LINES ADD KARNI HAIN ---
     // Destructure karein taaki neeche waali conditions kaam karein
     const { minBudget, maxBudget } = budgetInfo;       // budgetInfo se min/max nikalo
     const { minCapacity, maxCapacity } = capacityInfo; // capacityInfo se min/max nikalo
-    
-
-    let botReply = "";
+        let botReply = "";
     let calledSpecificAPI = false;
 
     // --- Logic based on extracted entities ---
-
     // Priority 1: Specific Hall + Date Check
     if (venueName && detectedDate) {
       calledSpecificAPI = true;
@@ -521,7 +261,7 @@ const AIAssistant = () => {
       }
     }
     // Priority 2: General Search (if date, location, food, budget, or capacity is present)
-    else if (detectedDate || location || foodPref || minBudget !== null || maxBudget !== null || minCapacity !== null || maxCapacity !== null || eventType) {
+    else if (detectedDate || location || foodPref || minBudget !== null || maxBudget !== null || minCapacity !== null || maxCapacity !== null || eventType || messageText.includes("venue")) {
       calledSpecificAPI = true;
       try {
         const params = new URLSearchParams();
@@ -533,7 +273,7 @@ const AIAssistant = () => {
         if (minCapacity !== null) params.append('minCapacity', minCapacity);
         if (maxCapacity !== null) params.append('maxCapacity', maxCapacity);
         if (eventType) params.append('eventType', eventType);
-        // Do NOT send eventType to the /search endpoint
+
 
         console.log("Calling /search with params:", params.toString()); // DEBUGGING
 
@@ -582,28 +322,6 @@ const AIAssistant = () => {
         botReply = "⚠️ Sorry, I had trouble getting that list.";
       }
     }
-
-    // // Priority 4: Fallback to Generic AI (if no specific API was called)
-    // if (!calledSpecificAPI) {
-    //   // Assuming you have a generic AI endpoint setup
-    //   /*
-    //   try {
-    //     const response = await fetch("http://localhost:8080/api/chat/message", { // Your generic AI endpoint
-    //       method: "POST",
-    //       headers: { "Content-Type": "application/json" },
-    //       body: JSON.stringify({ message: messageText }),
-    //     });
-    //     const data = await response.json();
-    //     botReply = data.reply || "⚠️ No response from AI.";
-    //   } catch (err) {
-    //      console.error("Error calling generic AI:", err);
-    //      botReply = "⚠️ Unable to reach the AI server.";
-    //   }
-    //   */
-    //  // If no generic AI, provide a helpful message
-    //  botReply = "Sorry, I can mainly help with finding venues based on date, location, budget, capacity, food preference, or event type. Could you please specify one of these?";
-
-    // }
     // Priority 4: Fallback to Project Q&A (Technical Questions)
 if (!calledSpecificAPI) {
     let projectQaReply = "";
@@ -612,7 +330,6 @@ if (!calledSpecificAPI) {
         const response = await axios.post("http://localhost:8080/api/project-qa/ask", {
             query: messageText // यूजर का पूरा मैसेज भेजें
         });
-        
         projectQaReply = response.data.answer;
         
         // यदि जवाब में "no specific information" है, तो सामान्य Fallback पर जाएँ
@@ -644,8 +361,6 @@ if (!calledSpecificAPI) {
     });
   };
   // --- HANDLE SEND FUNCTION KHATAM ---
-
-
   return (
      <div style={{ position: "fixed", bottom: "20px", right: "20px", zIndex: 9999 }}>
       {/* Floating Button */}

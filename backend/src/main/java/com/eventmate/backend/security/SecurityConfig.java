@@ -6,11 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -22,14 +21,20 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
-@EnableWebSecurity
+@EnableMethodSecurity 
 public class SecurityConfig {
 
     @Autowired
-    private JwtAuthFilter authFilter;
+    UserDetailsService userDetailsService;
 
+    // JWT Classes Autowired
     @Autowired
-    private UserDetailsService userDetailsService;
+    private AuthEntryPointJwt unauthorizedHandler; // Ab yeh class aapko banani padi hogi
+    
+    @Autowired
+    private JwtAuthFilter jwtAuthFilter; // JwtAuthFilter ka sahi naam
+
+    // --- Core Beans ---
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -37,7 +42,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    public AuthenticationProvider authenticationProvider() {
+    public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(userDetailsService);
         authProvider.setPasswordEncoder(passwordEncoder());
@@ -45,46 +50,66 @@ public class SecurityConfig {
     }
 
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
-        return config.getAuthenticationManager();
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
+        return authConfig.getAuthenticationManager();
     }
 
+    // --- MUKHYA CONFIGURATION: Endpoints aur CORS ---
     @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        
+        // 1. CORS Configuration (CORS Error Fix)
+        http.cors(cors -> cors.configurationSource(corsConfigurationSource()));
+
+        http.csrf(csrf -> csrf.disable()) 
+            .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
+            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            .authorizeHttpRequests(auth -> auth
+                
+                // 2. Authentication Endpoints (Signup/Login)
+                .requestMatchers("/api/auth/**").permitAll()
+                
+                // 3. PHOTOGRAPHER DETAILS & SUGGESTIONS (403 FIX)
+                .requestMatchers("/api/photographers/available").permitAll() // Suggestions page
+                .requestMatchers("/api/photographers/{id}").permitAll()    // Photographer details
+                .requestMatchers("/api/photographers/all").permitAll()
+                // Agar aapka koi hardcoded path tha toh use bhi allow karein
+                .requestMatchers("/api/photographers/2/1").permitAll() 
+                
+                // 4. BOOKING ENDPOINT (Sirf Logged-in Users ke liye)
+                .requestMatchers("/api/photographers/book").authenticated() 
+                // Planner Endpoints ko allow karein
+                 .requestMatchers("/api/planners/available").permitAll()
+                 .requestMatchers("/api/planners/{id}").permitAll()
+                 .requestMatchers("/api/planners/book").authenticated() // Booking ke liye login zaroori
+                 .requestMatchers("/api/halls/**").permitAll()
+                 .requestMatchers("api/project-qa/**").permitAll()
+                                 
+                // 5. Baaki sabke liye login zaroori hai
+                .anyRequest().authenticated()
+            );
+
+        http.authenticationProvider(authenticationProvider());
+        
+        // JWT filter ko add karein
+        http.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+
+        return http.build();
+    }
+    
+    // --- CORS Bean Definition (Step 1 ka hissa) ---
+    @Bean
+    CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173"));
+        // Aapke frontend ka URL (CORS FIX)
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173")); 
+        
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        configuration.setAllowedHeaders(Arrays.asList("*"));
-        configuration.setAllowCredentials(Boolean.valueOf(true));
+        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "Accept"));
+        configuration.setAllowCredentials(true); 
+        
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
-    }
-
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http
-                //.cors(cors -> cors.configurationSource(corsConfigurationSource()))
-                //.csrf(csrf -> csrf.disable())
-                .cors(cors -> cors.configurationSource(corsConfigurationSource())) // YEH SAHI HAI
-        .csrf(csrf -> csrf.disable()) // <-- AAPKO YEH CHANGE KARNA HAI
-
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**").permitAll()
-                        .requestMatchers("/api/newsletter/**").permitAll()
-                        .requestMatchers("/api/contact/**").permitAll()
-                        .requestMatchers("/api/halls/**").permitAll() // <-- THE ONLY CHANGE IS HERE
-                        .requestMatchers("/api/bookings/**").permitAll()
-                        .requestMatchers("/api/chat/**").permitAll()
-                        .requestMatchers("/api/project-qa/**").permitAll()
-                        //.requestMatchers("/api//**").permitAll()
-
- 
-
-                        .anyRequest().authenticated())
-                .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authenticationProvider(authenticationProvider())
-                .addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class)
-                .build();
     }
 }
