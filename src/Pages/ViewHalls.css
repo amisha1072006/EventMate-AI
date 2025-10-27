@@ -1,189 +1,192 @@
-/* Container for the whole view halls page */
-.view-halls-wrapper {
+.unique-view-halls-wrapper {
   padding: 20px;
-  font-family: Arial, sans-serif;
-  background-color: #f8f8f8;
+  background-color: #f5f7fa;
   min-height: 100vh;
 }
 
-/* Page Title */
-.view-halls-title {
+.unique-view-halls-title {
+  text-align: center;
   font-size: 28px;
-  font-weight: bold;
   margin-bottom: 20px;
-  text-align: center;
-  color: #333;
+  color: #2c3e50;
 }
 
-/* No halls message */
-.no-halls-message {
-  font-size: 18px;
-  color: #555;
-  text-align: center;
-}
-
-/* Halls grid container */
-.halls-container {
-  display: flex;
-  flex-wrap: wrap;
+.unique-halls-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
   gap: 20px;
-  justify-content: center;
 }
 
-/* Single hall card */
-.hall-item {
-  width: 300px;
-  background-color: #fff;
-  border: 1px solid #ddd;
+.unique-hall-card {
+  background: #fff;
   border-radius: 10px;
-  padding: 15px;
-  text-align: center;
-  box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
-/* Hall Image */
-.hall-photo {
+.unique-hall-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+
+.unique-hall-image {
   width: 100%;
-  height: 180px;
+  height: 200px;
   object-fit: cover;
-  border-radius: 8px;
+}
+
+.unique-hall-info {
+  padding: 15px;
+}
+
+.unique-hall-name {
+  font-size: 20px;
+  font-weight: bold;
+  color: #34495e;
+}
+
+.unique-hall-location {
+  color: #777;
+  font-size: 14px;
   margin-bottom: 10px;
 }
 
-/* Book Button */
-.book-hall-button {
-  margin-top: 10px;
-  background-color: #4caf50;
-  color: white;
-  padding: 10px 15px;
+.unique-hall-details {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.unique-hall-owner,
+.unique-hall-contact {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+/* Book Button (inside hall card) */
+.unique-book-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #2ecc71;
   border: none;
+  color: white;
+  font-weight: bold;
   border-radius: 6px;
   cursor: pointer;
-  font-weight: 500;
   transition: background 0.3s;
 }
 
-.book-hall-button:hover {
-  background-color: #45a049;
+.unique-book-btn:hover {
+  background-color: #27ae60;
 }
 
-/* Contact link */
-.contact-link {
-  color: #2196F3;
-  margin-left: 8px;
-  text-decoration: none;
+.unique-no-halls-message {
+  text-align: center;
+  color: #888;
 }
 
-.contact-link:hover {
-  text-decoration: underline;
+.unique-read-more {
+  color: #2980b9;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-/* Popup Modal Overlay */
-.popup-overlay {
+/* Popup Overlay */
+.unique-popup-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.5);
+  background-color: rgba(0,0,0,0.5);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  padding: 15px;
 }
 
 /* Popup Box */
-.popup-box {
-  background: white;
-  padding: 25px;
-  border-radius: 10px;
-  width: 350px;
+.unique-popup-box {
+  width: 100%;
+  max-width: 400px;
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 25px 20px;
   text-align: center;
-  box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
-  animation: popupFade 0.3s ease-in-out;
-}
-
-/* Popup Title */
-.popup-box h3 {
-  margin-bottom: 15px;
-  color: #4caf50;
-}
-
-/* Popup Paragraphs */
-.popup-box p {
-  margin-bottom: 10px;
-  font-size: 16px;
-  color: #333;
-}
-
-/* Input Fields in Popup */
-.popup-box input {
-  width: 100%;
-  margin: 8px 0;
-  padding: 8px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  font-size: 14px;
-}
-
-/* Submit Booking Button */
-.submit-booking-btn {
-  background-color: #2196F3;
-  color: white;
-  padding: 10px;
-  width: 100%;
-  border: none;
-  border-radius: 6px;
-  margin-top: 10px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: background 0.3s;
-}
-
-.submit-booking-btn:hover {
-  background-color: #1976d2;
-}
-
-/* Cancel Booking Button */
-.cancel-booking-btn {
-  background-color: #f44336;
-  color: white;
-  padding: 10px;
-  width: 100%;
-  border: none;
-  border-radius: 6px;
-  margin-top: 8px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: background 0.3s;
-}
-
-.cancel-booking-btn:hover {
-  background-color: #d32f2f;
-}
-
-/* Close Confirmation Popup Button */
-.close-popup-btn {
-  background-color: #2196F3;
-  color: white;
-  padding: 10px;
-  width: 100%;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  margin-top: 15px;
-  font-weight: 500;
-}
-
-.close-popup-btn:hover {
-  background-color: #1976d2;
+  box-shadow: 0px 6px 20px rgba(0,0,0,0.2);
+  animation: uniquePopupScale 0.3s ease-in-out;
 }
 
 /* Popup Animation */
-@keyframes popupFade {
+@keyframes uniquePopupScale {
   from { transform: scale(0.8); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
+}
+
+/* Popup Input Fields */
+.unique-popup-box input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 8px;
+  border: 1px solid #dcdde1;
+  font-size: 15px;
+}
+
+/* Submit Booking Button */
+.unique-submit-booking-btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 12px;
+  background-color: #3498db;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.unique-submit-booking-btn:hover {
+  background-color: #217dbb;
+}
+
+/* Cancel Booking Button */
+.unique-cancel-booking-btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  background-color: #e84118;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.unique-cancel-booking-btn:hover {
+  background-color: #c23616;
+}
+
+/* Confirmation Close Button */
+.unique-close-popup-btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+  background-color: #3498db;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.unique-close-popup-btn:hover {
+  background-color: #217dbb;
 }

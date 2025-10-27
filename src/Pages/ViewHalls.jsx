@@ -1,62 +1,136 @@
+
 import React, { useEffect, useState } from "react";
 import "./ViewHalls.css";
 
 const ViewHalls = () => {
   const [halls, setHalls] = useState([]);
+  const [expanded, setExpanded] = useState(null);
+  const [showBookingModal, setShowBookingModal] = useState(false);
+  const [selectedHall, setSelectedHall] = useState(null);
+  const [bookingData, setBookingData] = useState({ name: "", phone: "", date: "" });
+  const [bookingConfirmed, setBookingConfirmed] = useState(false);
 
   useEffect(() => {
     const fetchHalls = async () => {
       try {
-        const response = await fetch("http://localhost:8080/api/managehalls", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error("Failed to fetch halls");
-        }
-
+        const response = await fetch("http://localhost:8080/api/managehalls");
+        if (!response.ok) throw new Error("Failed to fetch halls");
         const data = await response.json();
         setHalls(data);
       } catch (error) {
         console.error("Error fetching halls:", error);
       }
     };
-
     fetchHalls();
   }, []);
 
+  const toggleReadMore = (id) => setExpanded(expanded === id ? null : id);
+
+  const openBookingModal = (hall) => {
+    setSelectedHall(hall);
+    setBookingData({ name: "", phone: "", date: "" });
+    setShowBookingModal(true);
+  };
+
+  const handleInputChange = (e) => {
+    setBookingData({ ...bookingData, [e.target.name]: e.target.value });
+  };
+
+  const handleBookingSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch("http://localhost:8080/api/managehallbookings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          hallId: selectedHall.id,
+          hallName: selectedHall.hallName,
+          ownerName: selectedHall.ownerName,
+          ownerPhone: selectedHall.phoneNumber,
+          customerName: bookingData.name,
+          customerPhone: bookingData.phone,
+          bookingDate: bookingData.date,
+          status: "Booked",
+        }),
+      });
+
+      if (response.status === 409) {
+        alert("❌ This date is already booked for this hall.");
+        return;
+      }
+      if (!response.ok) throw new Error("Failed to book hall");
+
+      setBookingConfirmed(true);
+    } catch (error) {
+      console.error("Booking failed:", error);
+      alert("Error booking hall! Try again.");
+    }
+  };
+
+  const closeModal = () => {
+    setShowBookingModal(false);
+    setBookingConfirmed(false);
+    setSelectedHall(null);
+  };
+
   return (
-    <div className="view-halls-wrapper">
-      <h2 className="view-halls-title">
-        Halls added by owners. Contact them directly 📞
-      </h2>
+    <div className="unique-view-halls-wrapper">
+      <h2 className="unique-view-halls-title">Available Event Halls</h2>
 
       {halls.length === 0 ? (
-        <p className="no-halls-message">No halls available right now.</p>
+        <p className="unique-no-halls-message">No halls available right now.</p>
       ) : (
-        <div className="halls-container">
+        <div className="unique-halls-container">
           {halls.map((hall) => (
-            <div className="hall-item" key={hall.id}>
-              <img
-                src={hall.imageUrl1}
-                alt={hall.hallName}
-                className="hall-photo"
-              />
-              <h3>{hall.hallName}</h3>
-              <p><strong>Owner:</strong> {hall.ownerName}</p>
-              <p>
-                <strong>Contact:</strong> {hall.phoneNumber}{" "}
-                <a href={`tel:${hall.phoneNumber}`} className="contact-link">📞 Call</a>
-              </p>
-              <p><strong>Address:</strong> {hall.hallAddress}</p>
-              <p><strong>Description:</strong> {hall.hallDescription}</p>
-              <p><strong>Capacity:</strong> {hall.capacity} people</p>
-              <p><strong>Budget:</strong> ₹{hall.budget}</p>
+            <div className="unique-hall-card" key={hall.id}>
+              <img src={hall.imageUrl1} alt={hall.hallName} className="unique-hall-image" />
+              <div className="unique-hall-info">
+                <h3>{hall.hallName}</h3>
+                <p>📍 {hall.hallAddress}</p>
+                <p><b>Capacity:</b> {hall.capacity} People</p>
+                <p><b>Budget:</b> ₹{hall.budget}</p>
+                <p><b>Owner:</b> {hall.ownerName}</p>
+                <p><b>Contact:</b> {hall.phoneNumber}</p>
+
+                <p>
+                  <b>Description:</b>{" "}
+                  {expanded === hall.id ? hall.hallDescription : hall.hallDescription.slice(0, 100) + "..."}
+                  {hall.hallDescription.length > 100 && (
+                    <span className="unique-read-more" onClick={() => toggleReadMore(hall.id)}>
+                      {expanded === hall.id ? " Show Less" : " Read More"}
+                    </span>
+                  )}
+                </p>
+                <button className="unique-book-btn" onClick={() => openBookingModal(hall)}>📅 Book Now</button>
+              </div>
             </div>
           ))}
+        </div>
+      )}
+
+      {showBookingModal && selectedHall && (
+        <div className="unique-popup-overlay">
+          <div className="unique-popup-box">
+            {!bookingConfirmed ? (
+              <>
+                <h3>Book {selectedHall.hallName}</h3>
+                <form onSubmit={handleBookingSubmit}>
+                  <input name="name" placeholder="Your Name" value={bookingData.name} onChange={handleInputChange} required />
+                  <input name="phone" placeholder="Your Phone" value={bookingData.phone} onChange={handleInputChange} required />
+                  <input type="date" name="date" value={bookingData.date} onChange={handleInputChange} required />
+                  <button type="submit" className="unique-submit-booking-btn">Confirm</button>
+                  <button type="button" className="unique-cancel-booking-btn" onClick={closeModal}>Cancel</button>
+                </form>
+              </>
+            ) : (
+              <>
+                <h3>✅ Booking Confirmed!</h3>
+                <p>Hall: <b>{selectedHall.hallName}</b></p>
+                <p>Date: <b>{bookingData.date}</b></p>
+                <button className="unique-close-popup-btn" onClick={closeModal}>Close</button>
+              </>
+            )}
+          </div>
         </div>
       )}
     </div>
@@ -64,174 +138,3 @@ const ViewHalls = () => {
 };
 
 export default ViewHalls;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React, { useEffect, useState } from "react";
-// import "./ViewHalls.css";
-
-// const ViewHalls = () => {
-//   const [halls, setHalls] = useState([]);
-//   const [showBookingModal, setShowBookingModal] = useState(false);
-//   const [selectedHall, setSelectedHall] = useState(null);
-//   const [userBooking, setUserBooking] = useState({
-//     name: "",
-//     phone: "",
-//     date: ""
-//   });
-//   const [bookingConfirmed, setBookingConfirmed] = useState(false);
-
-//   useEffect(() => {
-//     const savedHalls = JSON.parse(localStorage.getItem("halls")) || [];
-//     setHalls(savedHalls);
-//   }, []);
-
-//   const openBookingModal = (hall) => {
-//     setSelectedHall(hall);
-//     setUserBooking({ name: "", phone: "", date: "" });
-//     setBookingConfirmed(false);
-//     setShowBookingModal(true);
-//   };
-
-//   const handleInputChange = (e) => {
-//     setUserBooking({ ...userBooking, [e.target.name]: e.target.value });
-//   };
-
-//   const handleBookingSubmit = (e) => {
-//     e.preventDefault();
-
-//     // Save booking info in localStorage
-//     const existingBookings = JSON.parse(localStorage.getItem("bookings")) || [];
-//     existingBookings.push({
-//       hallName: selectedHall.hallName,
-//       ownerName: selectedHall.ownerName,
-//       ownerPhone: selectedHall.phoneNumber,
-//       userName: userBooking.name,
-//       userPhone: userBooking.phone,
-//       bookingDate: userBooking.date,
-//       bookedAt: new Date().toLocaleString()
-//     });
-//     localStorage.setItem("bookings", JSON.stringify(existingBookings));
-
-//     setBookingConfirmed(true);
-//   };
-
-//   const closeModal = () => {
-//     setShowBookingModal(false);
-//     setSelectedHall(null);
-//     setBookingConfirmed(false);
-//   };
-
-//   return (
-//     <div className="view-halls-wrapper">
-//       <h2 className="view-halls-title">Halls added by owners,feel free to contact directly via provided 📞</h2>
-
-//       {halls.length === 0 ? (
-//         <p className="no-halls-message">No halls available right now.</p>
-//       ) : (
-//         <div className="halls-container">
-//           {halls.map((hall, index) => (
-//             <div className="hall-item" key={index}>
-//               <img src={hall.imageUrl1} alt={hall.hallName} className="hall-photo" />
-//               <h3>{hall.hallName}</h3>
-//               <p><strong>Owner:</strong> {hall.ownerName}</p>
-//               <p>
-//                 <strong>Contact:</strong> {hall.phoneNumber}{" "}
-//                 <a href={`tel:${hall.phoneNumber}`} className="contact-link">📞 Call</a>
-//               </p>
-//               <p><strong>Address:</strong> {hall.hallAddress}</p>
-//               <p><strong>Description:</strong> {hall.hallDescription}</p>
-//               <p><strong>Capacity:</strong> {hall.capacity} people</p>
-//               <p><strong>Budget:</strong> ₹{hall.budget}</p>
-//               <button className="book-hall-button" onClick={() => openBookingModal(hall)}>
-//                 Book
-//               </button>
-//             </div>
-//           ))}
-//         </div>
-//       )}
-
-//       {/* Booking Modal */}
-//       {showBookingModal && selectedHall && (
-//         <div className="popup-overlay">
-//           <div className="popup-box">
-//             {!bookingConfirmed ? (
-//               <>
-//                 <h3>Book {selectedHall.hallName}</h3>
-//                 <form onSubmit={handleBookingSubmit}>
-//                   <input
-//                     type="text"
-//                     name="name"
-//                     placeholder="Your Name"
-//                     value={userBooking.name}
-//                     onChange={handleInputChange}
-//                     required
-//                   />
-//                   <input
-//                     type="tel"
-//                     name="phone"
-//                     placeholder="Your Phone Number"
-//                     value={userBooking.phone}
-//                     onChange={handleInputChange}
-//                     required
-//                   />
-//                   <input
-//                     type="date"
-//                     name="date"
-//                     value={userBooking.date}
-//                     onChange={handleInputChange}
-//                     required
-//                   />
-//                   <button type="submit" className="submit-booking-btn">Confirm Booking</button>
-//                   <button type="button" className="cancel-booking-btn" onClick={closeModal}>Cancel</button>
-//                 </form>
-//               </>
-//             ) : (
-//               <>
-//                 <h3>Booking Confirmed!</h3>
-//                 <p>Your booking for <strong>{selectedHall.hallName}</strong> is successful.Owner will confirm it again.</p>
-//                 <p>The owner will contact you shortly.</p>
-//                 <button className="close-popup-btn" onClick={closeModal}>Close</button>
-//               </>
-//             )}
-//           </div>
-//         </div>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default ViewHalls;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
