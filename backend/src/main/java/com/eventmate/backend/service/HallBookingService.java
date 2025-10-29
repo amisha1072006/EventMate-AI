@@ -38,7 +38,6 @@ public class HallBookingService {
         LocalDateTime startOfDay = requestedTime.toLocalDate().atStartOfDay();
         LocalDateTime endOfDay = requestedTime.toLocalDate().atTime(23, 59, 59);
 
-        // Validation logic remains the same
         List<HallBooking> existingBookingsOnDate = hallBookingRepository
                 .findByHall_HallIdAndBookingTimeBetween(hall.getHallId(), startOfDay, endOfDay);
         if (!existingBookingsOnDate.isEmpty()) {
@@ -55,18 +54,26 @@ public class HallBookingService {
         booking.setBookingTime(bookingRequest.bookingTime());
         booking.setHall(hall);
         booking.setUser(user);
-        
-        // ADDED BACK: Set the name and phone from the form
         booking.setUserName(bookingRequest.userName());
         booking.setUserPhone(bookingRequest.userPhone());
 
         return hallBookingRepository.save(booking);
     }
-    
+
     public List<LocalDate> getBookedDatesForHall(Long hallId) {
         return hallBookingRepository.findByHall_HallId(hallId)
                 .stream()
                 .map(booking -> booking.getBookingTime().toLocalDate())
                 .collect(Collectors.toList());
+    }
+
+    // Get all bookings made by a user (original)
+    public List<HallBooking> getBookingsByUser(Long userId) {
+        return hallBookingRepository.findByUser_Id(userId);
+    }
+
+    // NEW: Get all bookings by user with hall eagerly fetched (safe for serialization)
+    public List<HallBooking> getBookingsByUserWithHall(Long userId) {
+        return hallBookingRepository.findByUser_IdWithHall(userId);
     }
 }

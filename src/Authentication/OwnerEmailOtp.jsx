@@ -27,7 +27,7 @@ const OwnerEmailOtp = () => {
       alert(response.data);
       loginOwner('dummy-owner-token'); // Ideally replace with backend JWT token
       setLoading(false);
-      navigate('/owner-dashboard'); // redirect to owner dashboard
+      navigate('/owner/manage-halls'); // redirect to owner dashboard
     } catch (err) {
       setError(err.response?.data || 'OTP verification failed');
       setLoading(false);

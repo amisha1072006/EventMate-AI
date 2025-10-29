@@ -33,6 +33,8 @@ public class SecurityConfig {
     
     @Autowired
     private JwtAuthFilter jwtAuthFilter; // JwtAuthFilter ka sahi naam
+         @Autowired
+    private JwtAuthFilter authFilter;
 
     // --- Core Beans ---
 
@@ -111,5 +113,26 @@ public class SecurityConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
+    }
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        return http
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+                .csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers("/api/newsletter/**").permitAll()
+                        .requestMatchers("/api/contact/**").permitAll()
+                        .requestMatchers("/api/halls/**").permitAll() // <-- Aapka change yahan hai
+                        .requestMatchers("/api/bookings/**").permitAll()
+                        .requestMatchers("/api/chat/**").permitAll()
+                        .requestMatchers("/api/managehalls/**").permitAll()
+                        .requestMatchers("/api/managehallbookings/**").permitAll()
+                        .requestMatchers("/api/contact-eventmate/**").permitAll()
+                        .anyRequest().authenticated())
+                .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authenticationProvider(authenticationProvider())
+                .addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class)
+                .build();
     }
 }

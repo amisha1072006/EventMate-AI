@@ -1,10 +1,18 @@
 /* Container for authentication page */
+
 .auth-container {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 50px 20px;
-    background-color: #f0f2f5; /* Page background */
+    background-color: #f0f2f5;
+    /* background-image: url('/images/adminlogin.jpg');  */
+    background-image: url('/images/authentication.jpg'); 
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    box-sizing: border-box; /* includes padding in height */
 }
 
 /* Form box */

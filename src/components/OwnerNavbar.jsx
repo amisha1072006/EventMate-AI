@@ -50,7 +50,7 @@ const OwnerNavbar = () => {
   };
 
   const buttonStyles = {
-    backgroundColor: '#5f593c',
+    backgroundColor: '#ce322cff',
     color: 'white',
     border: 'none',
     padding: '8px 16px',
@@ -61,7 +61,7 @@ const OwnerNavbar = () => {
   };
 
   const buttonHover = {
-    backgroundColor: '#786e4e',
+    backgroundColor: '#d9534f',
   };
 
   return (

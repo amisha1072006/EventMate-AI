@@ -49,7 +49,9 @@ import PhotographerSuggestion from './Pages/PhotographerSuggestion.jsx';
 import Planners from './Pages/Planners.jsx';
 import PlannerDetails from './Pages/PlannerDetails.jsx';
 import Cakes from './Pages/Cakes.jsx';
+import CakeDetails from './Pages/CakeDetails.jsx';
 import Attire from './Pages/Attire.jsx';
+import AttireDetails from './Pages/AttireDetails.jsx';
 import Profilesettings from './Pages/Profilesettings.jsx';
 
 import OwnerNavbar from './components/OwnerNavbar.jsx';
@@ -57,6 +59,9 @@ import OwnerDashboardLayout from './Pages/OwnerDashboard.jsx';
 import OwnerManageHalls from './Pages/OwnerManageHalls.jsx';
 import OwnerBookings from './Pages/OwnerBookings.jsx';
 import OwnerProfile from './Pages/OwnerProfile.jsx';
+import ViewHalls from './Pages/ViewHalls.jsx';
+import ManageHallsInfo from './Pages/ManageHallsInfo.jsx';
+import ContactEventmate from './Pages/ContactEventmate.jsx';
 
 // ✅ Private Route for Users
 const PrivateRoute = ({ children }) => {
@@ -111,6 +116,7 @@ const DashboardRoutes = () => (
     <Routes>
       <Route path="/bookings" element={<Bookings />} />
       <Route path="/findhall" element={<FindHall />} />
+      <Route path="/halls" element={<ViewHalls />}/>
       <Route path="/checkavailabilityform" element={<CheckAvailabilityForm />} />
       <Route path="/hallbookingform" element={<HallBookingForm />} />
        <Route path="/booking-suggestions" element={<BookingSuggestions />} />
@@ -127,7 +133,9 @@ const DashboardRoutes = () => (
          <Route path="/planner/:id" element={<PlannerDetails />} />   
 
       <Route path="/cakes" element={<Cakes />} />
+      <Route path="/cakes/:id" element={<CakeDetails />} />
       <Route path="/attire" element={<Attire />} />
+      <Route path="/attire/:id" element={<AttireDetails />} />
       <Route path="/profilesettings" element={<Profilesettings />} />
     </Routes>
   </DashboardLayout>
@@ -137,7 +145,9 @@ const OwnerDashboardRoutes = () =>(
   <OwnerDashboardLayout>
     <Routes>
       <Route path="/owner/manage-halls" element={<OwnerManageHalls />}/>
+      <Route path="/owner/manage-halls-info" element={<ManageHallsInfo />}/>
       <Route path="/owner/bookings" element={<OwnerBookings />}/>
+      <Route path="/owner/contact-eventmate" element={<ContactEventmate />}/>
       <Route path="/owner/profile" element={<OwnerProfile />}/>
     </Routes>
   </OwnerDashboardLayout>
@@ -206,175 +216,5 @@ export default App;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// // // import React from 'react';
-// // // import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
-// // // import './App.css';
-// // // import { AuthProvider, useAuth } from './Context/AuthContext'; 
-// // // import UserNavbar from './components/UserNavbar';
-// // // import Navbar from './components/Navbar.jsx';
-
-// // // // Authentication Components
-// // // import Login from './Authentication/Login.jsx';
-// // // import Signup from './Authentication/Signup.jsx';
-// // // import ResetPassOtp from './Authentication/ResetPassOtp.jsx';
-// // // import EmailOtp from './Authentication/EmailOtp.jsx';
-// // // import ForgotPass from './Authentication/ForgotPass.jsx';
-
-// // // // Core Components
-// // // import Hero from './components/Hero.jsx';
-// // // import TrendingVenues from './components/TrendingVenues.jsx';
-// // // import Categories from './components/Categories.jsx';
-// // // import Recommendations from './components/Recommendations.jsx';
-// // // import Footer from './components/Footer.jsx';
-// // // import AIAssistant from './components/AIAssistant.jsx';
-
-// // // // HallBooking Components
-// // // import CheckAvailabilityForm from './HallBooking/CheckAvailabilityForm.jsx';
-// // // import DateTimeRangeReactDatePicker from './HallBooking/DateTimeRangeReactDatepicker.jsx';
-// // // import HallBookingForm from './HallBooking/HallBookingForm.jsx';
-// // // import SuccessMsg from './HallBooking/SuccessMsg.jsx';
-
-// // // // HallPages Components
-// // // import FindHall from './HallPages/FindHall.jsx';
-
-// // // // Dashboard Layout
-// // // import DashboardLayout from './Pages/DashboardLayout.jsx';
-// // // import Photographers from './Pages/Photographers.jsx';
-// // // import Planners from './Pages/Planners.jsx';
-// // // import Cakes from './Pages/Cakes.jsx';
-// // // import Attire from './Pages/Attire.jsx';
-// // // import Profilesettings from './Pages/Profilesettings.jsx';
-// // // // General Pages
-// // // import About from './Pages/About.jsx';
-// // // import Contact from './Pages/Contact.jsx';
-// // // import VenueDetails from './Pages/VenueDetails.jsx';
-// // // import Bookings from './Pages/Bookings.jsx';
-// // // import SignupOwner from './Authentication/SignupOwner.jsx';
-// // // import LoginOwner from './Authentication/LoginOwner.jsx';
-// // // // --- Private Route Component ---
-// // // const PrivateRoute = ({ children }) => {
-// // //   const { isAuthenticated } = useAuth();
-// // //   const location = useLocation();
-// // //   if (!isAuthenticated) {
-// // //     return <Navigate to="/login" state={{ from: location }} replace />;
-// // //   }
-// // //   return children;
-// // // };
-
-// // // // --- Conditional Header/Footer ---
-// // // const ConditionalHeader = () => {
-// // //   const { isAuthenticated } = useAuth();
-// // //   return isAuthenticated ? <UserNavbar /> : <Navbar />;
-// // // };
-
-// // // const ConditionalFooter = () => {
-// // //   const location = useLocation();
-// // //   const hideOnPages = ['/forgot-password', '/resetpassotp', '/emailotp', '/login', '/signup','/login-owner','/signup-owner'];
-// // //   if (hideOnPages.includes(location.pathname.toLowerCase())) return null;
-// // //   return <Footer />;
-// // // };
-
-// // // // --- Authenticated Dashboard Section ---
-// // // const DashboardRoutes = () => {
-// // //   return (
-// // //     <DashboardLayout>
-// // //       <Routes>
-// // //         <Route path="/bookings" element={<Bookings />} />
-// // //         <Route path="/findhall" element={<FindHall />} />
-// // //         <Route path="/checkavailabilityform" element={<CheckAvailabilityForm />} />
-// // //         <Route path="/hallbookingform" element={<HallBookingForm />} />
-// // //         <Route path="/successmsg" element={<SuccessMsg />} />
-// // //         <Route path="/datetimerangereactdatepicker" element={<DateTimeRangeReactDatePicker />} />
-// // //          <Route path="/photographers" element={<Photographers />} />
-// // //          <Route path="/planners" element={<Planners />} />
-// // //          <Route path="/cakes" element={<Cakes />} />
-// // //          <Route path="/attire" element={<Attire />} />
-// // //          <Route path="/profilesettings" element={<Profilesettings />} />
-// // //       </Routes>
-// // //     </DashboardLayout>
-// // //   );
-// // // };
-
-// // // // --- App Routes ---
-// // // const AppRoutes = () => {
-// // //   const { isAuthenticated } = useAuth();
-
-// // //   return (
-// // //     <div className="app-container">
-// // //       <ConditionalHeader />
-
-// // //       <main>
-// // //         <Routes>
-// // //           {/* Public Routes */}
-// // //           <Route path="/" element={<><Hero /><TrendingVenues /><Categories /><Recommendations /></>} />
-// // //           <Route path="/login" element={<Login />} />
-// // //           <Route path="/login-owner" element={<LoginOwner />} />
-// // //           <Route path="/signup" element={<Signup />} />
-// // //           <Route path="/signup-owner" element={<SignupOwner />} />
-// // //           <Route path="/forgot-password" element={<ForgotPass />} />
-// // //           <Route path="/resetpassotp" element={<ResetPassOtp />} />
-// // //           <Route path="/emailotp" element={<EmailOtp />} />
-// // //           <Route path="/about" element={<About />} />
-// // //           <Route path="/contact" element={<Contact />} />
-// // //           <Route path="/venue/:venueId" element={<VenueDetails />} />
-
-// // //           {/* Private Dashboard Layout */}
-// // //           {isAuthenticated && (
-// // //             <Route path="/*" element={<PrivateRoute><DashboardRoutes /></PrivateRoute>} />
-// // //           )}
-// // //         </Routes>
-// // //       </main>
-
-// // //       <ConditionalFooter />
-// // //     </div>
-// // //   );
-// // // };
-
-// // // // --- Main App ---
-// // // function App() {
-// // //   return (
-// // //     <AuthProvider>
-// // //       <Router>
-// // //         <AppRoutes />
-// // //         <AIAssistant />
-// // //       </Router>
-// // //     </AuthProvider>
-// // //   );
-// // // }
-
-// // // export default App;
 
 

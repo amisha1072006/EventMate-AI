@@ -20,6 +20,7 @@ const DashboardLayout = ({ children }) => {
         <ul className="dashboard-menu">
          
           <li><Link to="/findhall">Find Hall</Link></li>
+          <li><Link to="/halls">Halls by Owners</Link></li>
            <li><Link to="/bookings">Bookings</Link></li>
           <li><Link to="/photographers">Photographers</Link></li>
           <li><Link to="/planners">Planners</Link></li>
