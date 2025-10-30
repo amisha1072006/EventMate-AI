@@ -8,7 +8,6 @@ const planners = [
     id: 1,
     name: "Priya Singh",
     rating: 4.9,
-<<<<<<< HEAD
     price: "₹35,000",
     //location: "Hyderabad",
     //image: "images/photo1.jpg",
@@ -18,11 +17,6 @@ const planners = [
 
     // image : "https://raw.githubusercontent.com/Saurabh-devs/Event/c39058fe872d62b7a9bf3e6f690863bcfdec4481/public/images/photo1.png",
     // image : "https://raw.githubusercontent.com/Saurabh-devs/Event/c39058fe872d62b7a9bf3e6f690863bcfdec4481/public/images/1.png",
-=======
-    price: "₹50,000",
-    location: "Hyderabad",
-    image: "images/photo1.jpg",
->>>>>>> teammate/main
     call: "+91 91234 56780",
     whatsapp: "+91 98765 43210",
   },

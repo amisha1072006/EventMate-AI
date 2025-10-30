@@ -1,15 +1,18 @@
 package com.eventmate.backend.security;
 
+// --- SAARI ZAROORI IMPORTS (DONO FILES SE) ---
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
-import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity; // Surayya ke code se
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity; // Aapke code se
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -21,30 +24,28 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
-@EnableMethodSecurity 
+@EnableWebSecurity // Aapke code se
+@EnableMethodSecurity // Surayya ke code se
 public class SecurityConfig {
 
+    // --- SAARI ZAROORI FIELDS (DONO FILES SE) ---
     @Autowired
-    UserDetailsService userDetailsService;
+    private JwtAuthFilter authFilter; // Aapka filter
 
-    // JWT Classes Autowired
     @Autowired
-    private AuthEntryPointJwt unauthorizedHandler; // Ab yeh class aapko banani padi hogi
-    
+    private UserDetailsService userDetailsService; // Dono mein common
+
     @Autowired
-    private JwtAuthFilter jwtAuthFilter; // JwtAuthFilter ka sahi naam
-         @Autowired
-    private JwtAuthFilter authFilter;
+    private AuthEntryPointJwt unauthorizedHandler; // Surayya ka 401 Error Handler
 
-    // --- Core Beans ---
-
+    // --- CORE BEANS (DONO MEIN COMMON) ---
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Bean
-    public DaoAuthenticationProvider authenticationProvider() {
+    public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(userDetailsService);
         authProvider.setPasswordEncoder(passwordEncoder());
@@ -52,84 +53,71 @@ public class SecurityConfig {
     }
 
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
-        return authConfig.getAuthenticationManager();
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
+        return config.getAuthenticationManager();
     }
 
-    // --- MUKHYA CONFIGURATION: Endpoints aur CORS ---
+    // --- AAPKA CORS BEAN (YEH SAHI CHAL RAHA THA) ---
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        
-        // 1. CORS Configuration (CORS Error Fix)
-        http.cors(cors -> cors.configurationSource(corsConfigurationSource()));
+public CorsConfigurationSource corsConfigurationSource() {
+    CorsConfiguration configuration = new CorsConfiguration();
+    configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173"));
+    configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
 
-        http.csrf(csrf -> csrf.disable()) 
-            .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
-            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            .authorizeHttpRequests(auth -> auth
-                
-                // 2. Authentication Endpoints (Signup/Login)
-                .requestMatchers("/api/auth/**").permitAll()
-                
-                // 3. PHOTOGRAPHER DETAILS & SUGGESTIONS (403 FIX)
-                .requestMatchers("/api/photographers/available").permitAll() // Suggestions page
-                .requestMatchers("/api/photographers/{id}").permitAll()    // Photographer details
-                .requestMatchers("/api/photographers/all").permitAll()
-                // Agar aapka koi hardcoded path tha toh use bhi allow karein
-                .requestMatchers("/api/photographers/2/1").permitAll() 
-                
-                // 4. BOOKING ENDPOINT (Sirf Logged-in Users ke liye)
-                .requestMatchers("/api/photographers/book").authenticated() 
-                // Planner Endpoints ko allow karein
-                 .requestMatchers("/api/planners/available").permitAll()
-                 .requestMatchers("/api/planners/{id}").permitAll()
-                 .requestMatchers("/api/planners/book").authenticated() // Booking ke liye login zaroori
-                 .requestMatchers("/api/halls/**").permitAll()
-                 .requestMatchers("api/project-qa/**").permitAll()
-                                 
-                // 5. Baaki sabke liye login zaroori hai
-                .anyRequest().authenticated()
-            );
+    // --- YAHAN PAR BADLAV HAI ---
+    // "*" ki jagah hum zaroori headers ko explicitly (saaf-saaf) allow karenge
+    configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "Accept"));
+    // -------------------------
 
-        http.authenticationProvider(authenticationProvider());
-        
-        // JWT filter ko add karein
-        http.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+    configuration.setAllowCredentials(Boolean.valueOf(true));
+    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    source.registerCorsConfiguration("/**", configuration);
+    return source;
+}
 
-        return http.build();
-    }
-    
-    // --- CORS Bean Definition (Step 1 ka hissa) ---
-    @Bean
-    CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        // Aapke frontend ka URL (CORS FIX)
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173")); 
-        
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "Accept"));
-        configuration.setAllowCredentials(true); 
-        
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-        return source;
-    }
+    // --- MUKHYA MERGED FILTER CHAIN ---
+    // (Yahan dono ke features milaye gaye hain)
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .csrf(csrf -> csrf.disable())
+                
+                // Yeh Surayya ka feature hai (401 errors ko handle karne ke liye)
+                .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
+                
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**").permitAll()
+                        
+                        // --- DONO KE SAARE .requestMatchers() YAHAN HAIN ---
+                        
+                        // Aapke paths (Newsletter, Contact, Bookings, etc.)
+                        .requestMatchers("/api/auth/**").permitAll() // Yeh common tha
                         .requestMatchers("/api/newsletter/**").permitAll()
                         .requestMatchers("/api/contact/**").permitAll()
-                        .requestMatchers("/api/halls/**").permitAll() // <-- Aapka change yahan hai
+                        .requestMatchers("/api/halls/**").permitAll() // Yeh common tha
                         .requestMatchers("/api/bookings/**").permitAll()
                         .requestMatchers("/api/chat/**").permitAll()
                         .requestMatchers("/api/managehalls/**").permitAll()
                         .requestMatchers("/api/managehallbookings/**").permitAll()
                         .requestMatchers("/api/contact-eventmate/**").permitAll()
-                        .anyRequest().authenticated())
+                        
+                        // Surayya ke paths (Photographers, Planners, QA)
+                        .requestMatchers("/api/photographers/available").permitAll()
+                        .requestMatchers("/api/photographers/{id}").permitAll()
+                        .requestMatchers("/api/photographers/all").permitAll()
+                        .requestMatchers("/api/photographers/2/1").permitAll() 
+                        .requestMatchers("/api/planners/available").permitAll()
+                        .requestMatchers("/api/planners/{id}").permitAll()
+                        .requestMatchers("api/project-qa/**").permitAll()
+                        
+                        // Surayya ke Authenticated paths (Login zaroori)
+                        .requestMatchers("/api/photographers/book").authenticated() 
+                        .requestMatchers("/api/planners/book").authenticated()
+                        
+                        // Default (Baaki sabke liye login zaroori)
+                        .anyRequest().authenticated()
+                )
+                
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())
                 .addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class)
