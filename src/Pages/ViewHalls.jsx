@@ -86,7 +86,7 @@ const ViewHalls = () => {
               <img src={hall.imageUrl1} alt={hall.hallName} className="unique-hall-image" />
               <div className="unique-hall-info">
                 <h3>{hall.hallName}</h3>
-                <p>📍 {hall.hallAddress}</p>
+                <p> {hall.hallAddress}</p>
                 <p><b>Capacity:</b> {hall.capacity} People</p>
                 <p><b>Budget:</b> ₹{hall.budget}</p>
                 <p><b>Owner:</b> {hall.ownerName}</p>

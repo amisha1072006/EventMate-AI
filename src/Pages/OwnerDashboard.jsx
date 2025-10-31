@@ -25,13 +25,13 @@ const OwnerDashboardLayout = ({ children }) => {
           {/* <li><Link to="/owner/profile">Profile</Link></li> */}
         </ul>
 
-        {/* Logout Button */}
+        {/* Logout Button
         <button 
           className="logout-btn"
           onClick={handleLogout}
         >
           Logout
-        </button>
+        </button> */}
       </aside>
 
       {/* Main content */}

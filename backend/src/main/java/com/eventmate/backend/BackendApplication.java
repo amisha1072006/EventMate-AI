@@ -24,6 +24,7 @@ public class BackendApplication {
         this.photographerRepository = photographerRepository;
     }
 
+
     public static void main(String[] args) {
         SpringApplication.run(BackendApplication.class, args);
     }
