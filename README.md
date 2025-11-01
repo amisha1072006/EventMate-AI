@@ -30,7 +30,7 @@ AI Integration: OpenAI API
 🖼️ Screenshots of the Project
 
 📌 Homepage
-![Homepage](assets/image.png)
+![Homepage](frontend/src/assets/image.png)
 📌 About page
 ![Aboutpage](assets/About.png)
 📌 Contact & Feedback Page
