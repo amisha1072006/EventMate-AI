@@ -32,9 +32,9 @@ AI Integration: OpenAI API
 📌 Homepage
 ![Homepage](frontend/src/assets/image.png)
 📌 About page
-![Aboutpage](assets/About.png)
+![Aboutpage](frontend/src/assets/About.png)
 📌 Contact & Feedback Page
-![Contactpage](assets/Contact.png)
+![Contactpage](frontend/src/assets/Contact.png)
 
 🚀 Future Plans
 
