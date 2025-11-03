@@ -1,0 +1,47 @@
+/* src/components/Hero.css */
+
+/* --- स्टेप 1: मुख्य .hero कंटेनर को सेट करें --- */
+/* यह सुनिश्चित करेगा कि इसके अंदर का सारा कंटेंट (hero-content) पेज के बीच में आ जाए */
+.hero {
+  width: 100%;
+  min-height: 50vh; /* आप ऊंचाई अपनी जरूरत के हिसाब से रखें */
+
+  /* यह 3 लाइनें सबसे ज़रूरी हैं */
+  display: flex;
+  justify-content: center; /* हॉरिजॉन्टल सेंटरिंग */
+  align-items: center; 
+    /* वर्टिकल सेंटरिंग */
+
+     background-image: url('/images/herobg.jpg'); 
+  /*background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative; */
+}
+
+
+/* --- स्टेप 2: .hero-content को सेट करें --- */
+/* यह h1, p और search-bar को एक-दूसरे के नीचे, बीच में रखेगा */
+.hero-content {
+  width: 100%;
+  
+  /* यह 3 लाइनें आपके पास पहले से हो सकती हैं */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* --- स्टेप 3: .search-bar को चौड़ाई दें --- */
+/* यह सुनिश्चित करेगा कि सर्च बार सही दिखे */
+.search-bar {
+  width: 100%;
+  max-width: 600px; /* यह सर्च बार को बहुत ज्यादा चौड़ा होने से रोकेगा */
+  
+  /* यह इनपुट और बटन को एक लाइन में रखेगा */
+  display: flex; 
+}
+
+/* (यह ज़रूरी नहीं है, लेकिन बेहतर लुक के लिए है) */
+.search-bar input {
+  width: 100%;
+}

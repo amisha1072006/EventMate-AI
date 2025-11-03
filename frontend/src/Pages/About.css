@@ -1,0 +1,76 @@
+/* About.css */
+
+/* Top Banner Section */
+.top-banner {
+   /* background-color: #0f172a;  Main blue/cyan color */
+   background-image: url("/images/about.jpg"); 
+    color: white;
+    text-align: center;
+    padding: 50px 20px;
+    border-radius: 8px;
+}
+
+/* Common style for sections inside the main container */
+.about-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* Sections ke beech mein space */
+}
+
+.about-section, .features-section, .mission-section, .cta-section {
+    padding: 30px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow effect */
+    text-align: center;
+}
+
+h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Features Section Grid Layout */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 items in a row */
+    gap: 30px;
+    text-align: left;
+}
+
+.feature-item {
+    padding: 20px;
+}
+
+.feature-item h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+/* Call to Action (CTA) Section */
+.cta-button {
+    display: inline-block;
+    background-color: #2b62b9;
+    color: white;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #717171;
+}
+
+/* Responsive Design for smaller screens */
+@media (max-width: 768px) {
+    .features-grid {
+        grid-template-columns: 1fr; /* Stack items vertically on mobile */
+    }
+}

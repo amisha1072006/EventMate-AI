@@ -1,0 +1,83 @@
+.category-header {
+    max-width: 80%;
+    margin: auto;
+  }
+
+  .main-content {
+    flex: 1;
+    padding: 30px;
+    background-color: #f9fafb;
+    min-height: 100%;   /* ✅ use parent instead of viewport */
+  }
+  
+  .catbar {
+    text-align: center;
+    background: #fff;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+  }
+  
+  .catbar h3 {
+    font-size: 20px;
+    margin-bottom: 16px;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .filter-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .category-icons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+  }
+  
+  .category-btn {
+    display: flex;
+    flex-direction: column;   /* ✅ text under icon */
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 90px;
+    height: 90px;
+    border: 2px solid transparent;
+    border-radius: 16px;
+    background: #f9f9f9;
+    border: 2px solid black;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    color: #444;
+    transition: all 0.3s ease;
+  }
+  
+  .category-btn:hover {
+    transform: scale(1.05);
+    background: #f0f0f0;
+  }
+  
+  .category-btn.active {
+    border-color: #55bfe6;
+    background: #55bfe6;
+    border: 2px solid black;
+    color: #fff;
+    transform: scale(1.1);
+  }
+  
+  .category-btn svg {
+    font-size: 32px;   /* ✅ bigger icons */
+  }
+  
+
+
+
+
+ 
+ 

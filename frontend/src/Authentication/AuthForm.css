@@ -1,0 +1,133 @@
+/* Container for authentication page */
+
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 20px;
+    background-color: #f0f2f5;
+    /* background-image: url('/images/adminlogin.jpg');  */
+    background-image: url('/images/authentication.jpg'); 
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    box-sizing: border-box; /* includes padding in height */
+}
+
+/* Form box */
+.auth-form {
+    background-color: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+}
+
+/* Form heading */
+.auth-form h2 {
+    margin-bottom: 30px;
+    font-size: 28px;
+    color: #333;
+}
+
+/* Form group for label + input */
+.form-group {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 20px;
+    position: relative; /* for password toggle button */
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+/* Show/Hide password button */
+.form-group button {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    font-size: 18px;
+}
+
+/* Main submit button */
+.auth-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #2c2c2c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.auth-button:hover {
+    background-color: #4c5a69;
+}
+
+/* Split links container */
+.auth-links-split {
+    display: flex;
+    justify-content: space-between; /* separate signup and forgot sections */
+    align-items: center;
+    margin-top: 25px;
+    width: 100%;
+}
+
+
+.auth-links-split a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.auth-links-split a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 500px) {
+    .auth-form {
+        padding: 30px 20px;
+    }
+
+    .auth-button {
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    .form-group input {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .auth-links-split {
+        flex-direction: column; /* stack vertically on mobile */
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    
+}

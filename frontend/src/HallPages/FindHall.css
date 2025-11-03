@@ -1,0 +1,105 @@
+/* src/HallPages/FindHall.css */
+
+.find-hall-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: #ffffff;
+}
+
+/* ===== साइडबार की स्टाइलिंग ===== */
+.sidebar {
+  flex: 0 0 280px; /* साइडबार की चौड़ाई फिक्स रहेगी */
+  background-color: #E6F0FF; /* हल्का नीला रंग */
+  padding: 25px;
+  color: #333;
+  border-right: 1px solid #d4e3ff;
+}
+
+.sidebar h3 {
+  font-size: 1.8rem;
+  color: #0056b3;
+  margin-bottom: 30px;
+}
+
+.filter-group {
+  margin-bottom: 20px;
+}
+
+.filter-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.filter-group input,
+.filter-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #b8d4ff;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+/* ===== मेन कंटेंट की स्टाइलिंग ===== */
+.main-content {
+  flex: 1; /* बची हुई पूरी जगह ले लेगा */
+  padding: 30px;
+  background-color: #f9fafb;
+  min-height: 100vh;
+}
+
+.halls-grid {
+  display: grid;
+  /* grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); */
+  grid-template-columns: repeat(3,1fr);
+  gap: 25px;
+}
+
+.hall-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.hall-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.hall-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.hall-details {
+  padding: 15px;
+}
+
+.hall-details h4 {
+  margin: 0 0 15px 0;
+  font-size: 1.2rem;
+}
+
+.availability-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 1rem;
+  transition: background-color 0.2s;
+}
+
+.availability-btn:hover {
+  background-color: #0056b3;
+}
+/* datalist के लिए स्टाइल (ऑप्शनल) */
+input[list]::-webkit-calendar-picker-indicator {
+  display: none; /* यह छोटे एरो को हटा देगा */
+}
