@@ -428,470 +428,470 @@ const PhotographerDetails = () => {
           letterSpacing: 0.5,
           fontSize: 15,
         }}
-      >
-        {photographer.phone}
-      </span>
-    </p>
-
-    <p
-      style={{
-        marginTop: 10,
-        fontSize: 15,
-        lineHeight: 1.6,
-        color: "#4b5563",
-        maxWidth: 600,
-      }}
-    >
-      {photographer.specialization} {/* Specialization display kar rahe hain */}
-    </p>
-
-    {/* Quick Action Buttons */}
-    <div style={{ marginTop: 18, display: "flex", gap: 12, flexWrap: "wrap" }}>
-      <button
-        onClick={handleScrollToBooking} 
-        style={{
-          backgroundColor: "#059669",
-          color: "white",
-          padding: "10px 20px",
-          borderRadius: 8,
-          border: "none",
-          cursor: "pointer",
-          fontWeight: 600,
-          transition: "background-color 0.3s ease",
-        }}
-        onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#047857")}
-        onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#059669")}
-      >
-        Book Now
-      </button>
-    </div>
-  </div> 
-</div> 
-
-
-{/* Portfolio Section */}
-<PhotographerPortfolio photographer={photographer} />
-
-
-{/* Services Section */}
-<section style={{ marginBottom: 40 }}>
-  <h2 style={{ fontSize: 24, fontWeight: 700, marginBottom: 24 }}>Services & Packages</h2>
-  <div style={{ display: "grid", gap: 20 }}>
-    
-    {/* Service data ab backend se nahi aa raha, isliye isse comment out kiya */}
-    {/* {photographer && photographer.services && photographer.services.map((service, index) => (
-      <div key={index} style={{ border: "1px solid #e5e7eb", borderRadius: 12, padding: 24 }}>
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <h3>{service.name}</h3>
-          <span style={{ color: "#059669", fontWeight: 700 }}>{service.price}</span>
-        </div>
-        <p><strong>Duration:</strong> {service.duration}</p>
+              >
+                {photographer.phone}
+              </span>
+            </p>
         
-        {service.includes.map((item, i) => (
-          <div key={i} style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <FaCheck color="#059669" /> {item}
-          </div>
-        ))}
-        
-      </div>
-    ))} */}
-    <p>No formal service packages available yet, contact for custom quote.</p>
-    
-  </div>
-</section>
-
-{/* About */}
-<section style={{ marginBottom: 40 }}ref={bookingRef}>
-  {/* Yahaan pehla error tha: photographer.name.split(' ') */}
-  <h2 style={{ fontSize: 24, fontWeight: 700, marginBottom: 16 }}>About {photographer.name?.split(" ")[0]}</h2>
-  {/* Yahaan doosra error ho sakta tha */}
-  <p style={{ backgroundColor: "#f8f9fa", padding: 24, borderRadius: 12 }}>{photographer.about || photographer.specialization}</p>
-</section>
-
-{/* Booking Section */}
-<section style={{ marginBottom: 40 }}>
-  <h2 style={{ fontSize: 24, fontWeight: 700, marginBottom: 24, borderBottom: "2px solid #e5e7eb", paddingBottom: 8 }}>
-    Availability & Booking
-  </h2>
-  
-  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40, alignItems: "start" }}>
-    {/* Interactive Calendar */}
-    <div>
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <FaCalendar color="#059669" />
-          <span style={{ fontWeight: 600 }}>Select Date & Time</span>
-        </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          <button 
-            onClick={prevMonth}
-            style={{ 
-              border: "none", 
-              background: "none", 
-              cursor: "pointer",
-              padding: "8px",
-              borderRadius: "50%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center"
-            }}
-            onMouseEnter={(e) => e.target.style.backgroundColor = "#f3f4f6"}
-            onMouseLeave={(e) => e.target.style.backgroundColor = "transparent"}
-          >
-            <FaArrowLeft size={16} color="#374151" />
-          </button>
-          <span style={{ fontWeight: 600, minWidth: 150, textAlign: "center" }}>
-            {monthNames[currentMonth.getMonth()]} {currentMonth.getFullYear()}
-          </span>
-          <button 
-            onClick={nextMonth}
-            style={{ 
-              border: "none", 
-              background: "none", 
-              cursor: "pointer",
-              padding: "8px",
-              borderRadius: "50%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center"
-            }}
-            onMouseEnter={(e) => e.target.style.backgroundColor = "#f3f4f6"}
-            onMouseLeave={(e) => e.target.style.backgroundColor = "transparent"}
-          >
-            <FaArrowRight size={16} color="#374151" />
-          </button>
-        </div>
-      </div>
-      
-      <div style={{ 
-        border: "1px solid #e5e7eb", 
-        borderRadius: 12, 
-        overflow: "hidden",
-        backgroundColor: "white",
-        marginBottom: 20
-      }}>
-        {/* Week days header */}
-        <div style={{ 
-          display: "grid", 
-          gridTemplateColumns: "repeat(7, 1fr)", 
-          backgroundColor: "#f8f9fa",
-          borderBottom: "1px solid #e5e7eb"
-        }}>
-          {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day, index) => (
-            <div 
-              key={index}
-              style={{ 
-                padding: "12px 8px", 
-                textAlign: "center", 
-                fontWeight: 600,
-                fontSize: 14,
-                color: "#374151"
+            <p
+              style={{
+                marginTop: 10,
+                fontSize: 15,
+                lineHeight: 1.6,
+                color: "#4b5563",
+                maxWidth: 600,
               }}
             >
-              {day}
-            </div>
-          ))}
-        </div>
+              {photographer.specialization} {/* Specialization display kar rahe hain */}
+            </p>
         
-        {/* Calendar days */}
-        {calendar.map((week, weekIndex) => (
-          <div 
-            key={weekIndex}
-            style={{ 
-              display: "grid", 
-              gridTemplateColumns: "repeat(7, 1fr)",
-              borderBottom: weekIndex < calendar.length - 1 ? "1px solid #e5e7eb" : "none"
-            }}
-          >
-            {week.map((date, dateIndex) => {
-              const available = isDateAvailable(date);
-              const selected = isDateSelected(date);
-              const isCurrentMonth = date.getMonth() === currentMonth.getMonth();
+            {/* Quick Action Buttons */}
+            <div style={{ marginTop: 18, display: "flex", gap: 12, flexWrap: "wrap" }}>
+              <button
+                onClick={handleScrollToBooking} 
+                style={{
+                  backgroundColor: "#059669",
+                  color: "white",
+                  padding: "10px 20px",
+                  borderRadius: 8,
+                  border: "none",
+                  cursor: "pointer",
+                  fontWeight: 600,
+                  transition: "background-color 0.3s ease",
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#047857")}
+                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#059669")}
+              >
+                Book Now
+              </button>
+            </div>
+          </div> 
+        </div> 
+        
+        
+        {/* Portfolio Section */}
+        <PhotographerPortfolio photographer={photographer} />
+        
+        
+        {/* Services Section */}
+        <section style={{ marginBottom: 40 }}>
+          <h2 style={{ fontSize: 24, fontWeight: 700, marginBottom: 24 }}>Services & Packages</h2>
+          <div style={{ display: "grid", gap: 20 }}>
+            
+            {/* Service data ab backend se nahi aa raha, isliye isse comment out kiya */}
+            {/* {photographer && photographer.services && photographer.services.map((service, index) => (
+              <div key={index} style={{ border: "1px solid #e5e7eb", borderRadius: 12, padding: 24 }}>
+                <div style={{ display: "flex", justifyContent: "space-between" }}>
+                  <h3>{service.name}</h3>
+                  <span style={{ color: "#059669", fontWeight: 700 }}>{service.price}</span>
+                </div>
+                <p><strong>Duration:</strong> {service.duration}</p>
+                
+                {service.includes.map((item, i) => (
+                  <div key={i} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                    <FaCheck color="#059669" /> {item}
+                  </div>
+                ))}
+                
+              </div>
+            ))} */}
+            <p>No formal service packages available yet, contact for custom quote.</p>
+            
+          </div>
+        </section>
+        
+        {/* About */}
+        <section style={{ marginBottom: 40 }}ref={bookingRef}>
+          {/* Yahaan pehla error tha: photographer.name.split(' ') */}
+          <h2 style={{ fontSize: 24, fontWeight: 700, marginBottom: 16 }}>About {photographer.name?.split(" ")[0]}</h2>
+          {/* Yahaan doosra error ho sakta tha */}
+          <p style={{ backgroundColor: "#f8f9fa", padding: 24, borderRadius: 12 }}>{photographer.about || photographer.specialization}</p>
+        </section>
+        
+        {/* Booking Section */}
+        <section style={{ marginBottom: 40 }}>
+          <h2 style={{ fontSize: 24, fontWeight: 700, marginBottom: 24, borderBottom: "2px solid #e5e7eb", paddingBottom: 8 }}>
+            Availability & Booking
+          </h2>
+          
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40, alignItems: "start" }}>
+            {/* Interactive Calendar */}
+            <div>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                  <FaCalendar color="#059669" />
+                  <span style={{ fontWeight: 600 }}>Select Date & Time</span>
+                </div>
+                <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                  <button 
+                    onClick={prevMonth}
+                    style={{ 
+                      border: "none", 
+                      background: "none", 
+                      cursor: "pointer",
+                      padding: "8px",
+                      borderRadius: "50%",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center"
+                    }}
+                    onMouseEnter={(e) => e.target.style.backgroundColor = "#f3f4f6"}
+                    onMouseLeave={(e) => e.target.style.backgroundColor = "transparent"}
+                  >
+                    <FaArrowLeft size={16} color="#374151" />
+                  </button>
+                  <span style={{ fontWeight: 600, minWidth: 150, textAlign: "center" }}>
+                    {monthNames[currentMonth.getMonth()]} {currentMonth.getFullYear()}
+                  </span>
+                  <button 
+                    onClick={nextMonth}
+                    style={{ 
+                      border: "none", 
+                      background: "none", 
+                      cursor: "pointer",
+                      padding: "8px",
+                      borderRadius: "50%",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center"
+                    }}
+                    onMouseEnter={(e) => e.target.style.backgroundColor = "#f3f4f6"}
+                    onMouseLeave={(e) => e.target.style.backgroundColor = "transparent"}
+                  >
+                    <FaArrowRight size={16} color="#374151" />
+                  </button>
+                </div>
+              </div>
               
-              return (
-                <div 
-                  key={dateIndex}
-                  onClick={() => handleDateSelect(date)}
-                  style={{ 
-                    padding: "12px 8px", 
-                    textAlign: "center",
-                    backgroundColor: selected ? "#059669" : "white",
-                    color: selected ? "white" : 
-                          !isCurrentMonth ? "#d1d5db" :
-                          available ? "#374151" : "#d1d5db",
-                    fontWeight: selected ? 600 : 400,
-cursor: available ? "pointer" : "not-allowed",
-                    borderRight: dateIndex < 6 ? "1px solid #e5e7eb" : "none",
-                    transition: "all 0.2s",
-                    position: "relative"
-                  }}
+              <div style={{ 
+                border: "1px solid #e5e7eb", 
+                borderRadius: 12, 
+                overflow: "hidden",
+                backgroundColor: "white",
+                marginBottom: 20
+              }}>
+                {/* Week days header */}
+                <div style={{ 
+                  display: "grid", 
+                  gridTemplateColumns: "repeat(7, 1fr)", 
+                  backgroundColor: "#f8f9fa",
+                  borderBottom: "1px solid #e5e7eb"
+                }}>
+                  {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day, index) => (
+                    <div 
+                      key={index}
+                      style={{ 
+                        padding: "12px 8px", 
+                        textAlign: "center", 
+                        fontWeight: 600,
+                        fontSize: 14,
+                        color: "#374151"
+                      }}
+                    >
+                      {day}
+                    </div>
+                  ))}
+                </div>
+                
+                {/* Calendar days */}
+                {calendar.map((week, weekIndex) => (
+                  <div 
+                    key={weekIndex}
+                    style={{ 
+                      display: "grid", 
+                      gridTemplateColumns: "repeat(7, 1fr)",
+                      borderBottom: weekIndex < calendar.length - 1 ? "1px solid #e5e7eb" : "none"
+                    }}
+                  >
+                    {week.map((date, dateIndex) => {
+                      const available = isDateAvailable(date);
+                      const selected = isDateSelected(date);
+                      const isCurrentMonth = date.getMonth() === currentMonth.getMonth();
+                      
+                      return (
+                        <div 
+                          key={dateIndex}
+                          onClick={() => handleDateSelect(date)}
+                          style={{ 
+                            padding: "12px 8px", 
+                            textAlign: "center",
+                            backgroundColor: selected ? "#059669" : "white",
+                            color: selected ? "white" : 
+                                  !isCurrentMonth ? "#d1d5db" :
+                                  available ? "#374151" : "#d1d5db",
+                            fontWeight: selected ? 600 : 400,
+        cursor: available ? "pointer" : "not-allowed",
+                            borderRight: dateIndex < 6 ? "1px solid #e5e7eb" : "none",
+                            transition: "all 0.2s",
+                            position: "relative"
+                          }}
+                          onMouseEnter={(e) => {
+                            if (available && !selected) {
+                              e.target.style.backgroundColor = "#f0fdf4";
+                            }
+                          }}
+                          onMouseLeave={(e) => {
+                            if (available && !selected) {
+                              e.target.style.backgroundColor = "white";
+                            }
+                          }}
+                        >
+                          {date.getDate()}
+                          {available && !selected && (
+                            <div style={{
+                              position: "absolute",
+                              bottom: 2,
+                              left: "50%",
+                              transform: "translateX(-50%)",
+                              width: 4,
+                              height: 4,
+                              backgroundColor: "#059669",
+                              borderRadius: "50%"
+                            }} />
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                ))}
+              </div>
+          
+              {/* Time Slots */}
+              {selectedDate && (
+                <div>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 16 }}>
+                    <FaClock color="#059669" />
+                    <span style={{ fontWeight: 600 }}>Available Time Slots for {selectedDate?.toDateString()}</span>
+                  </div>
+                  <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+                    {/* Safety check: photographer && photographer.workingHours */}
+                    {photographer && photographer.workingHours && photographer.workingHours.map((time, index) => (
+                      <button
+                        key={index}
+                        onClick={() => setSelectedTime(time)}
+                        style={{
+                          padding: "12px 16px",
+                          border: `2px solid ${selectedTime === time ? "#059669" : "#e5e7eb"}`,
+                          borderRadius: 8,
+                          backgroundColor: selectedTime === time ? "#f0fdf4" : "white",
+                          color: selectedTime === time ? "#059669" : "#374151",
+                          fontWeight: 600,
+                          cursor: "pointer",
+                          transition: "all 0.2s"
+                        }}
+                        onMouseEnter={(e) => {
+                          if (selectedTime !== time) {
+                            e.target.style.borderColor = "#059669";
+                            e.target.style.backgroundColor = "#f0fdf4";
+                          }
+                        }}
+                        onMouseLeave={(e) => {
+                          if (selectedTime !== time) {
+                            e.target.style.borderColor = "#e5e7eb";
+                            e.target.style.backgroundColor = "white";
+                          }
+                        }}
+                      >
+                        {time}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+        {/* Booking Summary */}
+            <div style={{ 
+              border: "1px solid #e5e7eb", 
+              borderRadius: 12, 
+              padding: 24,
+              backgroundColor: "white",
+              position: "sticky",
+              top: 20
+            }}>
+              <h3 style={{ fontSize: 18, fontWeight: 600, marginBottom: 20 }}>Booking Summary</h3>
+              
+              {selectedDate && (
+                <div style={{ marginBottom: 20, padding: 16, backgroundColor: "#f0fdf4", borderRadius: 8 }}>
+                  <p style={{ margin: "4px 0", fontWeight: 600 }}>Selected Date:</p>
+                  <p style={{ margin: "4px 0", color: "#059669" }}>{selectedDate?.toDateString()}</p>
+                  {selectedTime && (
+                    <>
+                      <p style={{ margin: "4px 0", fontWeight: 600, marginTop: 8 }}>Selected Time:</p>
+                      <p style={{ margin: "4px 0", color: "#059669" }}>{selectedTime}</p>
+                    </>
+                  )}
+                </div>
+              )}
+              
+              <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+                
+                {/* Event Type Dropdown */}
+                <div>
+                  <label style={{ display: "block", marginBottom: 8, fontWeight: 500 }}>Event Type</label>
+                  <select 
+                    value={eventType}
+                    onChange={(e) => setEventType(e.target.value)}
+                    style={{ 
+                      width: "100%", 
+                      padding: "12px", 
+                      border: "1px solid #d1d5db", 
+                      borderRadius: 8,
+                      fontSize: 16
+                    }}
+                  >
+                    {photographer.eventTypes && photographer.eventTypes.map((type, index) => (
+                      <option key={index} value={type}>{type}</option>
+                    ))}
+                  </select>
+                </div>
+                
+                {/* Your Name Input */}
+                <div style={{ marginTop: 12 }}>
+                  <label style={{ fontWeight: 600, fontSize: 16, color: "#374151", marginBottom: 8, display: "block" }}>
+                    Your Name:
+                  </label>
+                  <input
+                    type="text"
+                    value={userName}
+                    onChange={(e) => setUserName(e.target.value)}
+                    placeholder="Enter your full name"
+                    style={{ width: "100%", padding: 12, borderRadius: 8, border: "1px solid #d1d5db", fontSize: 16, boxSizing: 'border-box' }}
+                  />
+                </div>
+            
+                {/* Your Phone Input */}
+                <div style={{ marginTop: 12 }}>
+                  <label style={{ fontWeight: 600, fontSize: 16, color: "#374151", marginBottom: 8, display: "block" }}>
+                    Your Phone:
+                  </label>
+                  <input
+                    type="tel"
+                    value={userPhone}
+                    onChange={(e) => setUserPhone(e.target.value)}
+                    placeholder="Enter your phone number"
+                    style={{ width: "100%", padding: 12, borderRadius: 8, border: "1px solid #d1d5db", fontSize: 16, boxSizing: 'border-box' }}
+                  />
+                </div>
+        
+                {/* Message Textarea */}
+                <div>
+                  <label style={{ display: "block", marginBottom: 8, fontWeight: 500 }}>Message</label>
+                  <textarea 
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)} // Naya onChange event
+                    style={{ 
+                      width: "100%", 
+                      padding: "12px", 
+                      border: "1px solid #d1d5db", 
+                      borderRadius: 8,
+                      fontSize: 16,
+                      minHeight: 100,
+                      resize: "vertical"
+                    }}
+                    placeholder="Tell us about your event and any specific requirements..."
+                  />
+                </div>
+                
+                {/* Confirm Booking Button */}
+                <button 
+                  onClick={handleBookingSubmit}
+                  style={bookingBtnStyle} // Naya style object use kiya
                   onMouseEnter={(e) => {
-                    if (available && !selected) {
-                      e.target.style.backgroundColor = "#f0fdf4";
+                    if (selectedDate && selectedTime) {
+                      e.currentTarget.style.backgroundColor = "#047857";
                     }
                   }}
                   onMouseLeave={(e) => {
-                    if (available && !selected) {
-                      e.target.style.backgroundColor = "white";
+                    if (selectedDate && selectedTime) {
+                      e.currentTarget.style.backgroundColor = "#059669";
                     }
                   }}
                 >
-                  {date.getDate()}
-                  {available && !selected && (
-                    <div style={{
-                      position: "absolute",
-                      bottom: 2,
-                      left: "50%",
-                      transform: "translateX(-50%)",
-                      width: 4,
-                      height: 4,
-                      backgroundColor: "#059669",
-                      borderRadius: "50%"
-                    }} />
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        ))}
-      </div>
-  
-      {/* Time Slots */}
-      {selectedDate && (
-        <div>
-          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 16 }}>
-            <FaClock color="#059669" />
-            <span style={{ fontWeight: 600 }}>Available Time Slots for {selectedDate?.toDateString()}</span>
-          </div>
-          <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-            {/* Safety check: photographer && photographer.workingHours */}
-            {photographer && photographer.workingHours && photographer.workingHours.map((time, index) => (
-              <button
-                key={index}
-                onClick={() => setSelectedTime(time)}
-                style={{
-                  padding: "12px 16px",
-                  border: `2px solid ${selectedTime === time ? "#059669" : "#e5e7eb"}`,
-                  borderRadius: 8,
-                  backgroundColor: selectedTime === time ? "#f0fdf4" : "white",
-                  color: selectedTime === time ? "#059669" : "#374151",
-                  fontWeight: 600,
-                  cursor: "pointer",
-                  transition: "all 0.2s"
-                }}
-                onMouseEnter={(e) => {
-                  if (selectedTime !== time) {
-                    e.target.style.borderColor = "#059669";
-                    e.target.style.backgroundColor = "#f0fdf4";
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (selectedTime !== time) {
-                    e.target.style.borderColor = "#e5e7eb";
-                    e.target.style.backgroundColor = "white";
-                  }
-                }}
-              >
-                {time}
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
-    </div>
-{/* Booking Summary */}
-    <div style={{ 
-      border: "1px solid #e5e7eb", 
-      borderRadius: 12, 
-      padding: 24,
-      backgroundColor: "white",
-      position: "sticky",
-      top: 20
-    }}>
-      <h3 style={{ fontSize: 18, fontWeight: 600, marginBottom: 20 }}>Booking Summary</h3>
-      
-      {selectedDate && (
-        <div style={{ marginBottom: 20, padding: 16, backgroundColor: "#f0fdf4", borderRadius: 8 }}>
-          <p style={{ margin: "4px 0", fontWeight: 600 }}>Selected Date:</p>
-          <p style={{ margin: "4px 0", color: "#059669" }}>{selectedDate?.toDateString()}</p>
-          {selectedTime && (
-            <>
-              <p style={{ margin: "4px 0", fontWeight: 600, marginTop: 8 }}>Selected Time:</p>
-              <p style={{ margin: "4px 0", color: "#059669" }}>{selectedTime}</p>
-            </>
-          )}
-        </div>
-      )}
-      
-      <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+                  {selectedDate && selectedTime ? "Confirm Booking" : "Select Date & Time"}
+                </button>
         
-        {/* Event Type Dropdown */}
-        <div>
-          <label style={{ display: "block", marginBottom: 8, fontWeight: 500 }}>Event Type</label>
-          <select 
-            value={eventType}
-            onChange={(e) => setEventType(e.target.value)}
-            style={{ 
-              width: "100%", 
-              padding: "12px", 
-              border: "1px solid #d1d5db", 
-              borderRadius: 8,
-              fontSize: 16
-            }}
-          >
-            {photographer.eventTypes && photographer.eventTypes.map((type, index) => (
-              <option key={index} value={type}>{type}</option>
-            ))}
-          </select>
-        </div>
-        
-        {/* Your Name Input */}
-        <div style={{ marginTop: 12 }}>
-          <label style={{ fontWeight: 600, fontSize: 16, color: "#374151", marginBottom: 8, display: "block" }}>
-            Your Name:
-          </label>
-          <input
-            type="text"
-            value={userName}
-            onChange={(e) => setUserName(e.target.value)}
-            placeholder="Enter your full name"
-            style={{ width: "100%", padding: 12, borderRadius: 8, border: "1px solid #d1d5db", fontSize: 16, boxSizing: 'border-box' }}
-          />
-        </div>
-    
-        {/* Your Phone Input */}
-        <div style={{ marginTop: 12 }}>
-          <label style={{ fontWeight: 600, fontSize: 16, color: "#374151", marginBottom: 8, display: "block" }}>
-            Your Phone:
-          </label>
-          <input
-            type="tel"
-            value={userPhone}
-            onChange={(e) => setUserPhone(e.target.value)}
-            placeholder="Enter your phone number"
-            style={{ width: "100%", padding: 12, borderRadius: 8, border: "1px solid #d1d5db", fontSize: 16, boxSizing: 'border-box' }}
-          />
-        </div>
-
-        {/* Message Textarea */}
-        <div>
-          <label style={{ display: "block", marginBottom: 8, fontWeight: 500 }}>Message</label>
-          <textarea 
-            value={message}
-            onChange={(e) => setMessage(e.target.value)} // Naya onChange event
-            style={{ 
-              width: "100%", 
-              padding: "12px", 
-              border: "1px solid #d1d5db", 
-              borderRadius: 8,
-              fontSize: 16,
-              minHeight: 100,
-              resize: "vertical"
-            }}
-            placeholder="Tell us about your event and any specific requirements..."
-          />
-        </div>
-        
-        {/* Confirm Booking Button */}
-        <button 
-          onClick={handleBookingSubmit}
-          style={bookingBtnStyle} // Naya style object use kiya
-          onMouseEnter={(e) => {
-            if (selectedDate && selectedTime) {
-              e.currentTarget.style.backgroundColor = "#047857";
-            }
-          }}
-          onMouseLeave={(e) => {
-            if (selectedDate && selectedTime) {
-              e.currentTarget.style.backgroundColor = "#059669";
-            }
-          }}
-        >
-          {selectedDate && selectedTime ? "Confirm Booking" : "Select Date & Time"}
-        </button>
-
-        {/* Booking Status Message */}
-        {bookingStatus && (
-          <div style={{
-            marginTop: 16,
-            padding: 12,
-            borderRadius: 8,
-            border: bookingStatus.error ? "1px solid #ef4444" : "1px solid #22c55e",
-            backgroundColor: bookingStatus.error ? "#f8d7da" : "#d4edda",
-            color: bookingStatus.error ? "#721c24" : "#155724",
-            textAlign: 'left',
-            transition: 'all 0.3s ease'
-          }}>
-            {bookingStatus.message && (
-              <>
-                <strong style={{ display: 'block', marginBottom: 8, fontSize: 15 }}>{bookingStatus.message}</strong>
-                <div style={{ fontSize: 14 }}>Date: {bookingStatus.date}</div>
-                <div style={{ fontSize: 14 }}>Time: {bookingStatus.time}</div>
-                <div style={{ fontSize: 14 }}>Event: {bookingStatus.type}</div>
-              </>
-            )}
-            {bookingStatus.error && (
-              <strong style={{ fontSize: 14 }}>{bookingStatus.error}</strong>
-            )}
+                {/* Booking Status Message */}
+                {bookingStatus && (
+                  <div style={{
+                    marginTop: 16,
+                    padding: 12,
+                    borderRadius: 8,
+                    border: bookingStatus.error ? "1px solid #ef4444" : "1px solid #22c55e",
+                    backgroundColor: bookingStatus.error ? "#f8d7da" : "#d4edda",
+                    color: bookingStatus.error ? "#721c24" : "#155724",
+                    textAlign: 'left',
+                    transition: 'all 0.3s ease'
+                  }}>
+                    {bookingStatus.message && (
+                      <>
+                        <strong style={{ display: 'block', marginBottom: 8, fontSize: 15 }}>{bookingStatus.message}</strong>
+                        <div style={{ fontSize: 14 }}>Date: {bookingStatus.date}</div>
+                        <div style={{ fontSize: 14 }}>Time: {bookingStatus.time}</div>
+                        <div style={{ fontSize: 14 }}>Event: {bookingStatus.type}</div>
+                      </>
+                    )}
+                    {bookingStatus.error && (
+                      <strong style={{ fontSize: 14 }}>{bookingStatus.error}</strong>
+                    )}
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
-        )}
-      </div>
-    </div>
-  </div>
-</section>
-      
-    {/* Social Icons */}
-    <div style={{
-      display: "flex",
-      gap: 16,
-      justifyContent: "center",
-      padding: "20px 0",
-    }}>
-      {photographer.social?.facebook && (
-        <a
-          href={photographer.social.facebook}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ /*...*/ }}
-          onMouseEnter={(e) => { /*...*/ }}
-          onMouseLeave={(e) => { /*...*/ }}
-        >
-          <FaFacebookF size={18} />
-        </a>
-      )}
-
-      {photographer.social?.instagram && (
-        <a
-          href={photographer.social.instagram}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ /*...*/ }}
-          onMouseEnter={(e) => { /*...*/ }}
-          onMouseLeave={(e) => { /*...*/ }}
-        >
-*   *       <FaInstagram size={18} />
-        </a>
-      )}
-
-      {photographer.social?.twitter && (
-        <a
-          href={photographer.social.twitter}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ /*...*/ }}
-          onMouseEnter={(e) => { /*...*/ }}
-          onMouseLeave={(e) => { /*...*/ }}
-        >
-          <FaTwitter size={18} />
-        </a>
-      )}
-    </div>
-    </div>
-  );
-};
-
-export default PhotographerDetails;
-
+        </section>
+              
+            {/* Social Icons */}
+            <div style={{
+              display: "flex",
+              gap: 16,
+              justifyContent: "center",
+              padding: "20px 0",
+            }}>
+              {photographer.social?.facebook && (
+                <a
+                  href={photographer.social.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ /*...*/ }}
+                  onMouseEnter={(e) => { /*...*/ }}
+                  onMouseLeave={(e) => { /*...*/ }}
+                >
+                  <FaFacebookF size={18} />
+                </a>
+              )}
+        
+              {photographer.social?.instagram && (
+                <a
+                  href={photographer.social.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ /*...*/ }}
+                  onMouseEnter={(e) => { /*...*/ }}
+                  onMouseLeave={(e) => { /*...*/ }}
+                >
+        *   *       <FaInstagram size={18} />
+                </a>
+              )}
+        
+              {photographer.social?.twitter && (
+                <a
+                  href={photographer.social.twitter}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ /*...*/ }}
+                  onMouseEnter={(e) => { /*...*/ }}
+                  onMouseLeave={(e) => { /*...*/ }}
+                >
+                  <FaTwitter size={18} />
+                </a>
+              )}
+            </div>
+            </div>
+          );
+        };
+        
+        export default PhotographerDetails;
+        
 
 // import React, { useState, useRef,useEffect } from "react";
 // import { useParams,useNavigate } from "react-router-dom";

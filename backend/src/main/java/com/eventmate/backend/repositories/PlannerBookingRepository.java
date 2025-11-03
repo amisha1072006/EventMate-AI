@@ -19,6 +19,7 @@
 //     List<Long> findBookedPlannerIdsOnDate(@Param("date") LocalDate date);
 // }
 
+
 package com.eventmate.backend.repositories;
 
 import java.time.LocalDate;

@@ -1,4 +1,4 @@
-// package com.eventmate.backend.service;
+//    package com.eventmate.backend.service;
 
 // import java.time.LocalDate;
 // import java.util.List;
@@ -62,6 +62,10 @@
 //         }
 //     }
 // }
+ 
+
+
+
 
 package com.eventmate.backend.service;
 
