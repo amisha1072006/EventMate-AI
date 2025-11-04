@@ -134,8 +134,9 @@ const CakeDetails = () => {
                 style={{
                   width: "100%",
                   height: 320,
-                  objectFit: "cover",
+                  objectFit: "contain",
                   borderRadius: 12,
+                  backgroundColor:"#f0f0f0",
                 }}
               />
             </div>
@@ -149,7 +150,32 @@ const CakeDetails = () => {
         <p style={{ fontSize:18 , color: "#4b5563", maxWidth: 700, margin: "0 auto", marginTop: 20, marginBottom: 20 }}>
             {cake.description}
         </p>
- 
+                 <div style={{ 
+          maxWidth: 700, 
+          margin: "25px auto", 
+          padding: "16px 20px", 
+          background: "#f9fafb", // हल्का ग्रे बैकग्राउंड
+          borderRadius: 12, 
+          boxShadow: "0 2px 8px rgba(0,0,0,0.05)" 
+        }}>
+          <h4 style={{ 
+            margin: "0 0 10px", 
+            fontSize: 18, 
+            color: "#1f2937", // हेडिंग के लिए डार्क टेक्स्ट
+            fontWeight: 600 
+          }}>
+            Available Flavours
+          </h4>
+          <p style={{ 
+            fontSize: 16, 
+            color: "#4b5563", 
+            lineHeight: 1.6, 
+            margin: 0 
+          }}>
+            {cake.flavour}
+          </p>
+        </div>
+        
         <div style={{ display:"flex", justifyContent:"space-around" ,maxWidth: 700,  margin: "0 auto"  }}>
         <p style={{ fontSize: 18, color: "#4b5563",  boxShadow: "0 4px 20px rgba(0,0,0,0.1)",  paddingLeft:20, paddingRight:20, borderRadius:8 }}>
           <FaMapMarkerAlt style={{ marginRight: 6, color: "#ef4444" }} />

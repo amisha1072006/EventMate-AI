@@ -116,7 +116,7 @@ const AttireDetails = () => {
               <img
                 src={img}
                 alt={`${attire.name} ${idx + 1}`}
-                style={{ width: "100%", height: 320, objectFit: "cover", borderRadius: 12 }}
+                style={{ width: "100%", height: 320, objectFit: "contain",backgroundColor:"#f0f0f0", borderRadius: 12 }}
               />
             </div>
           ))}

@@ -21,13 +21,6 @@ import com.eventmate.backend.repositories.PlannerRepository;
 @SpringBootApplication
 public class BackendApplication {
 
-    // Is constructor ki ab zaroorat nahi hai, ise hata sakte hain
-    // private final PhotographerRepository photographerRepository;
-    // BackendApplication(PhotographerRepository photographerRepository) {
-    //     this.photographerRepository = photographerRepository;
-    // }
-
-
     public static void main(String[] args) {
         SpringApplication.run(BackendApplication.class, args);
     }

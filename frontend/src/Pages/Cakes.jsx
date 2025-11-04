@@ -11,9 +11,11 @@ export const cakes = [
     id: 1,
     name: "Sweet Delights Bakery",
     rating: 4.9,
-    price: "₹2,000",
-    location: "Hyderabad",
-    images: ["/images/c1.jpg", "/images/c2.jpeg", "/images/c3.jpg"],
+    price: "₹ 2,000 - 4,000 per 2 kg",
+    flavour:"chocolate ,vanilla ,red velvet ,strawberry ,pineapple ,butterscotch and Oreo.",
+    
+    location: "Pune",
+    images: ["/images/c1.jpg", "/images/c2.jpeg", "/images/c3.jpg","https://images.pexels.com/photos/9405268/pexels-photo-9405268.jpeg"],
     phone: "+919876544321",
     description: "Sweet Delights Bakery is known for its exquisite cakes and pastries. We specialize in custom-designed cakes for birthdays, weddings, and special events. Every cake is freshly baked using high-quality ingredients."
   },
@@ -21,9 +23,11 @@ export const cakes = [
     id: 2,
     name: "Cake Avenue",
     rating: 4.8,
-    price: "₹1,800",
+    price: "₹ 1,800 - 3,000 per 2 kg",
+    flavour:"chocolate ,vanilla ,red velvet ,strawberry ,pineapple ,butterscotch and Oreo, lemon, black forest.",
+    
     location: "Bangalore",
-    images: ["/images/cake1.jpg", "/images/cake2.jpg", "/images/cake3.webp"],
+    images: ["https://media.istockphoto.com/id/1865717652/photo/luxurious-desert-table-with-cake-cookies-and-cupcakes-set-up-at-a-wedding.jpg?s=1024x1024&w=is&k=20&c=Kj7AaGPXaBA0yfk_fBK5SK4hLXq3a6LHB88ob_ZkjZw=", "/images/cake2.jpg", "/images/cake3.webp","https://images.pexels.com/photos/29051736/pexels-photo-29051736.jpeg"],
     phone: "+918765433210",
     description: "Cake Avenue offers a delightful selection of cakes, cupcakes, and desserts. We focus on creating delicious and visually appealing cakes that make every celebration memorable."
   },
@@ -31,19 +35,25 @@ export const cakes = [
     id: 3,
     name: "Sugar Bliss",
     rating: 4.7,
-    price: "₹2,200",
+    price: "₹ 2,200 - 3,500 per 2 kg",
+    flavour:"choclate ,vanilla ,red velvet ,strawberry ,pineapple ,butterscotch and Oreo ,Marble , Coconut , mango.",
+  
+
     location: "Chennai",
-    images: ["/images/cake4.jpg", "/images/cake5.jpg", "/images/c1.jpg"],
+    images: ["https://media.istockphoto.com/id/1344455840/photo/photography-of-various-cakes-for-wedding-decorations-and-marriage-concept-recipes-and-food.jpg?s=2048x2048&w=is&k=20&c=QpwiIaNAWGYaR4mpOcosEPA_aUdOWounm3dViimFUJU=","/images/cake4.jpg", "/images/cake5.jpg", "/images/c1.jpg"],
     phone: "+919123477654",
     description: "Sugar Bliss is your go-to place for premium cakes and baked treats. We combine classic recipes with modern flavors, ensuring every bite is a blissful experience."
   },
   {
     id: 4,
-    name: "The Cake Studio",
+    name: "The ButterVale Cake",
     rating: 4.6,
-    price: "₹2,500",
+    price: "₹ 2,500 - 4,500 per 2 kg",
+    flavour:"choclate ,vanilla ,red velvet ,strawberry ,pineapple ,butterscotch , Blueberry and Oreo.",
+
+
     location: "Delhi",
-    images: ["/images/c3.jpg", "/images/c2.jpeg", "/images/c3.jpg"],
+    images: ["/images/cake1.jpg","/images/c3.jpg", "/images/c2.jpeg", "/images/c3.jpg"],
     phone: "+919345622109",
     description: "The Cake Studio creates artistic cakes that are as beautiful as they are delicious. From intricate wedding cakes to personalized birthday cakes, we make every cake a masterpiece."
   },
@@ -51,7 +61,9 @@ export const cakes = [
     id: 5,
     name: "Heavenly Bites",
     rating: 4.8,
-    price: "₹2,100",
+    price: "₹ 2,100 - 3,500 per 2 kg ",
+        flavour:"choclate ,vanilla ,red velvet ,strawberry ,pineapple ,butterscotch ,Orange , mango and Oreo.",
+
     location: "Mumbai",
     images: ["/images/cake5.jpg", "/images/c2.jpeg", "/images/c3.jpg"],
     phone: "+919876543210",
@@ -61,7 +73,10 @@ export const cakes = [
     id: 6,
     name: "Choco Charm",
     rating: 4.5,
-    price: "₹1,900",
+    price: "₹ 1,900 - 2,700 per 2 kg",
+        flavour:"choclate ,vanilla ,red velvet ,strawberry ,pineapple ,butterscotch , Mango ,Salted Caramel ,Coffe and Oreo.",
+    
+
     location: "Pune",
     images: ["/images/cake6.jpg", "/images/cake2.jpg", "/images/cake3.webp"],
     phone: "+918765432109",
@@ -71,8 +86,11 @@ export const cakes = [
     id: 7,
     name: "Frost & Flavors",
     rating: 4.7,
-    price: "₹2,300",
-    location: "Kolkata",
+    price: "₹ 2,300 - 3,700 per 2 kg",
+        flavour:"choclate ,vanilla ,red velvet ,strawberry ,pineapple ,butterscotch,Coffee,Almond,Peanut Butter and Oreo.",
+    
+
+    location: "Delhi",
     images: ["/images/cake7.jpg", "/images/c2.jpeg", "/images/c3.jpg"],
     phone: "+919123456789",
     description: "Frost & Flavors is famous for its creamy, flavorful cakes and custom designs. We cater to weddings, birthdays, and corporate events with unique, hand-decorated cakes."
@@ -81,8 +99,11 @@ export const cakes = [
     id: 8,
     name: "The Dessert Hub",
     rating: 4.6,
-    price: "₹2,000",
-    location: "Ahmedabad",
+    price: "₹ 2,000 - 4,000 per 2 kg",
+        flavour:"choclate ,vanilla ,red velvet ,strawberry ,pineapple ,butterscotch, Matcha, Pistachio and Oreo.",
+    
+
+    location: "Bangalore",
     images: ["/images/cake8.jpg", "/images/cake5.jpg", "/images/c1.jpg"],
 
     phone: "+919876512345",
@@ -92,9 +113,12 @@ export const cakes = [
     id: 9,
     name: "Cakelicious",
     rating: 4.9,
-    price: "₹2,400",
-    location: "Chandigarh",
-    images: ["/images/cake9.jpg", "/images/c2.jpeg", "/images/c3.jpg"],
+    price: "₹ 2,400 - 5,000 per 2 kg",
+        flavour:"choclate ,vanilla ,red velvet ,strawberry ,pineapple ,butterscotch ,Peanut Butter,Almond , Coffee, Orage and Oreo.",
+    
+
+    location: "Chennai",
+    images: ["https://media.istockphoto.com/id/999985068/photo/happy-birthday-cake-with-burning-candles-balloons-and-pennant.jpg?s=2048x2048&w=is&k=20&c=KTatQVi_JKuAAa3dS8FUytRq7XtJn-fBkOTRSy_waTQ=","/images/cake9.jpg", "/images/c2.jpeg", "/images/c3.jpg"],
     phone: "+918765498321",
     description: "Cakelicious is all about innovation and taste. From customized theme cakes to classic favorites, we ensure that each cake is both visually stunning and delicious."
   },
@@ -102,64 +126,16 @@ export const cakes = [
     id: 10,
     name: "Blissful Bakes",
     rating: 4.8,
-    price: "₹2,200",
-    location: "Jaipur",
-    images: ["/images/cake10.jpg", "/images/cake2.jpg", "/images/cake3.webp"],
+    price: "₹ 2,200 - 4,500 per 2 kg",
+     flavour:"choclate ,vanilla ,red velvet ,strawberry ,pineapple ,butterscotch ,Funfetti ,Tiramisu, Mango, Blueberry and Oreo.",
+  
+
+    location: "Mumbai",
+    images: ["https://media.istockphoto.com/id/2207395428/photo/luxury-tiered-wedding-cake-with-colorful-flowers-sugar-free-gourmet-flavors-elegant-design.jpg?s=2048x2048&w=is&k=20&c=DlfNckRp7csSBn5OkeyCpqVvl1Kha0KfWlOw33bRwWk=","/images/cake10.jpg", "/images/cake2.jpg", "/images/cake3.webp"],
     phone: "+919123498765",
     description: "Blissful Bakes focuses on premium quality and exquisite flavors. Our specialty cakes and desserts are perfect for celebrations, bringing sweetness and joy to every moment."
   },
-  {
-    id: 3,
-    name: "Sugar Bliss",
-    rating: 4.7,
-    price: "₹2,200",
-    location: "Chennai",
-    images: ["/images/cake12.jpg", "/images/cake5.jpg", "/images/c1.jpg"],
-    phone: "+919123477654",
-    description: "Sugar Bliss is your go-to place for premium cakes and baked treats. We combine classic recipes with modern flavors, ensuring every bite is a blissful experience."
-  },
-  {
-    id: 4,
-    name: "The Cake Studio",
-    rating: 4.6,
-    price: "₹2,500",
-    location: "Delhi",
-    images: ["/images/cake13.jpg", "/images/c2.jpeg", "/images/c3.jpg"],
-    phone: "+919345622109",
-    description: "The Cake Studio creates artistic cakes that are as beautiful as they are delicious. From intricate wedding cakes to personalized birthday cakes, we make every cake a masterpiece."
-  },
-  {
-    id: 5,
-    name: "Heavenly Bites",
-    rating: 4.8,
-    price: "₹2,100",
-    location: "Mumbai",
-    images: ["/images/cake14.jpg", "/images/c2.jpeg", "/images/c3.jpg"],
-    phone: "+919876543210",
-    description: "Heavenly Bites specializes in decadent chocolate and fruit cakes. Our handcrafted treats bring joy to every occasion, and we pride ourselves on quality and presentation."
-  },
-  {
-    id: 6,
-    name: "Choco Charm",
-    rating: 4.5,
-    price: "₹1,900",
-    location: "Pune",
-    images: ["/images/cake15.jpg", "/images/cake2.jpg", "/images/cake3.webp"],
-    phone: "+918765432109",
-    description: "Choco Charm is a paradise for chocolate lovers. We offer rich chocolate cakes, truffles, and ganache delights. Every creation is made with passion and love for chocolate."
-  },
-  {
-    id: 7,
-    name: "Frost & Flavors",
-    rating: 4.7,
-    price: "₹2,300",
-    location: "Kolkata",
-    images: ["/images/cake16.jpg", "/images/c2.jpeg", "/images/c3.jpg"],
-    phone: "+919123456789",
-    description: "Frost & Flavors is famous for its creamy, flavorful cakes and custom designs. We cater to weddings, birthdays, and corporate events with unique, hand-decorated cakes."
-  },
 ];
-
 
 const ServiceCard = ({ service }) => {
   const navigate = useNavigate();
@@ -196,7 +172,7 @@ const ServiceCard = ({ service }) => {
         cursor: "pointer",
       }}
     >
-      {/* ✅ Image Carousel */}
+      {/*  Image Carousel */}
       <div onClick={(e) => e.stopPropagation()}>
         <Slider {...settings}>
           {service.images.map((img, idx) => (
@@ -206,10 +182,11 @@ const ServiceCard = ({ service }) => {
                 alt={`${service.name} ${idx + 1}`}
                 style={{
                   width: "100%",
-                  height: "220px", // ✅ fixed height
-                  objectFit: "cover", // ✅ ensures consistent size even for big images
+                  height: "220px", //  fixed height
+                  objectFit: "contain", // ensures consistent size even for big images
                   objectPosition: "center",
                   display: "block",
+                  backgroundColor:"#f0f0f0"
                 }}
               />
             </div>
@@ -263,7 +240,7 @@ const ServiceCard = ({ service }) => {
   );
 };
 
-// ✅ Custom Arrows for Carousel
+//  Custom Arrows for Carousel
 const SampleNextArrow = (props) => {
   const { className, style, onClick } = props;
   return (
