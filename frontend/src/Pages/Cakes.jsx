@@ -40,22 +40,22 @@ export const cakes = [
   
 
     location: "Chennai",
-    images: ["https://media.istockphoto.com/id/1344455840/photo/photography-of-various-cakes-for-wedding-decorations-and-marriage-concept-recipes-and-food.jpg?s=2048x2048&w=is&k=20&c=QpwiIaNAWGYaR4mpOcosEPA_aUdOWounm3dViimFUJU=","/images/cake4.jpg", "/images/cake5.jpg", "/images/c1.jpg"],
+    images: ["https://media.istockphoto.com/id/1344455840/photo/photography-of-various-cakes-for-wedding-decorations-and-marriage-concept-recipes-and-food.jpg?s=2048x2048&w=is&k=20&c=QpwiIaNAWGYaR4mpOcosEPA_aUdOWounm3dViimFUJU=","/images/cake4.jpg", "/images/cake5.jpg", "/images/cake1.jpg"],
     phone: "+919123477654",
     description: "Sugar Bliss is your go-to place for premium cakes and baked treats. We combine classic recipes with modern flavors, ensuring every bite is a blissful experience."
   },
   {
     id: 4,
-    name: "The ButterVale Cake",
+    name: "Royal Icing Bakery",
     rating: 4.6,
-    price: "₹ 2,500 - 4,500 per 2 kg",
+    price: "₹ 9,500 - 15,000 per 2 kg",
     flavour:"choclate ,vanilla ,red velvet ,strawberry ,pineapple ,butterscotch , Blueberry and Oreo.",
 
 
     location: "Delhi",
-    images: ["/images/cake1.jpg","/images/c3.jpg", "/images/c2.jpeg", "/images/c3.jpg"],
+    images: ["https://images.pexels.com/photos/30232984/pexels-photo-30232984.jpeg", "https://images.pexels.com/photos/15591269/pexels-photo-15591269.jpeg", "https://media.istockphoto.com/id/1146689987/photo/party-cake-15-year-old-birthday-cake-fifteen-years-old.jpg?s=2048x2048&w=is&k=20&c=_GCg3Lwrms5n82rC9D2M7I7OmgCUm_BsIPUfNaguvzM=","https://media.istockphoto.com/id/1215011219/photo/elegant-wedding-cake.jpg?s=2048x2048&w=is&k=20&c=krNNVo-UpuOSnGbZBN1InsCJhgQME069axe4aiCSYOw=","https://media.istockphoto.com/id/839178546/photo/big-sweet-multilevel-wedding-cake-decorated-with-flowers-concept-of-candy-bar-on-party.jpg?s=2048x2048&w=is&k=20&c=A3zqIlZNk5RVSEpLbTSm087RjHa7efLQWPicbNOvYAY="],
     phone: "+919345622109",
-    description: "The Cake Studio creates artistic cakes that are as beautiful as they are delicious. From intricate wedding cakes to personalized birthday cakes, we make every cake a masterpiece."
+    description: "Royal Icing Bakery creates artistic cakes that are as beautiful as they are delicious. From intricate wedding cakes to personalized birthday cakes, we make every cake a masterpiece."
   },
   {
     id: 5,
@@ -97,17 +97,17 @@ export const cakes = [
   },
   {
     id: 8,
-    name: "The Dessert Hub",
+    name: "The Crown Confections",
     rating: 4.6,
-    price: "₹ 2,000 - 4,000 per 2 kg",
+    price: "₹ 6,000 - 18,000 per 2 kg",
         flavour:"choclate ,vanilla ,red velvet ,strawberry ,pineapple ,butterscotch, Matcha, Pistachio and Oreo.",
     
 
     location: "Bangalore",
-    images: ["/images/cake8.jpg", "/images/cake5.jpg", "/images/c1.jpg"],
+    images: ["https://media.istockphoto.com/id/1413002733/photo/the-brides-cake-with-white-and-pink-roses-at-the-wedding.jpg?s=2048x2048&w=is&k=20&c=sZWqM1oyDWKKjrrXeVLPPATybr41Ka_VNkGLP3iAJdk=", "https://media.istockphoto.com/id/918008366/photo/wedding-cake.jpg?s=2048x2048&w=is&k=20&c=e9r4EkpfaiyHA0OyJNk-nX79sQDwUjdeODTXrPEuStU=", "https://media.istockphoto.com/id/689792874/photo/white-wedding-cake.jpg?s=2048x2048&w=is&k=20&c=u2oDGK0F8nA-_IhBVuHpaNpu0giEo3fIyztrYkJyQMs=","https://media.istockphoto.com/id/491871487/photo/wedding-cake.jpg?s=2048x2048&w=is&k=20&c=bfyyOZak9KRO4ympp3A2DAH70FvAMjTTD_xJE4Ef9_4="],
 
     phone: "+919876512345",
-    description: "The Dessert Hub offers a wide range of cakes, muffins, and pastries. Our cakes are baked fresh daily using premium ingredients, making every bite a delightful experience."
+    description: "The Crown Confections offers a wide range of cakes, muffins, and pastries. Our cakes are baked fresh daily using premium ingredients, making every bite a delightful experience."
   },
   {
     id: 9,
@@ -118,7 +118,7 @@ export const cakes = [
     
 
     location: "Chennai",
-    images: ["https://media.istockphoto.com/id/999985068/photo/happy-birthday-cake-with-burning-candles-balloons-and-pennant.jpg?s=2048x2048&w=is&k=20&c=KTatQVi_JKuAAa3dS8FUytRq7XtJn-fBkOTRSy_waTQ=","/images/cake9.jpg", "/images/c2.jpeg", "/images/c3.jpg"],
+    images: ["https://media.istockphoto.com/id/999985068/photo/happy-birthday-cake-with-burning-candles-balloons-and-pennant.jpg?s=2048x2048&w=is&k=20&c=KTatQVi_JKuAAa3dS8FUytRq7XtJn-fBkOTRSy_waTQ=","/images/cake9.jpg", "/images/cake8.jpg", "/images/c3.jpg"],
     phone: "+918765498321",
     description: "Cakelicious is all about innovation and taste. From customized theme cakes to classic favorites, we ensure that each cake is both visually stunning and delicious."
   },
