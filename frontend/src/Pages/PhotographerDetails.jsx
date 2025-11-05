@@ -408,7 +408,8 @@ const PhotographerDetails = () => {
     >
       <strong style={{ color: "#111827" }}>Starting Price:</strong>{" "}
       <span style={{ color: "#059669", fontWeight: 600 }}>
-        {`photographer.startingPrice ? ₹${photographer.startingPrice.toLocaleString()} : 'N/A'`}
+        {/* {`photographer.startingPrice ? ₹${photographer.startingPrice.toLocaleString()} : 'N/A'`} */}
+        <p>Starting Price: {photographer.startingPrice ? `₹${photographer.startingPrice.toLocaleString('en-IN')}` : 'N/A'}</p>
       </span>
     </p>
 

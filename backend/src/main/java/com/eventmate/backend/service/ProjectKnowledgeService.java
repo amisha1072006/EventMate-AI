@@ -33,7 +33,7 @@ public class ProjectKnowledgeService {
         knowledgeBase.put("owner", "An 'Owner' is a type of user who can register their own venues (halls) in the system. They have a separate dashboard to manage their bookings.");
         knowledgeBase.put("controller", "A 'Controller' in Spring Boot (like HallController.java) handles incoming API requests from the frontend and sends back a response.");
         knowledgeBase.put("hello", "Hello! I'm EventMate Assistant. I can help you find the perfect venue or answer questions about the EventMate project code.");
-        knowledgeBase.put("hi", "Hi there! I can assist you with finding venues or explaining project files like Hall.java. How can I help you today?");
+        knowledgeBase.put("hi", "Hi there! I can assist you with finding venues ,planner, photographer ,cake shop ,attire shop . How can I help you today?");
         knowledgeBase.put("hey", "Hey! Ready to find a venue? Just tell me the date, location, or budget.");
         knowledgeBase.put("greetings", "Greetings! I'm here to help you plan your event.");  
 

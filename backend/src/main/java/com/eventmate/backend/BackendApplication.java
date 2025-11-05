@@ -153,7 +153,7 @@ public class BackendApplication {
                 
             // --- Photographer 1: Riya Photography ---
             Photographer ph1 = new Photographer(); 
-            ph1.setName("Riya Photography");
+            ph1.setName("Riya Photographer");
             ph1.setRating(4.8);
             ph1.setStartingPrice(28000.00); 
             ph1.setPhone("9876543210");
@@ -175,7 +175,7 @@ public class BackendApplication {
 
             // --- Photographer 2: Rajesh Photography ---
             Photographer ph2 = new Photographer();
-            ph2.setName("Rajesh Photography");
+            ph2.setName("Rajesh Photographer");
             ph2.setRating(4.9);
             ph2.setStartingPrice(35000.00); 
             ph2.setPhone("8765432109");
@@ -198,7 +198,7 @@ public class BackendApplication {
 
             // --- Photographer 3: Chandan Photography ---
             Photographer ph3 = new Photographer();
-            ph3.setName("Chandan Photography");
+            ph3.setName("Chandan Photographer");
             ph3.setRating(4.7);
             ph3.setStartingPrice(30000.00); 
             ph3.setPhone("5665422109");
@@ -218,7 +218,7 @@ public class BackendApplication {
 
             // --- Photographer 4: Aashutosh Photography ---
             Photographer ph4 = new Photographer();
-            ph4.setName("Aashutosh Photography");
+            ph4.setName("Aashutosh Photographer");
             ph4.setRating(4.9);
             ph4.setStartingPrice(40000.00); 
             ph4.setPhone("8765432109");

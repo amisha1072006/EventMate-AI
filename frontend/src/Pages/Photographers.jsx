@@ -9,7 +9,7 @@ const photographers = [
   {
     className:"arrow-button",
     id: 1,
-    name: "Riya Photography",
+    name: "Riya Photographer",
     rating: 4.8,
     price: "₹28,000",
     //location: "Delhi",
@@ -24,7 +24,7 @@ const photographers = [
   },
   {
     id: 2,
-    name: "Rajesh Photography",
+    name: "Rajesh Photographer",
     rating: 4.9,
     price: "₹35,000",
    // location: "Mumbai",
@@ -41,7 +41,7 @@ const photographers = [
   },
   {
     id: 3,
-    name: "Chandan Photography",
+    name: "Chandan Photographer",
     rating: 4.7,
     price: "₹30,000",
    // location: "Bangalore",
@@ -54,7 +54,7 @@ const photographers = [
   },
   {
     id: 4,
-    name: "Aashutosh Photography",
+    name: "Aashutosh Photographer",
     rating: 4.9,
     price: "₹40,000",
    // location: "Lucknow",
