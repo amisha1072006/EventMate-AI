@@ -87,7 +87,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/newsletter/**").permitAll()
                         .requestMatchers("/api/contact/**").permitAll()
                         //.requestMatchers("/api/halls/**").permitAll()
-                        .requestMatchers("/api/bookings/**").permitAll()
+                        .requestMatchers("/api/bookings/**").authenticated()
                         .requestMatchers("/api/chat/**").permitAll()
                         .requestMatchers("/api/managehalls/**").permitAll()
                         .requestMatchers("/api/managehallbookings/**").permitAll()
