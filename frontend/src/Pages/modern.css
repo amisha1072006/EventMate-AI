@@ -1,6 +1,15 @@
+ *{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+ }
+
+
 /* ===== General Page Layout ===== */
 .page {
-    min-height: 100vh;
+    /* min-height: 100vh; */
+    margin: 0px;
+   /* border : 3px solid red; */
     width: 100%;
     background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
     font-family: 'Inter', sans-serif;
@@ -8,23 +17,46 @@
   }
   
   .container {
-    max-width: 72rem;
+    max-width: 100rem;
     margin: 0 auto;
     padding: 0 1rem;
   }
   
   /* ===== Header Section ===== */
-  .header {
+  .Modernheader {
     position: relative;
     background: url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=2069&q=80')
       center / cover no-repeat;
     text-align: center;
-    padding: 6rem 2rem;
-    color: white;
-    margin-bottom: 3rem;
+    padding: 10rem 2rem;
+    color: rgb(255, 255, 255);
+   
   }
   
-  .header .overlay {
+
+  .Planningheader {
+    position: relative;
+    background: url('../assets/planningbg.jpg')
+      center / cover no-repeat;
+    text-align: center;
+    padding: 10rem 2rem;
+    margin-left: 0px;
+    color: rgb(255, 255, 255);
+ 
+  }
+
+  
+  .Planningheader  .overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 0.5rem;
+  }
+  
+
+  
+
+  .Modernheader  .overlay {
     position: absolute;
     inset: 0;
     background-color: rgba(0, 0, 0, 0.4);
@@ -67,7 +99,7 @@
     margin-bottom: 2rem;
   }
   
-  /* ===== Grid ===== */
+  /* ===== Grid ===== */ 
   .grid {
     display: grid;
     gap: 1.5rem;
@@ -476,5 +508,30 @@
   .button.light.small:hover {
     background: #333;
     color: #fff;
+  }
+
+
+  .grid-5 {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.5rem;
+  }
+  
+  @media (max-width: 1200px) {
+    .grid-5 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .grid-5 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .grid-5 {
+      grid-template-columns: 1fr;
+    }
   }
   
